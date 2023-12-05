@@ -6,22 +6,24 @@ import Logo from "@/public/logo-variants/transparent-coloured.svg";
 import { Josefin_Sans } from "next/font/google";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useUser } from "@auth0/nextjs-auth0/client";
 const josefinSans = Josefin_Sans({ subsets: ["latin"] });
 
 import Cyrillic from "@/public/svg/cyrillic.svg";
 import Link from "next/link";
-export default function Sidebar() {
-  // className,
-  // prev = [{ label: "Back to Homepage", path: "/" }],
-  // active,
-  // navItems,
-  // className?: string;
-  // prev?: { label: string; path: string }[] | null;
-  // active?: { label: string; path: string }[];
+import { IconType } from "react-icons";
+
+export default function Sidebar(element: { element: any }) {
   // navItems?: { label: string; path: string }[];
 
+  const { user, error, isLoading } = useUser();
+
   const pathName = usePathname();
-  const items = [
+  const items: {
+    icon: any;
+    label: string;
+    path: string;
+  }[] = [
     {
       icon: <FaHome />,
       label: "Početkova",
@@ -49,10 +51,10 @@ export default function Sidebar() {
     },
   ];
   return (
-    <>
-      <div className="w-96 h-[100vh] flex flex-col items-center pt-8 gap-16 border-r bg-white">
+    <div className="flex">
+      <div className="w-[15vw] h-screen flex flex-col items-center pt-8 gap-16 border-r bg-white">
         <div>
-          <Image src={Logo} className="w-48" alt="Logo" />
+          <Image src={Logo} className="w-32" alt="Logo" />
         </div>
         <div>
           <div className="grid grid-rows-1 gap-4">
@@ -63,10 +65,10 @@ export default function Sidebar() {
                   key={index}
                   className={`${
                     josefinSans.className
-                  } flex items-center gap-8 p-6 text-lg ${
+                  } flex items-center gap-8 px-6 py-4 text-lg rounded-2xl ${
                     item.path == pathName
-                      ? "border border-color-active rounded-2xl bg-[#F9F9F9] text-color-active"
-                      : "text-color-not-active rounded-2xl hover:bg-[#F9F9F9]"
+                      ? "border border-color-active bg-[#F9F9F9] text-color-active transition-all duration-500 ease-in-out"
+                      : "text-color-not-active hover:bg-[#F9F9F9]"
                   }`}
                 >
                   <div>{item.icon}</div>
@@ -77,6 +79,28 @@ export default function Sidebar() {
           </div>
         </div>
       </div>
-    </>
+      <div className="w-full">
+        <div className="flex justify-end items-center h-32 w-full px-16 bg-white">
+          {isLoading ? (
+            <span className="px-8 animate-pulse">Loading...</span>
+          ) : user ? (
+            <a
+              href="/api/auth/logout"
+              className="p-4 px-8 bg-green-400 rounded-3xl text-black hover:bg-green-900 hover:text-white transition-all ease-in-out"
+            >
+              Logout
+            </a>
+          ) : (
+            <a
+              href="/api/auth/login"
+              className="p-4 px-8 bg-color-not-active rounded-3xl text-white hover:bg-black"
+            >
+              Login
+            </a>
+          )}
+        </div>
+        {element.element}
+      </div>
+    </div>
   );
 }

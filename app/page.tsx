@@ -1,9 +1,10 @@
-import Sidebar from "./sections/Sidebar";
+import Sidebar from "./sections/Layout";
 
 export default function Home() {
   return (
     <div>
-      <Sidebar />
+      {/* <Navbar /> */}
+      {/* <Sidebar /> */}
     </div>
   );
 }
