@@ -1,39 +1,34 @@
-export default function HomePage() {
+export default function HomePage({
+  levels,
+}: {
+  levels: { name: string; stages: number; completedStages: number }[];
+}) {
   return (
-    <div className="flex flex-col gap-16">
-      <div className="flex flex-col gap-8 items-center">
-        <h1 className="text-3xl font-bold text-center">Pozdravi</h1>
-        <div className="p-4 border rounded-3xl flex w-min justify-between gap-4 mx-auto">
-          <span className="p-4 bg-secondary text-white rounded-xl text-xl">
-            1
-          </span>
-          <span className="p-4 bg-secondary text-white rounded-xl text-xl">
-            2
-          </span>
+    <div className="flex flex-col gap-16 content-wrap mx-auto pb-48">
+      {levels.map((level, index) => (
+        <div
+          key={index}
+          className={`flex flex-col gap-8 items-center ${
+            level.completedStages === 0 ? "opacity-50" : ""
+          }`}
+        >
+          <h1 className="text-3xl font-bold text-center">{level.name}</h1>
+          <div className="p-4 border rounded-3xl flex justify-center gap-4 mx-48 flex-wrap">
+            {Array.from({ length: level.stages }).map((_, stageIndex) => (
+              <span
+                key={stageIndex}
+                className={`p-4 w-16 text-center ${
+                  stageIndex < level.completedStages
+                    ? "bg-secondary text-white"
+                    : "border border-secondary text-secondary"
+                } rounded-xl text-xl`}
+              >
+                {stageIndex + 1}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col gap-8 items-center">
-        <h1 className="text-3xl font-bold text-center">
-          Osnovne rečenice / osnovna rěčenja
-        </h1>
-        <div className="p-4 border rounded-3xl flex w-min justify-between gap-4 mx-auto">
-          <span className="p-4 bg-secondary text-white rounded-xl text-xl">
-            1
-          </span>
-          <span className="p-4 border border-secondary text-secondary rounded-xl text-xl">
-            2
-          </span>
-          <span className="p-4 border border-secondary text-secondary rounded-xl text-xl">
-            3
-          </span>
-          <span className="p-4 border border-secondary text-secondary rounded-xl text-xl">
-            4
-          </span>
-          <span className="p-4 border border-secondary text-secondary rounded-xl text-xl">
-            5
-          </span>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }

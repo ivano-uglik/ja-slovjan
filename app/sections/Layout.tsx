@@ -52,7 +52,7 @@ export default function Sidebar(element: { element: any }) {
   ];
   return (
     <div className="flex">
-      <div className="w-[15vw] h-screen flex flex-col items-center pt-8 gap-16 border-r bg-white">
+      <div className="w-[15vw] h-screen flex flex-col items-center pt-8 gap-16 border-r bg-white sticky top-0">
         <div>
           <Image src={Logo} className="w-32" alt="Logo" />
         </div>

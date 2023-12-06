@@ -20,7 +20,7 @@ export default function Profile() {
           <img
             src={user.picture ?? ""}
             alt={user.name ?? "User"}
-            className="w-32 rounded-xl"
+            className="w-32 h-32 rounded-xl"
           />
         </div>
       </div>
