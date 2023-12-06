@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./sections/Layout";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 
-const inter = Inter({ subsets: ["latin"] });
+const josefin_sans = Josefin_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <UserProvider>
-        <body className={inter.className}>
+        <body className={josefin_sans.className}>
           <Sidebar element={children} />
         </body>
       </UserProvider>

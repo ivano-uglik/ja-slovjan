@@ -1,3 +1,7 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 export default function Cyrillic() {
   const letters: {
     cyrillic: string;
@@ -40,15 +44,15 @@ export default function Cyrillic() {
     { cyrillic: "Яя", latin: "Ya", isLearned: false, level: 4 }, // Unique character in Russian
   ];
 
-  // Get unique levels from the letters array
   const uniqueLevels = Array.from(
     new Set(letters.map((letter) => letter.level))
   ).sort((a, b) => a - b);
 
+  const router = useRouter();
   return (
     <div>
       <div className="text-center content-wrap mx-auto">
-        <h2 className="font-bold text-5xl pb-4">Kirilica</h2>
+        <h2 className="font-bold text-5xl pb-4 uppercase">Kirilica</h2>
         <h3 className="pb-4">
           O 250 miliona ljudi koristajut kirilsko pismo. Spoznaj se so Kirilovom
           azbukoju tutdenj!
@@ -71,6 +75,9 @@ export default function Cyrillic() {
                             ? "bg-slate-50 opacity-75 hover:opacity-50"
                             : "hover:opacity-75 shadow-md hover:shadow-lg transition-shadow duration-100 ease-out"
                         }`}
+                        onClick={() => {
+                          router.push(`cyrillic/task/${letter.cyrillic}`);
+                        }}
                       >
                         <p className="text-3xl font-semibold">
                           {letter.cyrillic}
