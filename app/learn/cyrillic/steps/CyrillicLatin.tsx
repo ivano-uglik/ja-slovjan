@@ -9,7 +9,7 @@ export default function CyrillicLatin({
     <div className="content-wrap mx-auto ">
       <div>
         <h2 className="text-center text-5xl font-bold">
-          What sound does this letter make?
+          Ktory latinsky bukva jest ova kirilčska bukva?
         </h2>
       </div>
       <div className="p-16 px-20 rounded-3xl text-[5rem] border w-min mx-auto my-16">

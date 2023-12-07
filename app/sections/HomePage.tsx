@@ -15,16 +15,17 @@ export default function HomePage({
           <h1 className="text-3xl font-bold text-center">{level.name}</h1>
           <div className="p-4 border rounded-3xl flex justify-center gap-4 mx-48 flex-wrap">
             {Array.from({ length: level.stages }).map((_, stageIndex) => (
-              <span
+              <a
+                href={`learn/cyrillic/${level.name}/${stageIndex + 1}`}
                 key={stageIndex}
                 className={`p-4 w-16 text-center ${
                   stageIndex < level.completedStages
-                    ? "bg-secondary text-white"
+                    ? "bg-secondary text-white hover:bg-neutral "
                     : "border border-secondary text-secondary"
-                } rounded-xl text-xl`}
+                } rounded-xl text-xl cursor-pointer`}
               >
                 {stageIndex + 1}
-              </span>
+              </a>
             ))}
           </div>
         </div>

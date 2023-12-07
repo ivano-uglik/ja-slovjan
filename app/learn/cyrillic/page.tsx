@@ -1,49 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-
+import { letters } from "@/app/@lib/letters";
 export default function Cyrillic() {
-  const letters: {
-    cyrillic: string;
-    latin: string;
-    isLearned: boolean;
-    level: number;
-  }[] = [
-    { cyrillic: "Аа", latin: "Aa", isLearned: true, level: 1 },
-    { cyrillic: "Бб", latin: "Bb", isLearned: true, level: 2 }, // Resembles Latin "B" but sounds like "V"
-    { cyrillic: "Вв", latin: "Vv", isLearned: false, level: 5 }, // Resembles Latin "B" but sounds like "V"
-    { cyrillic: "Гг", latin: "Gg", isLearned: false, level: 3 },
-    { cyrillic: "Дд", latin: "Dd", isLearned: false, level: 3 },
-    { cyrillic: "Ее", latin: "Ee", isLearned: true, level: 1 },
-    { cyrillic: "Ёё", latin: "Yo", isLearned: false, level: 4 }, // Extra character in Russian, similar to "Ee"
-    { cyrillic: "Жж", latin: "Zh", isLearned: true, level: 4 }, // Unique character in Russian
-    { cyrillic: "Зз", latin: "Zz", isLearned: false, level: 2 },
-    { cyrillic: "Ии", latin: "Ii", isLearned: true, level: 3 },
-    { cyrillic: "Йй", latin: "Yi", isLearned: false, level: 3 }, // Similar to "N" but with a different sound
-    { cyrillic: "Кк", latin: "Kk", isLearned: true, level: 1 },
-    { cyrillic: "Лл", latin: "Ll", isLearned: false, level: 2 },
-    { cyrillic: "Мм", latin: "Mm", isLearned: false, level: 1 },
-    { cyrillic: "Нн", latin: "Nn", isLearned: true, level: 5 },
-    { cyrillic: "Оо", latin: "Oo", isLearned: true, level: 1 },
-    { cyrillic: "Пп", latin: "Pp", isLearned: true, level: 2 },
-    { cyrillic: "Рр", latin: "Rr", isLearned: false, level: 5 },
-    { cyrillic: "Сс", latin: "Ss", isLearned: false, level: 5 },
-    { cyrillic: "Тт", latin: "Tt", isLearned: true, level: 1 },
-    { cyrillic: "Уу", latin: "Uu", isLearned: false, level: 5 },
-    { cyrillic: "Фф", latin: "Ff", isLearned: false, level: 3 }, // Uncommon in Latin script
-    { cyrillic: "Хх", latin: "Kh", isLearned: true, level: 5 }, // Similar to "X" but with a different sound
-    { cyrillic: "Цц", latin: "Ts", isLearned: true, level: 4 }, // Unique character in Russian
-    { cyrillic: "Чч", latin: "Ch", isLearned: false, level: 4 }, // Unique character in Russian
-    { cyrillic: "Шш", latin: "Sh", isLearned: true, level: 4 }, // Unique character in Russian
-    { cyrillic: "Щщ", latin: "Shch", isLearned: true, level: 4 }, // Unique character in Russian
-    { cyrillic: "Ъъ", latin: "Hard sign", isLearned: true, level: 5 }, // Extra character in Russian
-    { cyrillic: "Ыы", latin: "Y", isLearned: false, level: 5 }, // Unique character in Russian
-    { cyrillic: "Ьь", latin: "Soft sign", isLearned: false, level: 5 }, // Extra character in Russian
-    { cyrillic: "Ээ", latin: "E", isLearned: false, level: 4 }, // Uncommon in Latin script
-    { cyrillic: "Юю", latin: "Yu", isLearned: true, level: 4 }, // Unique character in Russian
-    { cyrillic: "Яя", latin: "Ya", isLearned: false, level: 4 }, // Unique character in Russian
-  ];
-
   const uniqueLevels = Array.from(
     new Set(letters.map((letter) => letter.level))
   ).sort((a, b) => a - b);
@@ -52,7 +11,7 @@ export default function Cyrillic() {
   return (
     <div>
       <div className="text-center content-wrap mx-auto">
-        <h2 className="font-bold text-5xl pb-4 uppercase">Kirilica</h2>
+        <h2 className="font-bold text-5xl pb-4 uppercase">Kiяilica</h2>
         <h3 className="pb-4">
           O 250 miliona ljudi koristajut kirilsko pismo. Spoznaj se so Kirilovom
           azbukoju tutdenj!

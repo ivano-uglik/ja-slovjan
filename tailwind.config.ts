@@ -8,10 +8,9 @@ const config: Config = {
           primary: "#DD0000",
 
           secondary: "#003893",
-
           accent: "#0add08",
 
-          neutral: "#333333",
+          neutral: "#0254d8",
 
           "base-100": "#ffffff",
 

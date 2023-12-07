@@ -1,0 +1,40 @@
+export const letters: {
+  cyrillic: string;
+  latin: string;
+  isLearned: boolean;
+  level: number;
+}[] = [
+  { cyrillic: "Аа", latin: "Aa", isLearned: true, level: 1 },
+  { cyrillic: "Бб", latin: "Bb", isLearned: true, level: 2 },
+  { cyrillic: "Вв", latin: "Vv", isLearned: false, level: 5 },
+  { cyrillic: "Гг", latin: "Gg", isLearned: false, level: 3 },
+  { cyrillic: "Дд", latin: "Dd", isLearned: false, level: 3 },
+  { cyrillic: "Ее", latin: "Ee", isLearned: true, level: 1 },
+  { cyrillic: "Ёё", latin: "Yo", isLearned: false, level: 4 },
+  { cyrillic: "Жж", latin: "Žž", isLearned: true, level: 4 },
+  { cyrillic: "Зз", latin: "Zz", isLearned: false, level: 2 },
+  { cyrillic: "Ии", latin: "Ii", isLearned: true, level: 3 },
+  { cyrillic: "Йй", latin: "Yi", isLearned: false, level: 3 },
+  { cyrillic: "Кк", latin: "Kk", isLearned: true, level: 1 },
+  { cyrillic: "Лл", latin: "Ll", isLearned: false, level: 2 },
+  { cyrillic: "Мм", latin: "Mm", isLearned: false, level: 1 },
+  { cyrillic: "Нн", latin: "Nn", isLearned: true, level: 5 },
+  { cyrillic: "Оо", latin: "Oo", isLearned: true, level: 1 },
+  { cyrillic: "Пп", latin: "Pp", isLearned: true, level: 2 },
+  { cyrillic: "Рр", latin: "Rr", isLearned: false, level: 5 },
+  { cyrillic: "Сс", latin: "Ss", isLearned: false, level: 5 },
+  { cyrillic: "Тт", latin: "Tt", isLearned: true, level: 1 },
+  { cyrillic: "Уу", latin: "Uu", isLearned: false, level: 5 },
+  { cyrillic: "Фф", latin: "Ff", isLearned: false, level: 3 },
+  { cyrillic: "Хх", latin: "Hh", isLearned: true, level: 5 },
+  { cyrillic: "Цц", latin: "Cc", isLearned: true, level: 4 },
+  { cyrillic: "Чч", latin: "Čč", isLearned: false, level: 4 },
+  { cyrillic: "Шш", latin: "Šš", isLearned: true, level: 4 },
+  { cyrillic: "Щщ", latin: "ŠĆšć", isLearned: true, level: 4 },
+  { cyrillic: "Ъъ", latin: "Tvrdy znak", isLearned: true, level: 5 },
+  { cyrillic: "Ыы", latin: "Y", isLearned: false, level: 5 },
+  { cyrillic: "Ьь", latin: "Mekky znak", isLearned: false, level: 5 },
+  { cyrillic: "Ээ", latin: "Eě", isLearned: false, level: 4 },
+  { cyrillic: "Юю", latin: "Yu", isLearned: true, level: 4 },
+  { cyrillic: "Яя", latin: "Ya", isLearned: false, level: 4 },
+];
