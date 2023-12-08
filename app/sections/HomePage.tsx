@@ -16,7 +16,7 @@ export default function HomePage({
           <div className="p-4 border rounded-3xl flex justify-center gap-4 mx-48 flex-wrap">
             {Array.from({ length: level.stages }).map((_, stageIndex) => (
               <a
-                href={`learn/cyrillic/${level.name}/${stageIndex + 1}`}
+                href={`learn/${level.name}/${stageIndex + 1}`}
                 key={stageIndex}
                 className={`p-4 w-16 text-center ${
                   stageIndex < level.completedStages

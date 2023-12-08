@@ -1,60 +1,38 @@
-import CyrillicLatin from "../../steps/CyrillicLatin";
-import { letters } from "@/app/@lib/letters";
+"use client";
+import { useState } from "react";
+import CyrillicLatin4CharsStep from "./CyrillicLatin4CharsStep";
+import CyrillicLatinStep from "./CyrillicLatinStep";
+
 export default function Page({ params }: { params: { letter: string } }) {
-  // Decode the URI component
-  const cyrillicLetter = decodeURIComponent(params.letter);
-
-  // Find the corresponding entry in the letters array
-  const letterEntry = letters.find(
-    (entry) => entry.cyrillic === cyrillicLetter
-  );
-
-  // If the letter entry is not found, handle it accordingly
-  if (!letterEntry) {
-    return <div>Letter not found</div>;
-  }
-
-  // Get three random indices for incorrect options
-  const randomIndices = getRandomIndices(letters.length, 3);
-
-  // Generate options array with three random incorrect letters and one correct letter
-  const options = [
-    { text: letterEntry.latin, isCorrect: true },
-    { text: letters[randomIndices[0]].latin, isCorrect: false },
-    { text: letters[randomIndices[1]].latin, isCorrect: false },
-    { text: letters[randomIndices[2]].latin, isCorrect: false },
-  ];
-
-  const shuffledOptions = shuffleArray(options);
-
+  const [active, setActive] = useState(0);
   return (
-    <div>
-      <CyrillicLatin
-        cyrillicLetter={cyrillicLetter}
-        options={shuffledOptions}
-      />
-    </div>
+    <>
+      <div
+        className={`flex justify-center gap-16 mx-auto content-wrap ${
+          active == 0 ? "" : "hidden"
+        }`}
+      >
+        <button
+          className="p-12 border rounded-xl text-5xl"
+          onClick={() => setActive(1)}
+        >
+          1
+        </button>
+        <button
+          className="p-12 border rounded-xl text-5xl"
+          onClick={() => setActive(2)}
+        >
+          2
+        </button>
+      </div>
+      <div>
+        <div className={`${active == 1 ? "" : "hidden"}`}>
+          <CyrillicLatinStep params={params} />
+        </div>
+        <div className={`${active == 2 ? "" : "hidden"}`}>
+          <CyrillicLatin4CharsStep params={params} />
+        </div>
+      </div>
+    </>
   );
-}
-
-// Function to generate an array of random indices
-function getRandomIndices(max: number, count: number): number[] {
-  const indices: number[] = [];
-  while (indices.length < count) {
-    const randomIndex = Math.floor(Math.random() * max);
-    if (!indices.includes(randomIndex)) {
-      indices.push(randomIndex);
-    }
-  }
-  return indices;
-}
-
-// Function to shuffle an array randomly
-function shuffleArray(array: any[]): any[] {
-  const shuffledArray = array.slice(); // Create a copy of the array
-  for (let i = shuffledArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-  }
-  return shuffledArray;
 }
