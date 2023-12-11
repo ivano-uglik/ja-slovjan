@@ -35,7 +35,7 @@ export default function Cyrillic() {
                             : "hover:opacity-75 shadow-md hover:shadow-lg transition-shadow duration-100 ease-out"
                         }`}
                         onClick={() => {
-                          router.push(`cyrillic/task/${letter.cyrillic}`);
+                          router.push(`cyrillic/task/${letter.id}`);
                         }}
                       >
                         <p className="text-3xl font-semibold">

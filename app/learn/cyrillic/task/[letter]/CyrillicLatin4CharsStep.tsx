@@ -4,14 +4,13 @@ import CyrillicLatin4Chars from "../../steps/CyrillicLatin4Chars";
 export default function CyrillicLatin4CharsStep({
   params,
 }: {
-  params: { letter: string };
+  params: { letter: number };
 }) {
   // Decode the URI component
-  const cyrillicLetter = decodeURIComponent(params.letter);
 
   // Find the corresponding entry in the letters array
   const letterEntry = letters.find(
-    (entry) => entry.cyrillic === cyrillicLetter
+    (entry) => entry.id === Number(decodeURIComponent(params.letter.toString()))
   );
 
   // If the letter entry is not found, handle it accordingly

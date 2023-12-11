@@ -3,7 +3,7 @@ import { useState } from "react";
 import CyrillicLatin4CharsStep from "./CyrillicLatin4CharsStep";
 import CyrillicLatinStep from "./CyrillicLatinStep";
 
-export default function Page({ params }: { params: { letter: string } }) {
+export default function Page({ params }: { params: { letter: any } }) {
   const [active, setActive] = useState(0);
   return (
     <>
