@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Completed from "../Completed";
+import Completed from "../CompletedLevel";
 
-export default function Latin1({
+export default function TranslateSentence({
   title,
   options,
+  Completed,
 }: {
   title: string;
   options: { string: string; isCorrect: boolean }[];
+  Completed: any;
 }) {
   const [correct, isCorrect] = useState(false);
   return (
@@ -33,7 +35,7 @@ export default function Latin1({
           })}
         </ul>
       </div>
-      {correct && <Completed />}
+      {correct && Completed}
     </div>
   );
 }

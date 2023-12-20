@@ -17,11 +17,13 @@ export default function Profile() {
             <h2 className="text-5xl font-bold">{user.name}</h2>
             <p>{user.email}</p>
           </div>
-          <img
-            src={user.picture ?? ""}
-            alt={user.name ?? "User"}
-            className="w-32 h-32 rounded-xl"
-          />
+          {!isLoading && (
+            <img
+              src={user.picture}
+              alt={user.name ?? "User"}
+              className="w-32 h-32 rounded-xl"
+            />
+          )}
         </div>
       </div>
     )

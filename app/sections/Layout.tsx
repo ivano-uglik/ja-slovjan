@@ -99,7 +99,7 @@ export default function Sidebar(element: { element: any }) {
             </a>
           )}
         </div>
-        {element.element}
+        {element && element.element}
       </div>
     </div>
   );

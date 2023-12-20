@@ -1,13 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { letters } from "@/app/@lib/letters";
 export default function Cyrillic() {
   const uniqueLevels = Array.from(
     new Set(letters.map((letter) => letter.level))
   ).sort((a, b) => a - b);
 
-  const router = useRouter();
   return (
     <div>
       <div className="text-center content-wrap mx-auto">
@@ -27,22 +25,20 @@ export default function Cyrillic() {
                 {letters.map((letter, index: number) => {
                   if (letter.level === level) {
                     return (
-                      <div
-                        key={index}
-                        className={`flex flex-col px-10 py-4 rounded-2xl border gap-2 cursor-pointer ${
-                          letter.isLearned
-                            ? "bg-slate-50 opacity-75 hover:opacity-50"
-                            : "hover:opacity-75 shadow-md hover:shadow-lg transition-shadow duration-100 ease-out"
-                        }`}
-                        onClick={() => {
-                          router.push(`cyrillic/task/${letter.id}`);
-                        }}
-                      >
-                        <p className="text-3xl font-semibold">
-                          {letter.cyrillic}
-                        </p>
-                        <p>{letter.latin}</p>
-                      </div>
+                      <a key={index} href={`cyrillic/${letter.id}`}>
+                        <div
+                          className={`flex flex-col px-10 py-4 rounded-2xl border gap-2 cursor-pointer ${
+                            letter.isLearned
+                              ? "bg-slate-50 opacity-75 hover:opacity-50"
+                              : "hover:opacity-75 shadow-md hover:shadow-lg transition-shadow duration-100 ease-out"
+                          }`}
+                        >
+                          <p className="text-3xl font-semibold">
+                            {letter.cyrillic}
+                          </p>
+                          <p>{letter.latin}</p>
+                        </div>
+                      </a>
                     );
                   } else {
                     return null;

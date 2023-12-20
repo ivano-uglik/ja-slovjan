@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Completed from "../../Completed";
+import Completed from "../../CompletedLevel";
 
-export default function CyrillicLatin4Chars({
+export default function GuessLatinLetterStep({
   latinLetter,
   options,
 }: {

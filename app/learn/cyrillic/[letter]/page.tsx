@@ -1,9 +1,17 @@
 "use client";
 import { useState } from "react";
-import CyrillicLatin4CharsStep from "./CyrillicLatin4CharsStep";
-import CyrillicLatinStep from "./CyrillicLatinStep";
-
+import GuessCyrillicLetterStep from "@/app/sections/steps/cyrillic/GuessCyrillicLetterStep";
+import GuessLatinLetterStep from "@/app/sections/steps/cyrillic/GuessLatinLetterStep";
 export default function Page({ params }: { params: { letter: any } }) {
+  const Level = {
+    cyrillicLetter: "Я",
+    options: [
+      { text: "Ya", isCorrect: true },
+      { text: "Ye", isCorrect: false },
+      { text: "Yi", isCorrect: false },
+      { text: "Yo", isCorrect: false },
+    ],
+  };
   const [active, setActive] = useState(0);
   return (
     <>
@@ -27,10 +35,16 @@ export default function Page({ params }: { params: { letter: any } }) {
       </div>
       <div>
         <div className={`${active == 1 ? "" : "hidden"}`}>
-          <CyrillicLatinStep params={params} />
+          <GuessCyrillicLetterStep
+            cyrillicLetter={Level.cyrillicLetter}
+            options={Level.options}
+          />
         </div>
         <div className={`${active == 2 ? "" : "hidden"}`}>
-          <CyrillicLatin4CharsStep params={params} />
+          <GuessLatinLetterStep
+            latinLetter={Level.cyrillicLetter}
+            options={Level.options}
+          />
         </div>
       </div>
     </>

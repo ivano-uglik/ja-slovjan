@@ -1,7 +1,13 @@
 import Rocket from "@/public/svg/rocket-svgrepo.svg";
 import Image from "next/image";
 
-export default function Completed({ className }: { className?: string }) {
+export default function Completed({
+  className,
+  onClick,
+}: {
+  className?: string;
+  onClick?: any;
+}) {
   return (
     <div className={`${className}`}>
       <div className="w-full h-[28vh] fixed bottom-0 bg-[#F4F4F4] flex items-center justify-center">
@@ -20,7 +26,10 @@ export default function Completed({ className }: { className?: string }) {
             <button className="px-12 py-4 text-xl font-semibold border rounded-lg">
               Prěgledi
             </button>
-            <button className="px-12 py-4 text-xl font-semibold border rounded-lg bg-color-active">
+            <button
+              className="px-12 py-4 text-xl font-semibold border rounded-lg bg-color-active"
+              onClick={onClick}
+            >
               Slědujuči
             </button>
           </div>
