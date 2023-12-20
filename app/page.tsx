@@ -1,4 +1,4 @@
-import CyrillicLatin from "./learn/cyrillic/steps/CyrillicLatin";
+import CyrillicLatin from "./learn/steps/cyrillic/CyrillicLatin";
 import HomePage from "./sections/HomePage";
 import Sidebar from "./sections/Layout";
 
