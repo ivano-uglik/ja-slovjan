@@ -89,7 +89,7 @@ export default function Sidebar(element: { element: any }) {
             </a>
           ) : (
             <a
-              href="/api/auth/login"
+              href="/auth/registration"
               className="p-4 px-8 bg-color-not-active rounded-3xl text-white hover:bg-black"
             >
               Login
