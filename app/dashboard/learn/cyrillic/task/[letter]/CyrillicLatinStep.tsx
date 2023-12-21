@@ -1,4 +1,4 @@
-import CyrillicLatin from "../../steps/CyrillicLatin";
+import CyrillicLatin from "../../../steps/cyrillic/CyrillicLatin";
 import { letters } from "@/app/@lib/letters";
 export default function CyrillicLatinStep({
   params,
