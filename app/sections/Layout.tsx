@@ -10,9 +10,12 @@ const josefinSans = Josefin_Sans({ subsets: ["latin"] });
 import Cyrillic from "@/public/svg/cyrillic.svg";
 import Link from "next/link";
 import { IconType } from "react-icons";
+import { useSession } from "@/context/SessionContext";
 
 export default function Sidebar(element: { element: any }) {
   // navItems?: { label: string; path: string }[];
+
+  const { session, isLoading } = useSession() || {};
 
   const pathName = usePathname();
   const items: {
@@ -75,9 +78,9 @@ export default function Sidebar(element: { element: any }) {
       </div>
       <div className="w-full">
         <div className="flex justify-end items-center h-32 w-full px-16 bg-white">
-          {/*           {isLoading ? (
-            <span className="px-8 animate-pulse">Loading...</span>
-          ) : user ? (
+          {isLoading ? (
+            <div className="px-8 animate-pulse"></div>
+          ) : session?.user ? (
             <a
               href="/api/auth/logout"
               className="p-4 px-8 bg-green-400 rounded-3xl text-black hover:bg-green-900 hover:text-white transition-all ease-in-out"
@@ -91,7 +94,7 @@ export default function Sidebar(element: { element: any }) {
             >
               Login
             </a>
-          )} */}
+          )}
         </div>
         {element.element}
       </div>
