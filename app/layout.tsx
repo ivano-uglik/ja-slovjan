@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <Sidebar element={children} />
+        {children}
       </body>
     </html>
   );
