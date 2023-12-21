@@ -11,6 +11,7 @@ import Cyrillic from "@/public/svg/cyrillic.svg";
 import Link from "next/link";
 import { IconType } from "react-icons";
 import { useSession } from "@/context/SessionContext";
+import supabase from "@/supabase/supabase-client";
 
 export default function Sidebar(element: { element: any }) {
   // navItems?: { label: string; path: string }[];
@@ -26,27 +27,27 @@ export default function Sidebar(element: { element: any }) {
       {
         icon: <FaHome />,
         label: "Početkova",
-        path: "/",
+        path: "/dashboard/",
       },
       {
         icon: <FaBook />,
         label: "Povědky",
-        path: "/learn/stories",
+        path: "/dashboard/learn/stories",
       },
       {
         icon: <FaRocket />,
         label: "T. s izslědkami",
-        path: "/leaderboard",
+        path: "/dashboard/leaderboard",
       },
       {
         icon: <Image src={Cyrillic} className="w-[1.5rem]" alt="" />,
         label: "Kirilica",
-        path: "/learn/cyrillic",
+        path: "/dashboard/learn/cyrillic",
       },
       {
         icon: <FaUserCircle />,
         label: "Profil",
-        path: "/profile",
+        path: "/dashboard/profile",
       },
     ];
   return (
@@ -81,12 +82,12 @@ export default function Sidebar(element: { element: any }) {
           {isLoading ? (
             <div className="px-8 animate-pulse"></div>
           ) : session?.user ? (
-            <a
-              href="/api/auth/logout"
+            <button
+              onClick={() => supabase.auth.signOut()}
               className="p-4 px-8 bg-green-400 rounded-3xl text-black hover:bg-green-900 hover:text-white transition-all ease-in-out"
             >
               Logout
-            </a>
+            </button>
           ) : (
             <a
               href="/auth/registration"

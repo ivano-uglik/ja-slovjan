@@ -1,6 +1,7 @@
 "use client";
 
 import { letters } from "@/app/@lib/letters";
+import Link from "next/link";
 export default function Cyrillic() {
   const uniqueLevels = Array.from(
     new Set(letters.map((letter) => letter.level))
@@ -25,20 +26,19 @@ export default function Cyrillic() {
                 {letters.map((letter, index: number) => {
                   if (letter.level === level) {
                     return (
-                      <a key={index} href={`cyrillic/${letter.id}`}>
+                      <Link key={index} href={`/dashboard/learn/cyrillic/${letter.id}`}>
                         <div
-                          className={`flex flex-col px-10 py-4 rounded-2xl border gap-2 cursor-pointer ${
-                            letter.isLearned
-                              ? "bg-slate-50 opacity-75 hover:opacity-50"
-                              : "hover:opacity-75 shadow-md hover:shadow-lg transition-shadow duration-100 ease-out"
-                          }`}
+                          className={`flex flex-col px-10 py-4 rounded-2xl border gap-2 cursor-pointer ${letter.isLearned
+                            ? "bg-slate-50 opacity-75 hover:opacity-50"
+                            : "hover:opacity-75 shadow-md hover:shadow-lg transition-shadow duration-100 ease-out"
+                            }`}
                         >
                           <p className="text-3xl font-semibold">
                             {letter.cyrillic}
                           </p>
                           <p>{letter.latin}</p>
                         </div>
-                      </a>
+                      </Link>
                     );
                   } else {
                     return null;

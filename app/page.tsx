@@ -1,22 +1,11 @@
-import HomePage from "./sections/HomePage";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
-      <HomePage
-        levels={[
-          { name: "Pozdravi", stages: 3, completedStages: 3 },
-          {
-            name: "Osnovna rěčenja",
-            stages: 5,
-            completedStages: 4,
-          },
-          { name: "Putovanje", stages: 4, completedStages: 0 },
-          { name: "Hobi & Interesy", stages: 6, completedStages: 0 },
-          { name: "Padeže", stages: 13, completedStages: 0 },
-          { name: "Kulturny Pogledy", stages: 7, completedStages: 0 },
-        ]}
-      />
+    <div className="w-screen h-screen flex justify-center items-center flex-col gap-4">
+      <h1 className="text-2xl">Marketing Page</h1>
+      <p className="text-gray-500">This website is under construction. Please contact your construction manager or foreman for further information</p>
+      <Link href="/dashboard" className="btn btn-secondary btn-wide mt-8">Go to Dashboard</Link>
     </div>
   );
 }

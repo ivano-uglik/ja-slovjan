@@ -24,7 +24,7 @@ const SessionProvider = ({ children }: { children: ReactNode }) => {
     })
 
     return () => {
-      subscription.unsubscribe()
+      subscription.data.subscription.unsubscribe();
     }
   }, []);
 

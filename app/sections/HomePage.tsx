@@ -8,21 +8,19 @@ export default function HomePage({
       {levels.map((level, index) => (
         <div
           key={index}
-          className={`flex flex-col gap-8 items-center ${
-            level.completedStages === 0 ? "opacity-50" : ""
-          }`}
+          className={`flex flex-col gap-8 items-center ${level.completedStages === 0 ? "opacity-50" : ""
+            }`}
         >
           <h1 className="text-3xl font-bold text-center">{level.name}</h1>
           <div className="p-4 border rounded-3xl flex justify-center gap-4 mx-48 flex-wrap">
             {Array.from({ length: level.stages }).map((_, stageIndex) => (
               <a
-                href={`learn/${level.name}/${stageIndex + 1}`}
+                href={`/dashboard/learn/${level.name}/${stageIndex + 1}`}
                 key={stageIndex}
-                className={`p-4 w-16 text-center ${
-                  stageIndex < level.completedStages
-                    ? "bg-secondary text-white hover:bg-neutral "
-                    : "border border-secondary text-secondary"
-                } rounded-xl text-xl cursor-pointer`}
+                className={`p-4 w-16 text-center ${stageIndex < level.completedStages
+                  ? "bg-secondary text-white hover:bg-neutral "
+                  : "border border-secondary text-secondary"
+                  } rounded-xl text-xl cursor-pointer`}
               >
                 {stageIndex + 1}
               </a>

@@ -1,10 +1,10 @@
 "use client";
 import Completed from "@/app/sections/CompletedLevel";
-import TranslateSentence from "../../../sections/steps/TranslateSentence";
-import { useState } from "react";
+import TranslateSentence from "@/app/sections/steps/TranslateSentence";
 import GuessCyrillicLetterStep from "@/app/sections/steps/cyrillic/GuessCyrillicLetterStep";
 import ImageSelectStep from "@/app/sections/steps/ImageSelectStep";
 import TextCompletionStep from "@/app/sections/steps/TextCompletionStep";
+import { useState } from "react";
 
 export default function Page({
   params,
