@@ -26,27 +26,27 @@ export default function Sidebar(element: { element: any }) {
       {
         icon: <FaHome />,
         label: "Početkova",
-        path: "/",
+        path: "/dashboard",
       },
       {
         icon: <FaBook />,
         label: "Povědky",
-        path: "/learn/stories",
+        path: "/dashboard/learn/stories",
       },
       {
         icon: <FaRocket />,
         label: "T. s izslědkami",
-        path: "/leaderboard",
+        path: "/dashboard/leaderboard",
       },
       {
         icon: <Image src={Cyrillic} className="w-[1.5rem]" alt="" />,
         label: "Kirilica",
-        path: "/learn/cyrillic",
+        path: "/dashboard/learn/cyrillic",
       },
       {
         icon: <FaUserCircle />,
         label: "Profil",
-        path: "/profile",
+        path: "/dashboard/profile",
       },
     ];
   return (
