@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./sections/Layout";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -21,11 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <UserProvider>
-        <body className={montserrat.className}>
-          <Sidebar element={children} />
-        </body>
-      </UserProvider>
+      <body className={montserrat.className}>
+        <Sidebar element={children} />
+      </body>
     </html>
   );
 }
