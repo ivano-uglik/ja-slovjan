@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-export default function GuessCyrillicLetterStep({
-  cyrillicLetter,
+export default function ImageSelectStep({
+  word,
   options,
   Completed,
 }: {
-  cyrillicLetter: string;
-  options: { text: string; isCorrect: boolean }[];
+  word: string;
+  options: { imageURL: string; isCorrect: boolean }[];
   Completed: any;
 }) {
   const [correct, isCorrect] = useState(false);
@@ -20,26 +20,31 @@ export default function GuessCyrillicLetterStep({
       <div className="content-wrap mx-auto ">
         <div>
           <h2 className="text-center text-3xl font-bold">
-            Ktory latinsky bukva jest ova kirilčska bukva?
+            Izbiraj popravny obraz
           </h2>
         </div>
-        <div className="p-16 px-20 rounded-3xl text-[5rem] border w-min mx-auto my-16">
-          <span>{cyrillicLetter}</span>
+        <div className="font-bold text-5xl py-8">
+          <h1>{word}</h1>
         </div>
-        <div className="flex justify-around">
+        <div className="flex justify-around items-center flex-wrap">
           {options.map((option, index) => {
             return (
               <div
                 key={index}
-                className={`flex gap-4 items-center p-4 rounded-xl border text-xl cursor-pointer ${
+                className={` rounded-xl ${
                   correct && options[index].isCorrect
                     ? "bg-color-active"
                     : "hover:bg-slate-100 hover:opacity-80"
                 }`}
                 onClick={() => handleClick(index)}
               >
-                <div className="border rounded-md py-1 px-2">{index + 1}</div>
-                <span>{option.text}</span>
+                <img
+                  src={option.imageURL}
+                  alt=""
+                  className={`w-64 h-64 object-cover object-center rounded-xl border cursor-pointer ${
+                    correct && options[index].isCorrect && "opacity-50"
+                  }`}
+                />
               </div>
             );
           })}

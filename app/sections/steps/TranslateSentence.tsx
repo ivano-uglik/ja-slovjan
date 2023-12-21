@@ -14,8 +14,10 @@ export default function TranslateSentence({
 }) {
   const [correct, isCorrect] = useState(false);
   return (
-    <div>
-      <div className="text-center text-3xl py-8 font-bold">{title}</div>
+    <div className="text-color-not-active">
+      <div className="text-center text-3xl py-8 font-bold text-color-not-active">
+        {title}
+      </div>
       <div>
         <ul className="flex flex-col mx-auto text-center min-w-[24rem] w-min gap-8">
           {options.map((option, index) => {
@@ -23,7 +25,9 @@ export default function TranslateSentence({
               <li
                 key={index}
                 className={`p-2 rounded-3xl border font-semibold cursor-pointer ${
-                  correct && options[index].isCorrect && "bg-color-active"
+                  correct &&
+                  options[index].isCorrect &&
+                  "bg-color-active text-white"
                 }`}
                 onClick={() => {
                   options[index].isCorrect && isCorrect(true);

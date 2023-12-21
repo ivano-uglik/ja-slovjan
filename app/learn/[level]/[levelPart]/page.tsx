@@ -3,6 +3,8 @@ import Completed from "@/app/sections/CompletedLevel";
 import TranslateSentence from "../../../sections/steps/TranslateSentence";
 import { useState } from "react";
 import GuessCyrillicLetterStep from "@/app/sections/steps/cyrillic/GuessCyrillicLetterStep";
+import ImageSelectStep from "@/app/sections/steps/ImageSelectStep";
+import TextCompletionStep from "@/app/sections/steps/TextCompletionStep";
 
 export default function Page({
   params,
@@ -17,6 +19,22 @@ export default function Page({
         {
           level: 1,
           steps: [
+            {
+              step: 0,
+              component: (
+                <TextCompletionStep
+                  title="играју"
+                  titleTranslated="igraju"
+                  Completed={
+                    <Completed
+                      onClick={() => {
+                        setStep(step + 1);
+                      }}
+                    />
+                  }
+                />
+              ),
+            },
             {
               step: 1,
               component: (
@@ -84,6 +102,43 @@ export default function Page({
                 />
               ),
             },
+            {
+              step: 4,
+              component: (
+                <ImageSelectStep
+                  word="Teniska"
+                  options={[
+                    {
+                      imageURL:
+                        "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      isCorrect: true,
+                    },
+                    {
+                      imageURL:
+                        "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      isCorrect: false,
+                    },
+                    {
+                      imageURL:
+                        "https://images.unsplash.com/photo-1580719653258-26873fde0b4d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      isCorrect: false,
+                    },
+                    {
+                      imageURL:
+                        "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      isCorrect: false,
+                    },
+                  ]}
+                  Completed={
+                    <Completed
+                      onClick={() => {
+                        setStep(step + 1);
+                      }}
+                    />
+                  }
+                />
+              ),
+            },
           ],
         },
       ],
@@ -92,7 +147,7 @@ export default function Page({
   ];
   return (
     <div>
-      <div className="text-center text-3xl font-bold">
+      <div className="text-center text-3xl font-bold text-color-not-active">
         {decodeURIComponent(params.level)}{" "}
         {decodeURIComponent(params.levelPart)}
       </div>
