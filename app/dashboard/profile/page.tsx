@@ -1,3 +1,11 @@
+export default function Profile() {
+  return (
+    <div>
+      <h1>Website under construction!</h1>
+    </div>
+  );
+}
+
 /* "use client";
 
 import { useUser } from "@auth0/nextjs-auth0/client";

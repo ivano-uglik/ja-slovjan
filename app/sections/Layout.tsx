@@ -16,7 +16,7 @@ import supabase from "@/supabase/supabase-client";
 export default function Sidebar(element: { element: any }) {
   // navItems?: { label: string; path: string }[];
 
-  const { session, isLoading } = useSession() || {};
+  const { session } = useSession() || {};
 
   const pathName = usePathname();
   const items: {
@@ -24,32 +24,32 @@ export default function Sidebar(element: { element: any }) {
     label: string;
     path: string;
   }[] = [
-      {
-        icon: <FaHome />,
-        label: "Početkova",
-        path: "/dashboard/",
-      },
-      {
-        icon: <FaBook />,
-        label: "Povědky",
-        path: "/dashboard/learn/stories",
-      },
-      {
-        icon: <FaRocket />,
-        label: "T. s izslědkami",
-        path: "/dashboard/leaderboard",
-      },
-      {
-        icon: <Image src={Cyrillic} className="w-[1.5rem]" alt="" />,
-        label: "Kirilica",
-        path: "/dashboard/learn/cyrillic",
-      },
-      {
-        icon: <FaUserCircle />,
-        label: "Profil",
-        path: "/dashboard/profile",
-      },
-    ];
+    {
+      icon: <FaHome />,
+      label: "Početkova",
+      path: "/dashboard/",
+    },
+    {
+      icon: <FaBook />,
+      label: "Povědky",
+      path: "/dashboard/learn/stories",
+    },
+    {
+      icon: <FaRocket />,
+      label: "T. s izslědkami",
+      path: "/dashboard/leaderboard",
+    },
+    {
+      icon: <Image src={Cyrillic} className="w-[1.5rem]" alt="" />,
+      label: "Kirilica",
+      path: "/dashboard/learn/cyrillic",
+    },
+    {
+      icon: <FaUserCircle />,
+      label: "Profil",
+      path: "/dashboard/profile",
+    },
+  ];
   return (
     <div className="flex">
       <div className="w-[15vw] h-screen flex flex-col items-center pt-8 gap-16 border-r bg-white sticky top-0">
@@ -63,11 +63,13 @@ export default function Sidebar(element: { element: any }) {
                 <Link
                   href={item.path}
                   key={index}
-                  className={`${josefinSans.className
-                    } flex items-center gap-8 px-6 py-4 text-lg rounded-2xl ${item.path == pathName
+                  className={`${
+                    josefinSans.className
+                  } flex items-center gap-8 px-6 py-4 text-lg rounded-2xl ${
+                    item.path == pathName
                       ? "border border-color-active bg-[#F9F9F9] text-color-active transition-all duration-500 ease-in-out"
                       : "text-color-not-active hover:bg-[#F9F9F9]"
-                    }`}
+                  }`}
                 >
                   <div>{item.icon}</div>
                   <h5>{item.label}</h5>
@@ -79,9 +81,7 @@ export default function Sidebar(element: { element: any }) {
       </div>
       <div className="w-full">
         <div className="flex justify-end items-center h-32 w-full px-16 bg-white">
-          {isLoading ? (
-            <div className="px-8 animate-pulse"></div>
-          ) : session?.user ? (
+          {session?.user ? (
             <button
               onClick={() => supabase.auth.signOut()}
               className="p-4 px-8 bg-green-400 rounded-3xl text-black hover:bg-green-900 hover:text-white transition-all ease-in-out"
