@@ -50,3 +50,22 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #0254d8;
 }
+
+.bg-marketing {
+  /* background: #dd3327; */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 56, 147, 0.5998774509803921) 0%,
+    rgba(0, 56, 147, 1) 75%,
+    rgba(0, 56, 147, 1) 100%
+  );
+}
+
+.bg-mountain {
+  background-image: url("../public/svg/bg-marketing.svg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: difference;
+  --tw-bg-opacity: 0.8;
+}
