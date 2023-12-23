@@ -16,7 +16,7 @@ import supabase from "@/supabase/supabase-client";
 export default function Sidebar(element: { element: any }) {
   // navItems?: { label: string; path: string }[];
 
-  const { session, isLoading } = useSession() || {};
+  const { session } = useSession() || {};
 
   const pathName = usePathname();
   const items: {
@@ -79,9 +79,7 @@ export default function Sidebar(element: { element: any }) {
       </div>
       <div className="w-full">
         <div className="flex justify-end items-center h-32 w-full px-16 bg-white">
-          {isLoading ? (
-            <div className="px-8 animate-pulse"></div>
-          ) : session?.user ? (
+          {session?.user ? (
             <button
               onClick={() => supabase.auth.signOut()}
               className="p-4 px-8 bg-green-400 rounded-3xl text-black hover:bg-green-900 hover:text-white transition-all ease-in-out"
@@ -89,12 +87,12 @@ export default function Sidebar(element: { element: any }) {
               Logout
             </button>
           ) : (
-            <a
-              href="/auth/registration"
+            <Link
+              href="/auth/sign-in"
               className="p-4 px-8 bg-color-not-active rounded-3xl text-white hover:bg-black"
             >
               Login
-            </a>
+            </Link>
           )}
         </div>
         {element && element.element}
