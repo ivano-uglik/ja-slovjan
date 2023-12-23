@@ -4,7 +4,7 @@ import Logo from "@/public/logo-variants/transparent-coloured.svg";
 
 import { Josefin_Sans } from "next/font/google";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 const josefinSans = Josefin_Sans({ subsets: ["latin"] });
 
 import Cyrillic from "@/public/svg/cyrillic.svg";
@@ -17,6 +17,12 @@ export default function Sidebar(element: { element: any }) {
   // navItems?: { label: string; path: string }[];
 
   const { session } = useSession() || {};
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    router.push("/");
+  }
 
   const pathName = usePathname();
   const items: {
@@ -81,7 +87,7 @@ export default function Sidebar(element: { element: any }) {
         <div className="flex justify-end items-center h-32 w-full px-16 bg-white">
           {session?.user ? (
             <button
-              onClick={() => supabase.auth.signOut()}
+              onClick={handleSignOut}
               className="p-4 px-8 bg-green-400 rounded-3xl text-black hover:bg-green-900 hover:text-white transition-all ease-in-out"
             >
               Logout
