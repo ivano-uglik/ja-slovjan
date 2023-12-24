@@ -18,6 +18,7 @@ const SessionProvider = ({ children }: { children: ReactNode }) => {
         setIsLoading(false);
       }
       else {
+        console.log("no user")
         setSession({});
       }
 
