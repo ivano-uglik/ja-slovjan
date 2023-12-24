@@ -31,7 +31,7 @@ const SignUp = () => {
         setIsLoading(false);
       }
       else {
-        router.push("/dashboard");
+        router.push(`/auth/sign-up/confirm-email?email=${email}`);
       }
     }
   }
