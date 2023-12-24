@@ -5,11 +5,9 @@ import Link from "next/link";
 const dela = Dela_Gothic_One({ subsets: ["latin"], weight: "400" });
 export default function Navbar() {
   return (
-    <div className="flex justify-around items-center fixed top-0 w-full px-64 py-4 text-white">
-      <div>
-        <Image src={logo} alt="Ja, Slovjan" className="w-24" />
-      </div>
-      <ul className={`${dela.className} hidden lg:flex justify-around w-2/3 `}>
+    <div className="flex justify-around items-center fixed top-0 w-full lg:px-64 py-4 text-white">
+      <Image src={logo} alt="Ja, Slovjan" className="w-24" />
+      <ul className={`${dela.className} hidden xl:flex justify-around w-2/3 `}>
         <li>
           <Link href="#the-idea">the idea</Link>
         </li>
@@ -30,7 +28,7 @@ export default function Navbar() {
         </li>
       </ul>
       <div
-        className={`${dela.className} hidden lg:block bg-white text-color-not-active px-4 py-2 rounded-full cursor-pointer`}
+        className={`${dela.className} bg-white text-color-not-active px-4 py-2 rounded-full cursor-pointer`}
       >
         <Link href="/dashboard">Get Started</Link>
       </div>
