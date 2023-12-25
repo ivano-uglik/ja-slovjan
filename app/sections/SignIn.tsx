@@ -82,7 +82,7 @@ const SignIn = () => {
           { /* TO-DO add password recovery */}
           <div className='text-sm flex flex-col gap-2 mt-4'>
             <Link href="#" className='underline text-center'> Forgot your password?</Link>
-            <Link href="/auth/sign-up" className='underline text-center'> Don't have an account? Sign up...</Link>
+            <Link href="/auth/sign-up" className='underline text-center'> {"Don't"} have an account? Sign up...</Link>
           </div>
         </form>
       </div>
