@@ -17,6 +17,12 @@ const SignIn = () => {
 
     setIsLoading(true);
 
+    // disabling google sign on if closed beta
+    if (process.env.NEXT_PUBLIC_CLOSED_BETA) {
+      router.push("/closed-beta");
+      return;
+    }
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {

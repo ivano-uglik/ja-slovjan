@@ -21,13 +21,10 @@ export default async function Middleware(request: NextRequest) {
   }
 
   /* ------------------ PATH MATCHERS ------------------ */
+  if (request.nextUrl.pathname === "/auth/sign-up" && process.env.NEXT_PUBLIC_CLOSED_BETA) {
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/closed-beta`);
+  }
 
-  /*if (request.nextUrl.pathname.startsWith("/dashboard")) {
-  
-      if (!session || !session?.user) {
-        return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/auth/sign-in`);
-      }
-    } */
 
   // redirect user to dashboard page if they are already logged in
   if (request.nextUrl.pathname === "/") {
