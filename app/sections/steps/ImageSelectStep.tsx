@@ -1,15 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Completed from "../CompletedLevel";
 
 export default function ImageSelectStep({
   word,
   options,
-  Completed,
 }: {
   word: string;
   options: { imageURL: string; isCorrect: boolean }[];
-  Completed: any;
 }) {
   const [correct, isCorrect] = useState(false);
   function handleClick(index: number) {
@@ -50,7 +49,7 @@ export default function ImageSelectStep({
           })}
         </div>
       </div>
-      {correct && Completed}
+      {correct && <Completed />}
     </div>
   );
 }
