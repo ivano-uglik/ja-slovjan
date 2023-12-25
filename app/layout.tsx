@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import SessionProvider from "@/context/SessionContext";
 import "./globals.css";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        {children}
+        <SessionProvider>
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );

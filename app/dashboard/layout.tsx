@@ -1,5 +1,4 @@
-"use client";
-import SessionProvider from "@/context/SessionContext";
+
 import Sidebar from "../sections/Layout";
 
 export default function DashboardLayout({
@@ -8,8 +7,6 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SessionProvider>
-      <Sidebar element={children} />
-    </SessionProvider>
+    <Sidebar element={children} />
   );
 }

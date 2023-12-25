@@ -13,15 +13,15 @@ const SessionProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const subscription = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
-        console.log(session?.user)
+        if (process.env.NEXT_PUBLIC_DEV) console.log("user signed in", session?.user)
         setSession(session)
-        setIsLoading(false);
       }
       else {
-        console.log("no user")
+        if (process.env.NEXT_PUBLIC_DEV) console.log("user is null");
         setSession({});
       }
 
+      setIsLoading(false);
     })
 
     return () => {
