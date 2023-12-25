@@ -29,10 +29,8 @@ export default function Hero() {
         <div className="h-48 lg:h-64"></div>
         <Link
           href="/auth/sign-in"
-          className={`${dela.className} text-3xl px-24 py-8 text-center bg-[#dd3327] rounded-full hover:scale-110 
-          href="/dashboard"
           className={`${dela.className} text-2xl lg:text-3xl px-12 py-6 lg:px-24 lg:py-8 text-center bg-[#dd3327] rounded-full hover:scale-110 focus:scale-100 
-            hover:bg-[#ff0000] transition-all ease-in-out relative`}
+          hover:bg-[#ff0000] transition-all ease-in-out relative`}
         >
           <Image
             src={bear}
