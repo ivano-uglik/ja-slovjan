@@ -1,8 +1,8 @@
 "use client";
-import Link from 'next/link'
-import { useState } from 'react';
-import supabase from '@/supabase/supabase-client';
-import { useRouter } from 'next/navigation';
+import Link from "next/link";
+import { useState } from "react";
+import supabase from "@/supabase/supabase-client";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
   const [email, setEmail] = useState<string>("");
@@ -47,16 +47,14 @@ const SignIn = () => {
         password,
       });
 
-
       if (error) {
-        setError(error?.message)
+        setError(error?.message);
         setIsLoading(false);
-      }
-      else {
+      } else {
         router.push("/dashboard");
       }
     }
-  }
+  };
 
   return (
     <div className="w-screen h-screen flex justify-center items-center ">
@@ -69,13 +67,23 @@ const SignIn = () => {
         </div>
         <div className="divider"></div>
         <form>
-          <div className='flex flex-col gap-2 mt-4'>
+          <div className="flex flex-col gap-2 mt-4">
             <label htmlFor="email">Email adress</label>
-            <input onChange={event => setEmail(event.target.value)} className='w-full input input-bordered' type="email" name="email" />
+            <input
+              onChange={(event) => setEmail(event.target.value)}
+              className="w-full input input-bordered"
+              type="email"
+              name="email"
+            />
           </div>
-          <div className='flex flex-col gap-2 mt-4'>
+          <div className="flex flex-col gap-2 mt-4">
             <label htmlFor="password">Your Password</label>
-            <input onChange={event => setPassword(event.target.value)} className='w-full input input-bordered' type="password" name="password" />
+            <input
+              onChange={(event) => setPassword(event.target.value)}
+              className="w-full input input-bordered"
+              type="password"
+              name="password"
+            />
           </div>
           {error && <p className='text-red-600 text-sm'>{error}</p>}
           {isLoading ? <div className='flex justify-center mt-4'><div className='loading-spinner loading-md loading'></div></div> : <button onClick={handleSignIn} className='mt-8 btn w-full btn-secondary'>Sign in</button>}
@@ -87,7 +95,7 @@ const SignIn = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

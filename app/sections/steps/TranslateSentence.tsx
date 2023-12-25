@@ -6,11 +6,9 @@ import Completed from "../CompletedLevel";
 export default function TranslateSentence({
   title,
   options,
-  Completed,
 }: {
   title: string;
-  options: { string: string; isCorrect: boolean }[];
-  Completed: any;
+  options: { text: string; isCorrect: boolean }[];
 }) {
   const [correct, isCorrect] = useState(false);
   return (
@@ -33,13 +31,13 @@ export default function TranslateSentence({
                   options[index].isCorrect && isCorrect(true);
                 }}
               >
-                {option.string}
+                {option.text}
               </li>
             );
           })}
         </ul>
       </div>
-      {correct && Completed}
+      {correct && <Completed />}
     </div>
   );
 }

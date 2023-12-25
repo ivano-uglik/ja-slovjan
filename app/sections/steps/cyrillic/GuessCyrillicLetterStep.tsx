@@ -1,15 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Completed from "../../CompletedLevel";
 
 export default function GuessCyrillicLetterStep({
   cyrillicLetter,
   options,
-  Completed,
 }: {
   cyrillicLetter: string;
   options: { text: string; isCorrect: boolean }[];
-  Completed: any;
 }) {
   const [correct, isCorrect] = useState(false);
   function handleClick(index: number) {
@@ -45,7 +44,7 @@ export default function GuessCyrillicLetterStep({
           })}
         </div>
       </div>
-      {correct && Completed}
+      {correct && <Completed />}
     </div>
   );
 }
