@@ -1,13 +1,12 @@
+"use client";
+
 import Rocket from "@/public/svg/rocket-svgrepo.svg";
 import Image from "next/image";
+import { useContext } from "react";
+import { Context } from "../dashboard/learn/[level]/[levelPart]/page";
 
-export default function Completed({
-  className,
-  onClick,
-}: {
-  className?: string;
-  onClick?: any;
-}) {
+export default function Completed({ className }: { className?: string }) {
+  const [step, setStep]: any = useContext(Context);
   return (
     <div className={`${className}`}>
       <div className="w-full h-[28vh] fixed bottom-0 bg-[#F4F4F4] flex items-center justify-center">
@@ -28,7 +27,7 @@ export default function Completed({
             </button>
             <button
               className="px-12 py-4 text-xl font-semibold border rounded-lg bg-color-active"
-              onClick={onClick}
+              onClick={() => setStep(step + 1)}
             >
               Slědujuči
             </button>

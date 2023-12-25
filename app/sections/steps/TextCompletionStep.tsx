@@ -6,11 +6,9 @@ import Completed from "../CompletedLevel";
 export default function TextCompletionStep({
   title,
   titleTranslated,
-  Completed,
 }: {
   title: string;
   titleTranslated: string;
-  Completed: any;
 }) {
   const [correct, isCorrect] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -24,23 +22,6 @@ export default function TextCompletionStep({
         {title}
       </div>
       <div>
-        {/* <ul className="flex flex-col mx-auto text-center min-w-[24rem] w-min gap-8">
-          {options.map((option, index) => {
-            return (
-              <li
-                key={index}
-                className={`p-2 rounded-3xl border font-semibold cursor-pointer ${
-                  correct && options[index].isCorrect && "bg-color-active"
-                }`}
-                onClick={() => {
-                  options[index].isCorrect && isCorrect(true);
-                }}
-              >
-                {option.string}
-              </li>
-            );
-          })}
-        </ul> */}
         <form
           className="flex flex-col items-center justify-center"
           onSubmit={(e) => {
@@ -68,7 +49,7 @@ export default function TextCompletionStep({
           />
         </form>
       </div>
-      {correct && Completed}
+      {correct && <Completed />}
     </div>
   );
 }
