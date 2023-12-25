@@ -85,20 +85,14 @@ export default function Sidebar(element: { element: any }) {
       </div>
       <div className="w-full">
         <div className="flex justify-end items-center h-32 w-full px-16 bg-white">
-          {session?.user ? (
+          {/* prevent a small UI error where the user for a slight moment before being redirected can see the logout button even if they logged out */}
+          {session?.user && (
             <button
               onClick={handleSignOut}
               className="p-4 px-8 bg-green-400 rounded-3xl text-black hover:bg-green-900 hover:text-white transition-all ease-in-out"
             >
               Logout
             </button>
-          ) : (
-            <Link
-              href="/auth/sign-in"
-              className="p-4 px-8 bg-color-not-active rounded-3xl text-white hover:bg-black"
-            >
-              Login
-            </Link>
           )}
         </div>
         {element && element.element}
