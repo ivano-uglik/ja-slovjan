@@ -3,6 +3,7 @@ export default function HomePage({
 }: {
   levels: { name: string; stages: number; completedStages: number }[];
 }) {
+
   return (
     <div className="flex flex-col gap-16 content-wrap mx-auto pb-48">
       {levels.map((level, index) => (

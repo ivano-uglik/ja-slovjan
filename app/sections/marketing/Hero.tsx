@@ -34,7 +34,7 @@ export default function Hero() {
       <div className="flex flex-col justify-center items-center basis-1/2 pb-24">
         <div className="h-[30vh]"></div>
         <Link
-          href="/dashboard"
+          href="/auth/sign-in"
           className={`${dela.className} text-3xl px-24 py-8 text-center bg-[#dd3327] rounded-full hover:scale-110 
             hover:bg-[#ff0000] transition-all ease-in-out relative`}
         >

@@ -16,18 +16,18 @@ export default async function Middleware(request: NextRequest) {
   const { data, error } = await supabase.auth.getSession();
   const session = data?.session;
 
-  if (error) {
+  if (error && process.env.NEXT_PUBLIC_DEV) {
     console.error(`Middleware.ts: Error fetching session: ${error.message}`);
   }
 
   /* ------------------ PATH MATCHERS ------------------ */
 
-  if (request.nextUrl.pathname.startsWith("/dashboard")) {
-
-    if (!session || !session?.user) {
-      return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/auth/sign-in`);
-    }
-  }
+  /*if (request.nextUrl.pathname.startsWith("/dashboard")) {
+  
+      if (!session || !session?.user) {
+        return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/auth/sign-in`);
+      }
+    } */
 
   // redirect user to dashboard page if they are already logged in
   if (request.nextUrl.pathname === "/") {

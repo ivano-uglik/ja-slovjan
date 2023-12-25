@@ -12,6 +12,8 @@ const SessionProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const subscription = supabase.auth.onAuthStateChange((event, session) => {
+      setIsLoading(true);
+
       if (session) {
         if (process.env.NEXT_PUBLIC_DEV) console.log("user signed in", session?.user)
         setSession(session)
