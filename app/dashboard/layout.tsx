@@ -1,7 +1,8 @@
 "use client";
 import { useSession } from "@/context/SessionContext";
-import Sidebar from "../sections/Layout";
+import Sidebar from "@/app/sections/Layout";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/sections/Loading";
 
 export default function DashboardLayout({
   children,
@@ -13,16 +14,10 @@ export default function DashboardLayout({
   const router = useRouter();
 
   if (isLoading) {
-    return (
-      <div>Loading...</div>
-    );
-  }
-  else if (session && session?.user) {
-    return (
-      <Sidebar element={children} />
-    );
-  }
-  else {
+    return <Loading />;
+  } else if (session && session?.user) {
+    return <Sidebar element={children} />;
+  } else {
     router.push("/auth/sign-in");
   }
 }
