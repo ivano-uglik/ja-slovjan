@@ -16,7 +16,7 @@ export default function DashboardLayout({
   if (isLoading) {
     return <Loading />;
   } else if (session && session?.user) {
-    return <Sidebar element={children} />;
+    return <Sidebar>{children}</Sidebar>;
   } else {
     router.push("/auth/sign-in");
   }

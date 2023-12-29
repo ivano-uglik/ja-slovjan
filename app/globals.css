@@ -77,3 +77,7 @@
 .padding-tablet-x {
   @apply px-8;
 }
+
+.padding-large-x {
+  @apply px-16;
+}

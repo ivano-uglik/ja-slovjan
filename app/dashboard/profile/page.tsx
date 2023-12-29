@@ -1,9 +1,7 @@
-export default function Profile() {
-  return (
-    <div>
-      <h1>Website under construction!</h1>
-    </div>
-  );
+import Profile from "@/app/sections/Profile";
+
+export default function ProfilePage() {
+  return <Profile />;
 }
 
 /* "use client";
