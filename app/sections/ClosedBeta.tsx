@@ -7,12 +7,12 @@ const ClosedBeta = () => {
   const router = useRouter();
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden py-6 sm:py-12 bg-base-100">
-      <div className="max-w-xl px-5 text-center">
-        <h2 className="mb-2 text-[42px] font-bold text-base-content">
+    <div className="flex min-h-screen flex-col items-center justify-center md:px-0 py-6 sm:py-12 bg-base-100">
+      <div className="w-full md:max-w-xl px-4 text-center">
+        <h2 className="mb-2 text-4xl font-bold text-base-content">
           Closed Beta!
         </h2>
-        <p className="mb-2 text-lg text-zinc-500">
+        <p className="mb-2 w-full text-left md:text-center text-zinc-500">
           Why were you redirected to this page? The feature you were trying to
           access is currently unavailable because this version of the app is a{" "}
           <span className="font-medium text-indigo-500">
@@ -24,8 +24,7 @@ const ClosedBeta = () => {
         </p>
         <button
           onClick={() => router.back()}
-          className="mt-3 w-96 btn btn-secondary text-lg"
-        >
+          className="mt-3 w-full btn md:btn-wide btn-secondary text-lg">
           Return →
         </button>
       </div>
