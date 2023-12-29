@@ -8,7 +8,7 @@ const dela = Dela_Gothic_One({ subsets: ["latin", "cyrillic"], weight: "400" });
 export default function Hero() {
   return (
     <div className="flex flex-col justify-center gap-16 min-h-[100vh] bg-mountain pt-[15vh] md:pt-[10vh]">
-      <div className="flex flex-col gap-8 xl:gap-12 md:text-center px-4 md:px-8 lg:px-0">
+      <div className="flex flex-col gap-8 xl:gap-12 md:text-center padding-mobile-x md:padding-tablet-x lg:px-0">
         <div>
           <h1 className={`${dela.className} text-5xl`}>Я, Словян</h1>
           <h2 className="font-bold opacity-50">- од Словјана, до Словјана -</h2>

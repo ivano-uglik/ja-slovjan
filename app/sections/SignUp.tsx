@@ -54,7 +54,7 @@ const SignUp = () => {
 
   return (
     <div className="w-screen h-screen flex justify-center items-center ">
-      <div className="w-full text-gray-500 px-4 md:w-1/2 xl:w-1/3">
+      <div className="w-full text-gray-500 padding-mobile-x md:w-1/2 xl:w-1/3">
         <div className="flex-col flex gap-2">
           <button
             onClick={handleSignInWithGoogle}

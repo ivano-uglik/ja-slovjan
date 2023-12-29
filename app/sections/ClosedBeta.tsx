@@ -8,7 +8,7 @@ const ClosedBeta = () => {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center md:px-0 py-6 sm:py-12 bg-base-100">
-      <div className="w-full md:max-w-xl px-4 text-center">
+      <div className="w-full md:max-w-xl padding-mobile-x text-center">
         <h2 className="mb-2 text-4xl font-bold text-base-content">
           Closed Beta!
         </h2>

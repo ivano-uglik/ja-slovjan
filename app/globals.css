@@ -69,3 +69,11 @@
   background-blend-mode: difference;
   --tw-bg-opacity: 0.8;
 }
+
+.padding-mobile-x {
+  @apply px-4;
+}
+
+.padding-tablet-x {
+  @apply px-8;
+}
