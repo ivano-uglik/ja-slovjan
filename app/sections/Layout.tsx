@@ -20,45 +20,47 @@ export default function Sidebar({ children }: { children: ReactNode }) {
   const router = useRouter();
 
   const pathName = usePathname();
+
   const items: {
     icon: any;
     label: string;
     path: string;
   }[] = [
     {
-      icon: <FaHome />,
+      icon: <FaHome className="w-full h-full" />,
       label: "Početkova",
-      path: "/dashboard/",
+      path: "/dashboard",
     },
     {
-      icon: <FaBook />,
+      icon: <FaBook className="w-full h-full" />,
       label: "Povědky",
       path: "/dashboard/learn/stories",
     },
     {
-      icon: <FaRocket />,
+      icon: <FaRocket className="w-full h-full" />,
       label: "T. s izslědkami",
       path: "/dashboard/leaderboard",
     },
     {
-      icon: <Image src={Cyrillic} className="w-[1.5rem]" alt="" />,
+      icon: <Image src={Cyrillic} className="w-full h-full" alt="cyrillic" />,
       label: "Kirilica",
       path: "/dashboard/learn/cyrillic",
     },
     {
-      icon: <FaUserCircle />,
+      icon: <FaUserCircle className="w-full h-full" />,
       label: "Profil",
       path: "/dashboard/profile",
     },
   ];
   return (
     <div className="flex">
+      {/* LEFT SIDEBAR */}
       <div className="lg:w-[30vw] xl:w-[15vw] h-screen hidden md:flex flex-col items-center pt-8 gap-16 border-r bg-white sticky top-0">
         <div>
           <Image src={Logo} className="w-32" alt="Logo" />
         </div>
         <div>
-          <div className="grid grid-rows-1 gap-4">
+          <ul className="grid grid-rows-1 gap-4">
             {items.map((item, index) => {
               return (
                 <Link
@@ -66,21 +68,23 @@ export default function Sidebar({ children }: { children: ReactNode }) {
                   key={index}
                   className={`${
                     josefinSans.className
-                  } flex items-center gap-8 px-6 py-4 text-lg rounded-2xl ${
+                  } flex items-center gap-8 px-6 py-4 text-lg ${
                     item.path == pathName
-                      ? "border border-color-active bg-[#F9F9F9] text-color-active transition-all duration-500 ease-in-out"
-                      : "text-color-not-active hover:bg-[#F9F9F9]"
+                      ? " bg-base-200 text-primary transition-all duration-500 ease-in-out"
+                      : "text-color-not-active hover:bg-base-200"
                   }`}>
-                  <div>{item.icon}</div>
+                  <div className="w-6 aspect-square">{item.icon}</div>
                   <h5>{item.label}</h5>
                 </Link>
               );
             })}
-          </div>
+          </ul>
         </div>
       </div>
-      <div className="w-full">
-        <div className="flex justify-between items-center padding-large-x h-32 w-full bg-white">
+      {/* RIGHT CONTENT SECTION */}
+      <div className="w-full pt-12 sm:p-0">
+        {/* STREAK AND XP TOP APPBAR */}
+        <div className="hidden sm:flex justify-between items-center padding-large-x h-32 w-full bg-white">
           <div className="flex items-center cursor-pointer gap-2">
             <div className="w-8 aspect-square">
               <BsFire className="w-full fill-primary h-full" />
@@ -89,7 +93,28 @@ export default function Sidebar({ children }: { children: ReactNode }) {
           </div>
           <p className="opacity-50 text-xl">Total XP: 10000</p>
         </div>
+
         {children}
+
+        {/* MOBILE NAVBAR */}
+        <ul className="fixed left-0 bottom-0 w-screen md:hidden flex justify-between flex-nowrap bg-base-100">
+          {items.map((item, index) => {
+            return (
+              <Link
+                href={item.path}
+                key={index}
+                className={`${
+                  josefinSans.className
+                } border-r border-t border-gray-300 w-full justify-center flex items-center p-5 ${
+                  item.path == pathName
+                    ? " bg-base-200 text-primary transition-all duration-500 ease-in-out"
+                    : "text-color-not-active"
+                }`}>
+                <div className="w-6 aspect-square">{item.icon}</div>
+              </Link>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );
