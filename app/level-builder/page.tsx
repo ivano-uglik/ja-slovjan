@@ -31,22 +31,33 @@ export default function LevelBuilder() {
           <div className="flex justify-center py-8">
             <Image src={image} alt="" />
           </div>
-          <h3 className="text-xl">
-            {
-              "Or if you’ve done this sort of thing before, pick a template from our marketplace:"
-            }
-          </h3>
-          <div className="flex justify-center gap-8 py-8">
-            <button
-              className={`${dela.className} btn btn-lg btn-secondary`}
-              onClick={() => document.getElementById("my_modal_3").showModal()}
-            >
-              Marketplace
-            </button>
-            <button className={`${dela.className} btn btn-lg btn-secondary`}>
-              My Themes
-            </button>
+          <div className="hidden">
+            <h3 className="text-xl">
+              {
+                "Or if you've done this sort of thing before, pick a template from our marketplace:"
+              }
+            </h3>
+            <div className="flex justify-center gap-8 py-8">
+              <button
+                className={`${dela.className} btn btn-lg btn-secondary`}
+                onClick={() =>
+                  document.getElementById("my_modal_3").showModal()
+                }
+              >
+                Marketplace
+              </button>
+              <button className={`${dela.className} btn btn-lg btn-secondary`}>
+                My Themes
+              </button>
+            </div>
           </div>
+          <Link href="/level-builder/builder">
+            <button
+              className={`${dela.className} btn btn-lg btn-wide btn-secondary`}
+            >
+              Start
+            </button>
+          </Link>
         </div>
       </div>
       <div>
