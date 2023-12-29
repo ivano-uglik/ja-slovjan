@@ -5,31 +5,30 @@ import Link from "next/link";
 const dela = Dela_Gothic_One({ subsets: ["latin"], weight: "400" });
 export default function Navbar() {
   return (
-    <div className="flex justify-around items-center fixed top-0 w-full lg:px-64 py-4 text-white">
+    <div className="flex justify-between xl:justify-around items-center fixed top-0 w-full px-4 md:px-8 xl:px-64 py-4 text-white">
       <Image src={logo} alt="Ja, Slovjan" className="w-24" />
       <ul className={`${dela.className} hidden xl:flex justify-around w-2/3 `}>
         <li>
-          <Link href="#the-idea">the idea</Link>
+          <Link href="#the-idea">The Idea</Link>
         </li>
         <li>
-          <Link href="#features">features</Link>
+          <Link href="#features">Features</Link>
         </li>
         <li>
-          <Link href="#how-it-works">how it works</Link>
+          <Link href="#how-it-works">Contribute!</Link>
         </li>
         <li>
-          <Link href="#faq">faq</Link>
+          <Link href="#faq">FAQ</Link>
         </li>
         <li>
-          <Link href="#blog">blog</Link>
+          <Link href="#blog">Blog</Link>
         </li>
         <li>
-          <Link href="#contact-us">contact us</Link>
+          <Link href="#contact-us">Contact</Link>
         </li>
       </ul>
       <div
-        className={`${dela.className} bg-white text-color-not-active px-4 py-2 rounded-full cursor-pointer`}
-      >
+        className={`${dela.className} btn bg-white text-color-not-active px-4 py-2 rounded-full cursor-pointer`}>
         <Link href="/dashboard">Get Started</Link>
       </div>
     </div>
