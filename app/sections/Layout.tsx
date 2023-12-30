@@ -84,7 +84,7 @@ export default function Sidebar({ children }: { children: ReactNode }) {
       {/* RIGHT CONTENT SECTION */}
       <div className="w-full pt-12 sm:p-0">
         {/* STREAK AND XP TOP APPBAR */}
-        <div className="hidden sm:flex justify-between items-center padding-large-x h-32 w-full bg-white">
+        <div className="hidden sm:flex justify-between items-center padding-large-x h-[15vh] w-full bg-white">
           <div className="flex items-center cursor-pointer gap-2">
             <div className="w-8 aspect-square">
               <BsFire className="w-full fill-primary h-full" />
@@ -94,7 +94,7 @@ export default function Sidebar({ children }: { children: ReactNode }) {
           <p className="opacity-50 text-xl">Total XP: 10000</p>
         </div>
 
-        {children}
+        <div className="h-[85vh] overflow-y-scroll">{children}</div>
 
         {/* MOBILE NAVBAR */}
         <ul className="fixed left-0 bottom-0 w-screen md:hidden flex justify-between flex-nowrap bg-base-100">

@@ -31,7 +31,7 @@ export default function Page({
   }
 
   return (
-    <div>
+    <div className="h-full">
       <div className="text-center text-3xl font-bold text-color-not-active">
         {decodeURIComponent(params.level)}{" "}
         {decodeURIComponent(params.levelPart)}

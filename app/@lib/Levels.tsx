@@ -4,6 +4,9 @@
 // ImageSelectStep.tsx, word: string; options: { imageURL: string; isCorrect: boolean }[];, guess what image corresponds to the word in the foreign language, and click on the correct one
 // GuessCyrillicLetterStep.tsx, cyrillicLetter: string; options: { text: string; isCorrect: boolean }[];, guess a cyrillic letter in latin
 // GuessLatinLetterStep.tsx, latinLetter: string; options: { text: string; isCorrect: boolean }[];, guess a latin letter in cyrillic
+
+// THIS FILE IS USED FOR PROP TEMPLATES FOR APP DEVELOPMENT ( so that we can develop on the front-end with dummy data without needing data from our DB)
+
 export const Groups = [
   {
     group: "Pozdravi",
@@ -57,11 +60,24 @@ export const Groups = [
         isCompleted: false,
         steps: [
           {
-            step: 2,
+            step: 1,
             component: "TextCompletionStep.tsx",
             params: {
               title: "Живем",
               titleTranslated: "Living",
+            },
+          },
+          {
+            step: 2,
+            component: "CyrillicDragNDrop.tsx",
+            params: {
+              title: "Я",
+              options: [
+                { text: "Ye", isCorrect: false },
+                { text: "Ya", isCorrect: true },
+                { text: "Yu", isCorrect: false },
+                { text: "Yi", isCorrect: false },
+              ],
             },
           },
         ],
