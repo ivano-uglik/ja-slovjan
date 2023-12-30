@@ -4,11 +4,10 @@ import { useState } from "react";
 
 export default function TranslateSentenceInput({}: {}) {
   const [correctOption, setCorrectOption] = useState("");
-  const [incorrectOptions, setIncorrectOptions] = useState([
-    "Incorrect Option placeholder",
-  ]);
+  const [incorrectOptions, setIncorrectOptions] = useState([""]);
   const [title, setTitle] = useState("");
 
+  // pushing into array, neccessarily complicated because of useState
   const handleAddIncorrectOption = () => {
     setIncorrectOptions([...incorrectOptions, ""]);
   };
@@ -16,6 +15,12 @@ export default function TranslateSentenceInput({}: {}) {
   const handleIncorrectOptionChange = (index: number, value: string) => {
     const updatedOptions = [...incorrectOptions];
     updatedOptions[index] = value;
+    setIncorrectOptions(updatedOptions);
+  };
+
+  const handleRemoveIncorrectOption = (index: number) => {
+    const updatedOptions = [...incorrectOptions];
+    updatedOptions.splice(index, 1);
     setIncorrectOptions(updatedOptions);
   };
 
@@ -41,16 +46,25 @@ export default function TranslateSentenceInput({}: {}) {
             className="text-center p-2 rounded-3xl border bg-color-active placeholder-white font-semibold"
           />
           {incorrectOptions.map((option, index) => (
-            <input
-              key={index}
-              type="text"
-              placeholder="Incorrect Option placeholder"
-              value={option}
-              onChange={(e) =>
-                handleIncorrectOptionChange(index, e.target.value)
-              }
-              className="text-center p-2 rounded-3xl border bg-[#FF0000] placeholder-white font-semibold"
-            />
+            <div key={index} className="flex gap-4">
+              <button
+                className="btn btn-square rounded-full"
+                onClick={() => {
+                  handleRemoveIncorrectOption(index);
+                }}
+              >
+                -
+              </button>
+              <input
+                type="text"
+                placeholder="Incorrect Option placeholder"
+                value={option}
+                onChange={(e) =>
+                  handleIncorrectOptionChange(index, e.target.value)
+                }
+                className="w-full text-center p-2 rounded-3xl border bg-[#FF0000] placeholder-white font-semibold"
+              />
+            </div>
           ))}
           <div
             className="btn btn-lg btn-secondary text-5xl"
