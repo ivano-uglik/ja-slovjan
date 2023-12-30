@@ -1,6 +1,6 @@
 export const Templates = [
   {
-    template: "TranslateSentence.tsx",
+    template: "TranslateSentence",
     title: "Multiple choice",
     description: "A string translated, with several options.",
     props: {
@@ -9,7 +9,7 @@ export const Templates = [
     },
   },
   {
-    template: "TextCompletionStep.tsx",
+    template: "TextCompletionStep",
     title: "Text Completion",
     description: "Write out a string.",
     props: {
@@ -18,7 +18,7 @@ export const Templates = [
     },
   },
   {
-    template: "ImageSelectStep.tsx",
+    template: "ImageSelectStep",
     title: "Image selection",
     description: "A string, with several image options.",
     props: {

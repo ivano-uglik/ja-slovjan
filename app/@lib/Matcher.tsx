@@ -5,7 +5,9 @@ interface MatcherProps {
 }
 
 const Matcher: React.FC<MatcherProps> = ({ component, params }) => {
-  const Component = lazy(() => import(`../sections/steps/${component}`));
+  const Component = lazy(
+    () => import(`../sections/steps/${component}/${component}Step.tsx`)
+  );
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Component {...params} />
