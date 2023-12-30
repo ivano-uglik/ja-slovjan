@@ -1,7 +1,7 @@
 import React, { ReactNode, lazy, Suspense } from "react";
 interface MatcherProps {
   component: string;
-  params: Record<string, any>;
+  params?: Record<string, any>;
 }
 
 const Matcher: React.FC<MatcherProps> = ({ component, params }) => {
