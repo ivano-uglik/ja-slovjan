@@ -61,14 +61,6 @@ export const Groups = [
         steps: [
           {
             step: 1,
-            component: "TextCompletionStep.tsx",
-            params: {
-              title: "Живем",
-              titleTranslated: "Living",
-            },
-          },
-          {
-            step: 2,
             component: "CyrillicDragNDrop.tsx",
             params: {
               title: "Я",
@@ -78,6 +70,14 @@ export const Groups = [
                 { text: "Yu", isCorrect: false },
                 { text: "Yi", isCorrect: false },
               ],
+            },
+          },
+          {
+            step: 2,
+            component: "TextCompletionStep.tsx",
+            params: {
+              title: "Живем",
+              titleTranslated: "Living",
             },
           },
         ],
