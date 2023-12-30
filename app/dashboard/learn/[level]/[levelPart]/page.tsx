@@ -31,7 +31,7 @@ export default function Page({
   }
 
   return (
-    <div className="h-full">
+    <div className="h-full overflow-hidden">
       <div className="text-center text-3xl font-bold text-color-not-active">
         {decodeURIComponent(params.level)}{" "}
         {decodeURIComponent(params.levelPart)}

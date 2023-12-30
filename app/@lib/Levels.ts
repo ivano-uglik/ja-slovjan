@@ -61,19 +61,6 @@ export const Groups = [
         steps: [
           {
             step: 1,
-            component: "VocabularyDragNDrop.tsx",
-            params: {
-              imageURL: "https://upload.wikimedia.org/wikipedia/commons/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg",
-              options: [
-                { text: "Devejn De Rok Djonson", isCorrect: true },
-                { text: "Vojislav Šešelj", isCorrect: false },
-                { text: "Vuk Drašković", isCorrect: false },
-                { text: "Aca Vule Vučić", isCorrect: false },
-              ],
-            },
-          },
-          {
-            step: 2,
             component: "CyrillicDragNDrop.tsx",
             params: {
               title: "Я",
@@ -82,6 +69,19 @@ export const Groups = [
                 { text: "Ya", isCorrect: true },
                 { text: "Yu", isCorrect: false },
                 { text: "Yi", isCorrect: false },
+              ],
+            },
+          },
+          {
+            step: 2,
+            component: "VocabularyDragNDrop.tsx",
+            params: {
+              imageURL: "https://upload.wikimedia.org/wikipedia/commons/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg",
+              options: [
+                { text: "Devejn De Rok Djonson", isCorrect: true },
+                { text: "Vojislav Šešelj", isCorrect: false },
+                { text: "Vuk Drašković", isCorrect: false },
+                { text: "Aca Vule Vučić", isCorrect: false },
               ],
             },
           },
