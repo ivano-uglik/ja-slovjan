@@ -60,47 +60,7 @@ export default function LevelBuilder() {
           </Link>
         </div>
       </div>
-      <div>
-        <dialog id="my_modal_3" className="modal">
-          <div className="modal-box max-w-[80%] h-[75%]">
-            <form method="dialog">
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                ✕
-              </button>
-            </form>
-            <h3 className="font-bold text-3xl text-center">Marketplace</h3>
-            <p className="py-4 text-center">
-              Welcome to the Marketplace, please pick a template:{" "}
-            </p>
-            <div className="flex flex-wrap gap-8 justify-center">
-              {Templates.map((template, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="w-96 p-8 border rounded-lg relative"
-                  >
-                    <Image src={image} alt="" />
-                    <h1 className="text-center py-2 font-bold">
-                      {template.title}
-                    </h1>
-                    <h2 className="text-sm">{template.description}</h2>
-                    <div className="h-12">
-                      <div className="h-8 absolute bottom-2 right-2 btn btn-outline btn-secondary">
-                        <Link href={`level-builder/${template.template}`}>
-                          Choose
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <form method="dialog" className="modal-backdrop">
-            <button className="cursor-default">close</button>
-          </form>
-        </dialog>
-      </div>
+      <div></div>
     </div>
   );
 }

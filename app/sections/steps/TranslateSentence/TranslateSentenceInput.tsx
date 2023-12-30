@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ContinueButton from "../../ContinueLevelBuilderButton";
 
 export default function TranslateSentenceInput({}: {}) {
   const [correctOption, setCorrectOption] = useState("");
@@ -73,6 +74,9 @@ export default function TranslateSentenceInput({}: {}) {
             +
           </div>
         </div>
+      </div>
+      <div className="flex justify-center">
+        < ContinueButton />
       </div>
     </div>
   );

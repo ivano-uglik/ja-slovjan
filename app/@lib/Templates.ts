@@ -9,7 +9,7 @@ export const Templates = [
     },
   },
   {
-    template: "TextCompletionStep",
+    template: "TextCompletion",
     title: "Text Completion",
     description: "Write out a string.",
     props: {
@@ -18,7 +18,7 @@ export const Templates = [
     },
   },
   {
-    template: "ImageSelectStep",
+    template: "ImageSelect",
     title: "Image selection",
     description: "A string, with several image options.",
     props: {
@@ -27,7 +27,7 @@ export const Templates = [
     },
   },
   {
-    template: "GuessCyrillicLetterStep.tsx",
+    template: "GuessCyrillicLetter",
     title: "Letter Guesser 1",
     description: "A cyrillic letter, with several options.",
     props: {
@@ -36,7 +36,7 @@ export const Templates = [
     },
   },
   {
-    template: "GuessLatinLetterStep.tsx",
+    template: "GuessLatinLetter",
     title: "Letter Guesser 2",
     description: "A latin letter, with several options.",
     props: {

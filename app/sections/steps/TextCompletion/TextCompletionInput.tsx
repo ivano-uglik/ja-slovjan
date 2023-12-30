@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
+import ContinueButton from "../../ContinueLevelBuilderButton";
 export default function TextCompletionInput({}: {}) {
   const [correct, isCorrect] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -32,11 +32,7 @@ export default function TextCompletionInput({}: {}) {
             className="text-center text-3xl py-8 font-bold border input input-bordered w-full max-w-lg"
             autoFocus
           />
-          <input
-            type="submit"
-            value="Submit"
-            className="btn btn-lg btn-secondary btn-wide mt-8"
-          />
+          <ContinueButton />
         </form>
       </div>
     </div>

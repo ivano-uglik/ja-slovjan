@@ -15,10 +15,11 @@
 "use client";
 import { dela } from "@/app/@lib/Fonts";
 import { Templates } from "@/app/@lib/Templates";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import image from "@/public/level-builder-placeholder.svg";
 import Image from "next/image";
 import Matcher from "@/app/@lib/Matcher";
+export const Context: any = createContext(0);
 
 export default function Builder() {
   const [language, setLanguage] = useState("");
@@ -210,7 +211,10 @@ export default function Builder() {
             )}
           </form>
         ) : (
-          <Matcher component={steps[stepsCompleted - 1].template} />
+          // context for what step we are on
+          <Context.Provider value={[stepsCompleted, setStepsCompleted]}>
+            <Matcher component={steps[stepsCompleted - 1].template} />
+          </Context.Provider>
         )}
       </div>
 

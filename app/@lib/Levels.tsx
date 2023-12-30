@@ -1,4 +1,4 @@
-// our current components available:
+// our current stepComponents available:
 // TranslateSentence.tsx, title: string; options: { option: string; isCorrect: boolean }[];. title is for the title of what sentence to translate, and options are the available options, of which one is correct.
 // TextCompletion, title: string; titleTranslated: string;, this is to translate a word/sentence, titleTranslated is a form's input's correct answer
 // ImageSelect, word: string; options: { imageURL: string; isCorrect: boolean }[];, guess what image corresponds to the word in the foreign language, and click on the correct one
@@ -14,7 +14,8 @@ export const Groups = [
         steps: [
           {
             step: 1,
-            component: "TranslateSentence",
+            stepComponent: "TranslateSentenceStep.tsx",
+            inputComponent: "TranslateSentenceInput.tsx",
             params: {
               title: "Привет",
               options: [
@@ -26,7 +27,8 @@ export const Groups = [
           },
           {
             step: 2,
-            component: "TextCompletion",
+            stepComponent: "TextCompletionStep.tsx",
+            inputComponent: "TextCompletionInput.tsx",
             params: {
               title: "Доброе утро.",
               titleTranslated: "Good morning.",
@@ -40,7 +42,8 @@ export const Groups = [
         steps: [
           {
             step: 2,
-            component: "TranslateSentence",
+            stepComponent: "TranslateSentenceStep.tsx",
+            inputComponent: "TranslateSentenceInput.tsx",
             params: {
               title: "Спасибо",
               options: [
@@ -58,7 +61,8 @@ export const Groups = [
         steps: [
           {
             step: 2,
-            component: "TextCompletion",
+            stepComponent: "TextCompletionStep.tsx",
+            inputComponent: "TextCompletionInput.tsx",
             params: {
               title: "Живем",
               titleTranslated: "Living",
@@ -71,4 +75,4 @@ export const Groups = [
 ];
 
 // /dashboard > Group > Level > step > step
-// Groups[0].levels[0].steps[0].component
+// Groups[0].levels[0].steps[0].stepComponent

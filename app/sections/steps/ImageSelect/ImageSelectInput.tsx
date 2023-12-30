@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
+import ContinueButton from "../../ContinueLevelBuilderButton";
 
 export default function ImageSelectInput({}: {}) {
   const [title, setTitle] = useState("");
@@ -182,6 +183,9 @@ export default function ImageSelectInput({}: {}) {
         >
           +
         </button>
+        <div className="flex justify-center">
+          <ContinueButton />
+        </div>
       </div>
     </div>
   );
