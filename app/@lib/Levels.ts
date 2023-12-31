@@ -17,7 +17,7 @@ export const Groups = [
         steps: [
           {
             step: 1,
-            component: "TranslateSentence.tsx",
+            component: "TranslateSentence",
             params: {
               title: "Привет",
               options: [
@@ -29,7 +29,7 @@ export const Groups = [
           },
           {
             step: 2,
-            component: "TextCompletionStep.tsx",
+            component: "TextCompletion",
             params: {
               title: "Доброе утро.",
               titleTranslated: "Good morning.",
@@ -43,7 +43,7 @@ export const Groups = [
         steps: [
           {
             step: 2,
-            component: "TranslateSentence.tsx",
+            component: "TranslateSentence",
             params: {
               title: "Спасибо",
               options: [
@@ -61,7 +61,7 @@ export const Groups = [
         steps: [
           {
             step: 1,
-            component: "CyrillicDragNDrop.tsx",
+            component: "CyrillicDragNDrop",
             params: {
               title: "Я",
               options: [
@@ -74,7 +74,7 @@ export const Groups = [
           },
           {
             step: 2,
-            component: "VocabularyDragNDrop.tsx",
+            component: "VocabularyDragNDrop",
             params: {
               imageURL:
                 "https://upload.wikimedia.org/wikipedia/commons/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg",
@@ -88,7 +88,7 @@ export const Groups = [
           },
           {
             step: 3,
-            component: "TextCompletionStep.tsx",
+            component: "TextCompletion",
             params: {
               title: "Живем",
               titleTranslated: "Living",

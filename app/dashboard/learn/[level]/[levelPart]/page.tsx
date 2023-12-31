@@ -46,6 +46,7 @@ export default function Page({
             selectedGroup.levels[Number(params.levelPart) - 1].steps[step]
               .params
           }
+          isInput={false}
         />
       </Context.Provider>
     </div>

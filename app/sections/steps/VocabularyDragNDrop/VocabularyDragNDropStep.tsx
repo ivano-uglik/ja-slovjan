@@ -27,7 +27,8 @@ const VocabularyDragNDrop = ({ imageURL, options }: Params) => {
 
   return (
     <DndProvider
-      backend={window.innerWidth < 768 ? TouchBackend : HTML5Backend}>
+      backend={window.innerWidth < 768 ? TouchBackend : HTML5Backend}
+    >
       <div className="w-full h-full text-2xl flex flex-col padding-mobile-x md:padding-tablet-x lg:padding-large-x">
         <div className="flex justify-between w-full h-1/5">
           <DraggableOption

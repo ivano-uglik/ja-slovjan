@@ -213,7 +213,10 @@ export default function Builder() {
         ) : (
           // context for what step we are on
           <Context.Provider value={[stepsCompleted, setStepsCompleted]}>
-            <Matcher component={steps[stepsCompleted - 1].template} />
+            <Matcher
+              component={steps[stepsCompleted - 1].template}
+              isInput={true}
+            />
           </Context.Provider>
         )}
       </div>
