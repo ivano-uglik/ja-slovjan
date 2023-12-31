@@ -1,8 +1,7 @@
-import { Dela_Gothic_One } from "next/font/google";
+import { dela } from "@/app/@lib/Fonts";
 import logo from "@/public/logo-variants/transparent-coloured-white.svg";
 import Image from "next/image";
 import Link from "next/link";
-const dela = Dela_Gothic_One({ subsets: ["latin"], weight: "400" });
 export default function Navbar() {
   return (
     <div className="flex justify-between xl:justify-around items-center fixed top-0 w-full px-4 md:px-8 xl:px-64 py-4 text-white">

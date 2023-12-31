@@ -76,7 +76,8 @@ export const Groups = [
             step: 2,
             component: "VocabularyDragNDrop.tsx",
             params: {
-              imageURL: "https://upload.wikimedia.org/wikipedia/commons/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg",
+              imageURL:
+                "https://upload.wikimedia.org/wikipedia/commons/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg",
               options: [
                 { text: "Devejn De Rok Djonson", isCorrect: true },
                 { text: "Vojislav Šešelj", isCorrect: false },

@@ -1,11 +1,13 @@
 import React, { ReactNode, lazy, Suspense } from "react";
 interface MatcherProps {
   component: string;
-  params: Record<string, any>;
+  params?: Record<string, any>;
 }
 
 const Matcher: React.FC<MatcherProps> = ({ component, params }) => {
-  const Component = lazy(() => import(`../sections/steps/${component}`));
+  const Component = lazy(
+    () => import(`../sections/steps/${component}/${component}Input.tsx`)
+  );
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Component {...params} />

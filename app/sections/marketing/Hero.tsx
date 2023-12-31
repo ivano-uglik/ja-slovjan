@@ -1,9 +1,7 @@
-import { Dela_Gothic_One } from "next/font/google";
 import Image from "next/image";
 import bear from "@/public/svg/bear.svg";
 import Link from "next/link";
-
-const dela = Dela_Gothic_One({ subsets: ["latin", "cyrillic"], weight: "400" });
+import { dela } from "@/app/@lib/Fonts";
 
 export default function Hero() {
   return (

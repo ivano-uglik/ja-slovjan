@@ -2,10 +2,7 @@
 
 import { letters } from "@/app/@lib/letters";
 import Link from "next/link";
-
-import { Dela_Gothic_One } from "next/font/google";
-const dela = Dela_Gothic_One({ subsets: ["latin", "cyrillic"], weight: "400" });
-
+import { dela } from "@/app/@lib/Fonts";
 export default function Cyrillic() {
   const uniqueLevels = Array.from(
     new Set(letters.map((letter) => letter.level))

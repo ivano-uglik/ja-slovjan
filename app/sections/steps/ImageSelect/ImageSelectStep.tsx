@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Completed from "../CompletedLevel";
+import Completed from "../../CompletedLevel";
 
 export default function ImageSelectStep({
   word,
