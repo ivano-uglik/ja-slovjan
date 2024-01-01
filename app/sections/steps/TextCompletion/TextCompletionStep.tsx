@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Completed from "../../CompletedLevel";
+import { correctContext } from "@/app/dashboard/learn/[level]/[levelPart]/page";
 
 export default function TextCompletionStep({
   title,
@@ -10,7 +11,7 @@ export default function TextCompletionStep({
   title: string;
   titleTranslated: string;
 }) {
-  const [correct, isCorrect] = useState(false);
+  const [correct, isCorrect]: any = useContext(correctContext);
   const [inputValue, setInputValue] = useState("");
   return (
     <div>

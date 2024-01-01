@@ -4,12 +4,14 @@ import Rocket from "@/public/svg/rocket-svgrepo.svg";
 import Image from "next/image";
 import { useContext } from "react";
 import { Context } from "../dashboard/learn/[level]/[levelPart]/page";
-
+import { correctContext } from "../dashboard/learn/[level]/[levelPart]/page";
 export default function Completed({ className }: { className?: string }) {
   const [step, setStep]: any = useContext(Context);
+  const [correct, isCorrect]: any = useContext(correctContext);
   return (
     <div
-      className={`w-full h-[28vh] z-20 fixed bottom-0 bg-[#F4F4F4] flex-col lg:flex-row flex items-center justify-center ${className}`}>
+      className={`w-full h-[28vh] z-20 fixed bottom-0 bg-[#F4F4F4] flex-col lg:flex-row flex items-center justify-center ${className}`}
+    >
       <div className="hidden lg:flex items-center justify-center lg:justify-start gap-8">
         <div>
           <Image src={Rocket} alt="" className="w-16" />
@@ -27,7 +29,8 @@ export default function Completed({ className }: { className?: string }) {
           </button>
           <button
             className="px-12 py-4 text-xl font-semibold border rounded-lg bg-color-active"
-            onClick={() => setStep(step + 1)}>
+            onClick={() => (setStep(step + 1), isCorrect(false))}
+          >
             Slědujuči
           </button>
         </div>

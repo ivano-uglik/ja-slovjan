@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Completed from "../../CompletedLevel";
+import { correctContext } from "@/app/dashboard/learn/[level]/[levelPart]/page";
 
 export default function TranslateSentence({
   title,
@@ -10,7 +11,7 @@ export default function TranslateSentence({
   title: string;
   options: { text: string; isCorrect: boolean }[];
 }) {
-  const [correct, isCorrect] = useState(false);
+  const [correct, isCorrect]: any = useContext(correctContext);
   return (
     <div className="text-color-not-active">
       <div className="text-center text-3xl py-8 font-bold text-color-not-active">
