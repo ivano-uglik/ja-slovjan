@@ -18,8 +18,8 @@ const Profile = () => {
   };
 
   return (
-    <div className="h-full w-full flex flex-col items-center mt-12">
-      <div className="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg shadow-shadowLight rounded-xl mt-16">
+    <div className="h-full w-full flex flex-col mt-12 items-center">
+      <div className="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 rounded-xl mt-16">
         <div className="">
           <div className="flex flex-wrap justify-center">
             <div className="w-full flex justify-center">
@@ -71,24 +71,32 @@ const Profile = () => {
                 <p className="font-light leading-relaxed text-slate-600 mb-4">
                   {user?.description || "No description added."}
                 </p>
-                <h1>Want to create your own levels?</h1>
-                <p>
-                  Contribute to Ja-Slovjan by utilizing your language speaking
-                  skills to create community levels!{" "}
-                  <Link href="#">Learn more</Link>
-                </p>
-                <Link
-                  href="/app/users/me/posts/create-new"
-                  className="uppercase btn btn-secondary">
-                  {"→"} go to level builder
-                </Link>
+                <div className="my-6">
+                  <h1 className="mb-2 text-2xl font-bold">
+                    Want to create your own levels?
+                  </h1>
+                  <p className="mb-6 opacity-50">
+                    Contribute to Ja-Slovjan by utilizing your language speaking
+                    skills to create community levels!{" "}
+                    <Link
+                      className="text-secondary underline font-bold"
+                      href="#">
+                      Learn more
+                    </Link>
+                  </p>
+                  <Link
+                    href="/level-builder"
+                    className="uppercase btn btn-secondary">
+                    {"→"} go to level builder
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
           {session?.user && (
             <button
               onClick={handleSignOut}
-              className="btn btn-ghost w-full opacity-50 hover:btn-primary hover:btn-outline hover:opacity-100">
+              className="btn btn-ghost w-full opacity-50 mb-12 hover:btn-primary hover:btn-outline hover:opacity-100">
               Logout
             </button>
           )}
