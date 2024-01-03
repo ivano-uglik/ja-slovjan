@@ -12,6 +12,11 @@ export default function ContinueButton({
 }) {
   const { steps, stepsCompleted, setStepsCompleted } = useLevelBuilder();
 
+  const handleNext = () => {
+    setStepsCompleted((current) => current + 1);
+    if (onNext) onNext();
+  };
+
   return (
     <button
       type="submit"
@@ -19,7 +24,7 @@ export default function ContinueButton({
       className={`fixed btn btn-secondary mb-8 mr-8 bottom-0 right-0 ${
         isDisabled && "btn-disabled"
       }`}
-      onClick={() => setStepsCompleted((current) => current + 1)}>
+      onClick={handleNext}>
       {stepsCompleted === steps.length ? "complete" : "next"}
     </button>
   );

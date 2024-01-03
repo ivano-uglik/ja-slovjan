@@ -2,15 +2,29 @@
 
 import { useState } from "react";
 import ContinueButton from "../../ContinueLevelBuilderButton";
+import { useLevelBuilder } from "@/context/LevelBuilderContext";
 
 export default function TranslateSentenceInput({}: {}) {
   const [correctOption, setCorrectOption] = useState<string>("");
   const [incorrectOptions, setIncorrectOptions] = useState<string[]>([]);
   const [title, setTitle] = useState<string>("");
 
+  const { stepsCompleted, setSteps } = useLevelBuilder();
+
   const onNext = () => {
-    const options = [];
-    console.log(title, options);
+    const incorrect = incorrectOptions.map((text) => {
+      return { text: text, isCorrect: false };
+    });
+
+    const options = [...incorrect, { text: correctOption, isCorrect: true }];
+    setSteps((current) => [
+      ...current,
+      {
+        order: stepsCompleted + 1,
+        component: "TranslateSentence",
+        params: { title, options },
+      },
+    ]);
   };
 
   // pushing into array, neccessarily complicated because of useState
@@ -79,7 +93,7 @@ export default function TranslateSentenceInput({}: {}) {
         </div>
       </div>
       <div className="flex justify-center">
-        <ContinueButton />
+        <ContinueButton onNext={onNext} />
       </div>
     </div>
   );

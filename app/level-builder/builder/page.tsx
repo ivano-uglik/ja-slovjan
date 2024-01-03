@@ -30,7 +30,7 @@ export default function Builder() {
 
   // remove step that is added from the marketplace (minus button)
   const removeStep = (indexToRemove: number) => {
-    context.setSteps((prevSteps: any) =>
+    context.setStepTemplates((prevSteps: any) =>
       prevSteps.filter((_, index: number) => index !== indexToRemove)
     );
   };
@@ -144,7 +144,7 @@ export default function Builder() {
                 />
               </label>
             </div>
-            {context.steps.length === 0 ? (
+            {context.stepTemplates.length === 0 ? (
               <div className="flex flex-col items-center gap-4 pt-4">
                 <span
                   // locked effect if level group not selected
@@ -170,7 +170,7 @@ export default function Builder() {
               </div>
             ) : (
               <div className="flex flex-col gap-4">
-                {context.steps.map((step: any, index: number) => (
+                {context.stepTemplates.map((step: any, index: number) => (
                   <div
                     key={index}
                     className="border rounded-xl flex items-center p-4">
@@ -195,9 +195,9 @@ export default function Builder() {
                 </button>
                 <button
                   className={`${dela.className} btn btn-lg btn-secondary mt-2`}
-                  disabled={context.steps.length < 3 && true}
+                  disabled={context.stepTemplates.length < 3 && true}
                   onClick={() => context.setStepsCompleted(1)}>
-                  {context.steps.length < 3
+                  {context.stepTemplates.length < 3
                     ? "Please select 3 or more steps to continue..."
                     : "Continue"}
                 </button>
@@ -206,7 +206,9 @@ export default function Builder() {
           </form>
         ) : (
           <Matcher
-            component={context.steps[context.stepsCompleted - 1].component}
+            component={
+              context.stepTemplates[context.stepsCompleted - 1].component
+            }
             isInput={true}
           />
         )}
@@ -239,9 +241,9 @@ export default function Builder() {
                       className="h-8 absolute bottom-2 right-2 btn btn-outline btn-secondary"
                       // steps.push(), but neccessarily complicated because we are using state
                       onClick={() => {
-                        context.setSteps((prevSteps: any) => [
+                        context.setStepTemplates((prevSteps: any) => [
                           ...prevSteps,
-                          { component: template.template },
+                          template.template,
                         ]);
                         // close modal, as per daisyUI docs
                         document.getElementById("my_modal_3").close();

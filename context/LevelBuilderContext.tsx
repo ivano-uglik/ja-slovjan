@@ -14,6 +14,7 @@ const LevelBuilderContext = createContext<any>(null);
 const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
   const [stepsCompleted, setStepsCompleted] = useState<number>(0);
   const [steps, setSteps] = useState<Object[]>([]);
+  const [stepTemplates, setStepTemplates] = useState<string[]>([]);
   const [language, setLanguage] = useState<string>("");
   const [levelGroup, setLevelGroup] = useState<string>("");
   const [title, setTitle] = useState<string>("My title");
@@ -34,8 +35,14 @@ const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
     setTitle,
     description,
     setDescription,
+    stepTemplates,
+    setStepTemplates,
     createLevel,
   };
+
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
 
   return (
     <LevelBuilderContext.Provider value={value}>
@@ -63,6 +70,8 @@ interface LevelBuilderInterface {
   setTitle: (value: SetStateAction<string>) => void;
   description: string;
   setDescription: (value: SetStateAction<string>) => void;
+  stepTemplates: string[];
+  setStepTemplates: (value: SetStateAction<string[]>) => void;
   createLevel: () => void;
 }
 
