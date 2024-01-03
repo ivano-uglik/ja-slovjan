@@ -94,7 +94,7 @@ export default function Sidebar({ children }: { children: ReactNode }) {
           <p className="opacity-50 text-xl">Total XP: 10000</p>
         </div>
 
-        <div className="h-[85vh] py-12">{children}</div>
+        <div className="h-[85vh] md:py-12">{children}</div>
 
         {/* MOBILE NAVBAR */}
         <ul className="fixed left-0 bottom-0 w-screen md:hidden flex justify-between flex-nowrap bg-base-100">

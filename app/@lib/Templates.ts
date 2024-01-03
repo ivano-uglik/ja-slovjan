@@ -1,7 +1,15 @@
 export const Templates = [
   {
+    template: "Markdown",
+    title: "Markdown Blog Post",
+    description: "A normal blog post page where you can explain a concept first before the user starts doing tasks.",
+    props: {
+      markdown: ``
+    },
+  },
+  {
     template: "TranslateSentence",
-    title: "Multiple choice",
+    title: "Multiple Choice",
     description: "A string translated, with several options.",
     props: {
       title: "",
@@ -19,7 +27,7 @@ export const Templates = [
   },
   {
     template: "ImageSelect",
-    title: "Image selection",
+    title: "Image Selection",
     description: "A string, with several image options.",
     props: {
       title: "",
