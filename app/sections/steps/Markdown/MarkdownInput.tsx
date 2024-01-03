@@ -13,6 +13,14 @@ const MarkdownInput = ({}: {}) => {
   return (
     <div className="flex h-full overflow-x-hidden">
       <div className="w-1/2 flex p-8">
+        <div
+          className={`fixed text-xl ml-8 mb-8 left-0 bottom-0 ${
+            markdown.length < 100 || markdown.length > 10000
+              ? "text-red-500"
+              : "text-green-500"
+          }`}>
+          {markdown.length}
+        </div>
         <textarea
           onChange={(e) => setMarkdown(e.target.value)}
           placeholder="# Start with the Title"
@@ -38,7 +46,9 @@ const MarkdownInput = ({}: {}) => {
 
         <button
           onClick={() => setIsPreview((current) => !current)}
-          className="fixed btn btn-secondary mb-8 mr-8 bottom-0 right-0">
+          className={`fixed btn btn-secondary mb-8 mr-8 bottom-0 right-0 ${
+            (markdown.length < 100 || markdown.length > 10000) && "btn-disabled"
+          }`}>
           Done
         </button>
       </div>
