@@ -4,9 +4,14 @@ import { useState } from "react";
 import ContinueButton from "../../ContinueLevelBuilderButton";
 
 export default function TranslateSentenceInput({}: {}) {
-  const [correctOption, setCorrectOption] = useState("");
-  const [incorrectOptions, setIncorrectOptions] = useState([""]);
-  const [title, setTitle] = useState("");
+  const [correctOption, setCorrectOption] = useState<string>("");
+  const [incorrectOptions, setIncorrectOptions] = useState<string[]>([]);
+  const [title, setTitle] = useState<string>("");
+
+  const onNext = () => {
+    const options = [];
+    console.log(title, options);
+  };
 
   // pushing into array, neccessarily complicated because of useState
   const handleAddIncorrectOption = () => {
@@ -34,7 +39,7 @@ export default function TranslateSentenceInput({}: {}) {
             setTitle(e.target.value);
           }}
           placeholder="Title placeholder"
-          className="text-center text-3xl py-8 font-bold border input input-bordered w-full max-w-lg"
+          className="text-center input input-bordered w-full max-w-lg"
         />
       </div>
       <div>
@@ -44,7 +49,7 @@ export default function TranslateSentenceInput({}: {}) {
             placeholder="Correct Option placeholder"
             value={correctOption}
             onChange={(e) => setCorrectOption(e.target.value)}
-            className="text-center p-2 rounded-3xl border bg-color-active placeholder-white font-semibold"
+            className="text-center input outline-none placeholder:text-green-500 input-bordered !text-green-500 border-green-500"
           />
           {incorrectOptions.map((option, index) => (
             <div key={index} className="flex gap-4">
@@ -52,8 +57,7 @@ export default function TranslateSentenceInput({}: {}) {
                 className="btn btn-square rounded-full"
                 onClick={() => {
                   handleRemoveIncorrectOption(index);
-                }}
-              >
+                }}>
                 -
               </button>
               <input
@@ -63,20 +67,19 @@ export default function TranslateSentenceInput({}: {}) {
                 onChange={(e) =>
                   handleIncorrectOptionChange(index, e.target.value)
                 }
-                className="w-full text-center p-2 rounded-3xl border bg-[#FF0000] placeholder-white font-semibold"
+                className="w-full text-center outline-none placeholder:text-red-500 input input-bordered !text-red-500 border-red-500"
               />
             </div>
           ))}
           <div
-            className="btn btn-lg btn-secondary text-5xl"
-            onClick={handleAddIncorrectOption}
-          >
+            className="btn w-full btn-secondary text-xl"
+            onClick={handleAddIncorrectOption}>
             +
           </div>
         </div>
       </div>
       <div className="flex justify-center">
-        < ContinueButton />
+        <ContinueButton />
       </div>
     </div>
   );

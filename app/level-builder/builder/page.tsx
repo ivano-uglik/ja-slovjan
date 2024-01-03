@@ -15,51 +15,54 @@
 "use client";
 import { dela } from "@/app/@lib/Fonts";
 import { Templates } from "@/app/@lib/Templates";
-import { createContext, useState } from "react";
 import image from "@/public/level-builder-placeholder.svg";
 import Image from "next/image";
 import Matcher from "@/app/@lib/Matcher";
-export const Context: any = createContext(0);
+import { useLevelBuilder } from "@/context/LevelBuilderContext";
+import { useEffect } from "react";
 
 export default function Builder() {
-  const [language, setLanguage] = useState("");
-  const [levelGroup, setLevelGroup] = useState("");
-  const [title, setTitle] = useState("My title");
-  const [description, setDescription] = useState("Lorem ipsum...");
-  const [steps, setSteps]: any = useState([]);
-  const [stepsCompleted, setStepsCompleted] = useState(0);
+  const context = useLevelBuilder();
+
+  useEffect(() => {
+    console.log(context);
+  }, [context]);
 
   // remove step that is added from the marketplace (minus button)
   const removeStep = (indexToRemove: number) => {
-    setSteps((prevSteps: any) =>
+    context.setSteps((prevSteps: any) =>
       prevSteps.filter((_, index: number) => index !== indexToRemove)
     );
   };
+
   return (
     <div>
       <div className="mx-auto px-4 lg:px-0">
         <div className="text-center">
           <h1 className={`${dela.className} pt-16 pb-4 text-3xl`}>
-            {stepsCompleted === 0 ? "Welcome to the LevelBuilder!" : title}
+            {context.stepsCompleted === 0
+              ? "Welcome to the LevelBuilder!"
+              : context.title}
           </h1>
           <h2 className="mx-auto">
-            {stepsCompleted === 0 ? "Let's start." : description}
+            {context.stepsCompleted === 0
+              ? "Let's start."
+              : context.description}
           </h2>
           {/* adding breadcrumbs functionality, per daisyUI docs*/}
-          {stepsCompleted !== 0 && (
+          {context.stepsCompleted !== 0 && (
             <ul className="steps py-16">
               {/* adding completed step "Setup" */}
               <li className="step step-secondary text-sm">Setup</li>
-              {steps.map((step: any, index: number) => {
+              {context.steps.map((step: any, index: number) => {
                 return (
                   // adding each step we added in the levelbuilder
                   // the ternary is if we are on the current step, make it coloured
                   <li
                     className={`step text-sm ${
-                      stepsCompleted === index + 1 && "step-secondary"
-                    } ${stepsCompleted > index && "step-secondary"}`}
-                    key={index}
-                  >
+                      context.stepsCompleted === index + 1 && "step-secondary"
+                    } ${context.stepsCompleted > index && "step-secondary"}`}
+                    key={index}>
                     {step.title}
                   </li>
                 );
@@ -68,18 +71,16 @@ export default function Builder() {
           )}
         </div>
         {/* when continue is clicked, display the components in order  */}
-        {stepsCompleted === 0 ? (
+        {context.stepsCompleted === 0 ? (
           <form
             className="lg:w-96 mx-auto py-8"
             onSubmit={(e) => {
               e.preventDefault();
-            }}
-          >
+            }}>
             <div className="mb-4">
               <select
                 className="select w-full max-w-sm focus:outline-none"
-                onChange={(e) => setLanguage(e.target.value)}
-              >
+                onChange={(e) => context.setLanguage(e.target.value)}>
                 <option disabled selected>
                   Pick your language
                 </option>
@@ -91,9 +92,8 @@ export default function Builder() {
             <div className="mb-4">
               <select
                 className="select w-full max-w-sm focus:outline-none"
-                onChange={(e) => setLevelGroup(e.target.value)}
-                disabled={language === "" && true}
-              >
+                onChange={(e) => context.setLevelGroup(e.target.value)}
+                disabled={context.language === "" && true}>
                 <option disabled selected>
                   Pick your level group
                 </option>
@@ -108,19 +108,18 @@ export default function Builder() {
                   <span
                     // locked effect if level group not selected
                     className={`label-text ${
-                      levelGroup === "" && "opacity-25"
-                    }`}
-                  >
+                      context.levelGroup === "" && "opacity-25"
+                    }`}>
                     Title:
                   </span>
                 </div>
                 <input
                   type="text"
-                  placeholder={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder={context.title}
+                  onChange={(e) => context.setTitle(e.target.value)}
                   className="input input-bordered w-full max-w-sm focus:outline-none"
                   // locked effect if level group not selected
-                  disabled={levelGroup === "" && true}
+                  disabled={context.levelGroup === "" && true}
                 />
               </label>
             </div>
@@ -131,27 +130,27 @@ export default function Builder() {
                   <span
                     // locked effect if level group not selected
                     className={`label-text ${
-                      levelGroup === "" && "opacity-25"
-                    }`}
-                  >
+                      context.levelGroup === "" && "opacity-25"
+                    }`}>
                     Description:
                   </span>
                 </div>
                 <textarea
-                  placeholder={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder={context.description}
+                  onChange={(e) => context.setDescription(e.target.value)}
                   className="textarea textarea-bordered"
                   // locked effect if level group not selected
-                  disabled={levelGroup === "" && true}
+                  disabled={context.levelGroup === "" && true}
                 />
               </label>
             </div>
-            {steps.length === 0 ? (
+            {context.steps.length === 0 ? (
               <div className="flex flex-col items-center gap-4 pt-4">
                 <span
                   // locked effect if level group not selected
-                  className={`text-center ${levelGroup === "" && "opacity-25"}`}
-                >
+                  className={`text-center ${
+                    context.levelGroup === "" && "opacity-25"
+                  }`}>
                   Add the first step using a template:
                 </span>
                 <button
@@ -160,33 +159,30 @@ export default function Builder() {
                     document.getElementById("my_modal_3").showModal()
                   }
                   // locked effect if level group not selected
-                  disabled={levelGroup === "" && true}
-                >
+                  disabled={context.levelGroup === "" && true}>
                   {/* // locked effect if level group not selected */}
-                  {language === ""
+                  {context.language === ""
                     ? "Please select a title to continue."
-                    : levelGroup === ""
+                    : context.levelGroup === ""
                     ? "Please select a level to continue."
                     : "Marketplace"}
                 </button>
               </div>
             ) : (
               <div className="flex flex-col gap-4">
-                {steps.map((step: any, index: number) => (
+                {context.steps.map((step: any, index: number) => (
                   <div
                     key={index}
-                    className="border rounded-xl flex items-center p-4"
-                  >
+                    className="border rounded-xl flex items-center p-4">
                     <button
                       className="btn btn-square bg-gray-100 ml-1"
                       onClick={() => {
                         // call function to remove step this button is with
                         removeStep(index);
-                      }}
-                    >
+                      }}>
                       -
                     </button>
-                    <div className="pl-4 text-xl">{step.title}</div>
+                    <div className="pl-4 text-xl">{step.component}</div>
                   </div>
                 ))}
                 <button
@@ -194,16 +190,14 @@ export default function Builder() {
                   onClick={() =>
                     // show modal to add step, per daisyUI docs
                     document.getElementById("my_modal_3").showModal()
-                  }
-                >
+                  }>
                   +
                 </button>
                 <button
                   className={`${dela.className} btn btn-lg btn-secondary mt-2`}
-                  disabled={steps.length < 3 && true}
-                  onClick={() => setStepsCompleted(1)}
-                >
-                  {steps.length < 3
+                  disabled={context.steps.length < 3 && true}
+                  onClick={() => context.setStepsCompleted(1)}>
+                  {context.steps.length < 3
                     ? "Please select 3 or more steps to continue..."
                     : "Continue"}
                 </button>
@@ -211,13 +205,10 @@ export default function Builder() {
             )}
           </form>
         ) : (
-          // context for what step we are on
-          <Context.Provider value={[stepsCompleted, setStepsCompleted]}>
-            <Matcher
-              component={steps[stepsCompleted - 1].template}
-              isInput={true}
-            />
-          </Context.Provider>
+          <Matcher
+            component={context.steps[context.stepsCompleted - 1].component}
+            isInput={true}
+          />
         )}
       </div>
 
@@ -237,8 +228,7 @@ export default function Builder() {
               return (
                 <div
                   key={index}
-                  className="w-96 p-8 border rounded-lg relative"
-                >
+                  className="w-96 p-8 border rounded-lg relative">
                   <Image src={image} alt="" />
                   <h1 className="text-center py-2 font-bold">
                     {template.title}
@@ -249,11 +239,13 @@ export default function Builder() {
                       className="h-8 absolute bottom-2 right-2 btn btn-outline btn-secondary"
                       // steps.push(), but neccessarily complicated because we are using state
                       onClick={() => {
-                        setSteps((prevSteps: any) => [...prevSteps, template]);
+                        context.setSteps((prevSteps: any) => [
+                          ...prevSteps,
+                          { component: template.template },
+                        ]);
                         // close modal, as per daisyUI docs
                         document.getElementById("my_modal_3").close();
-                      }}
-                    >
+                      }}>
                       Choose
                     </div>
                   </div>

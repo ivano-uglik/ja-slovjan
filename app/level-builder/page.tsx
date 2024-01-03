@@ -22,8 +22,7 @@ export default function LevelBuilder() {
             Please check out{" "}
             <Link
               href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              className="text-secondary underline underline-offset-4"
-            >
+              className="text-secondary underline underline-offset-4">
               our docs
             </Link>
             , or watch a short video on how to build your first template:
@@ -42,8 +41,7 @@ export default function LevelBuilder() {
                 className={`${dela.className} btn btn-lg btn-secondary`}
                 onClick={() =>
                   document.getElementById("my_modal_3").showModal()
-                }
-              >
+                }>
                 Marketplace
               </button>
               <button className={`${dela.className} btn btn-lg btn-secondary`}>
@@ -53,8 +51,7 @@ export default function LevelBuilder() {
           </div>
           <Link href="/level-builder/builder">
             <button
-              className={`${dela.className} btn btn-lg btn-wide btn-secondary`}
-            >
+              className={`${dela.className} btn btn-lg btn-wide btn-secondary`}>
               Start
             </button>
           </Link>

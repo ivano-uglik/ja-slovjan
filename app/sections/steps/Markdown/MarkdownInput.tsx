@@ -2,6 +2,7 @@
 import Markdown from "react-markdown";
 import { decodeMarkdownFromJSON, encodeMarkdownForJSON } from "@/utils";
 import { useState } from "react";
+import ContinueButton from "../../ContinueLevelBuilderButton";
 
 const MarkdownInput = ({}: {}) => {
   const [markdown, setMarkdown] = useState<string>("");
@@ -44,13 +45,9 @@ const MarkdownInput = ({}: {}) => {
           </p>
         )}
 
-        <button
-          onClick={() => setIsPreview((current) => !current)}
-          className={`fixed btn btn-secondary mb-8 mr-8 bottom-0 right-0 ${
-            (markdown.length < 100 || markdown.length > 10000) && "btn-disabled"
-          }`}>
-          Done
-        </button>
+        <ContinueButton
+          isDisabled={markdown.length < 100 || markdown.length > 10000}
+        />
       </div>
     </div>
   );

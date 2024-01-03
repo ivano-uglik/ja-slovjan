@@ -2,16 +2,18 @@
 
 import { useState } from "react";
 import ContinueButton from "../../ContinueLevelBuilderButton";
+
 export default function TextCompletionInput({}: {}) {
-  const [correct, isCorrect] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
   return (
     <div>
       <div className="flex justify-center">
         <input
           type="text"
           placeholder="Title placeholder"
-          className="text-center text-3xl py-8 font-bold border input input-bordered w-full max-w-lg"
+          className="text-center text-3xl py-8 font-bold border input input-bordered outline-none w-full max-w-lg"
         />
       </div>
       <div>
@@ -19,9 +21,8 @@ export default function TextCompletionInput({}: {}) {
           className="flex flex-col items-center justify-center"
           onSubmit={(e) => {
             e.preventDefault();
-            isCorrect(true);
-          }}
-        >
+            setIsCorrect(true);
+          }}>
           <input
             type="text"
             placeholder="Title translated"
