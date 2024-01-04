@@ -16,7 +16,7 @@ const MarkdownInput = ({ order }: { order: number }) => {
       ...current,
       {
         order: order,
-        component: "TranslateSentence",
+        component: "Markdown",
         markdown: encodeMarkdownForJSON(markdown),
       },
     ]);

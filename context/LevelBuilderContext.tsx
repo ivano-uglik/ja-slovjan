@@ -21,7 +21,16 @@ const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
   const [description, setDescription] = useState<string>("");
 
   const createLevel = async () => {
-    console.log("done", steps);
+    const level = {
+      levelGroup,
+      title,
+      description,
+      language,
+      steps,
+    };
+    console.log("done", level);
+
+    // TO-DO: save to supabase
   };
 
   const value = {
