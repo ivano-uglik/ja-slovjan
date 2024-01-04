@@ -10,7 +10,8 @@ export default function ContinueButton({
   isDisabled?: boolean;
   onNext?: () => void;
 }) {
-  const { steps, stepsCompleted, setStepsCompleted } = useLevelBuilder();
+  const { stepTemplates, stepsCompleted, setStepsCompleted } =
+    useLevelBuilder();
 
   const handleNext = () => {
     setStepsCompleted((current) => current + 1);
@@ -25,7 +26,7 @@ export default function ContinueButton({
         isDisabled && "btn-disabled"
       }`}
       onClick={handleNext}>
-      {stepsCompleted === steps.length ? "complete" : "next"}
+      {stepsCompleted === stepTemplates.length ? "complete" : "next"}
     </button>
   );
 }

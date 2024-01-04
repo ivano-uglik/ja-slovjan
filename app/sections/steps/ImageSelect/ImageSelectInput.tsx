@@ -3,42 +3,63 @@
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import ContinueButton from "../../ContinueLevelBuilderButton";
+import { useLevelBuilder } from "@/context/LevelBuilderContext";
 
-export default function ImageSelectInput({}: {}) {
-  const [title, setTitle] = useState("");
-  const [images, setImages] = useState([""]);
-  const [correctImage, setCorrectImage] = useState("");
+export default function ImageSelectInput({ order }: { order: number }) {
+  const [word, setWord] = useState<string>("");
+  const [incorrectImages, setIncorrectImages] = useState<string[]>([]);
+  const [correctImage, setCorrectImage] = useState<string>("");
+
+  const { setSteps } = useLevelBuilder();
 
   const handleAddImage = () => {
-    setImages([...images, ""]);
+    setIncorrectImages((current) => [...current, ""]);
+  };
+
+  // update context state after clicking on the "next button"
+  const onNext = () => {
+    const incorrect = incorrectImages.map((url) => {
+      return { imageURL: url, isCorrect: false };
+    });
+
+    const options = [...incorrect, { imageURL: correctImage, isCorrect: true }];
+
+    setSteps((current) => [
+      ...current,
+      {
+        order: order,
+        component: "ImageSelect",
+        params: { word, options },
+      },
+    ]);
   };
 
   const handleImageChange = (index: number, value: string) => {
-    const updatedImages = [...images];
+    const updatedImages = [...incorrectImages];
     updatedImages[index] = value;
-    setImages(updatedImages);
+    setIncorrectImages(updatedImages);
   };
 
   const handleRemoveImage = (index: number) => {
-    const updatedImages = [...images];
+    const updatedImages = [...incorrectImages];
     updatedImages.splice(index, 1);
-    setImages(updatedImages);
+    setIncorrectImages(updatedImages);
   };
 
   return (
     <div className="text-color-not-active">
-      <div className="content-wrap mx-auto">
+      <div className="content-wrap overflow-x-hidden flex items-center flex-col mx-auto">
         <div>
           <h2 className="text-center text-3xl font-bold">
             Izbiraj popravny obraz
           </h2>
         </div>
         <input
-          className="text-center text-3xl py-8 font-bold border input input-bordered w-full max-w-lg my-8"
+          className="text-center input input-bordered w-full max-w-lg my-8"
           onChange={(e) => {
-            setTitle(e.target.value);
+            setWord(e.target.value);
           }}
-          value={title}
+          placeholder="Word"
         />
         <div className="flex justify-center items-center flex-wrap gap-8">
           <div className="relative">
@@ -56,14 +77,13 @@ export default function ImageSelectInput({}: {}) {
                 className="w-64 h-64 grid place-items-center rounded-xl border cursor-pointer"
                 onClick={() =>
                   document.getElementById("my_modal_correct").showModal()
-                }
-              >
+                }>
                 <h1 className="px-2 text-center">
                   Add a source for the correct image
                 </h1>
               </div>
             )}
-            <div className="absolute -top-4 -right-4 rounded-full h-[3rem] w-[3rem] inline-flex justify-center items-center cursor-default text-3xl bg-color-active text-white">
+            <div className="absolute -top-4 -right-4 rounded-full h-[3rem] w-[3rem] inline-flex justify-center items-center cursor-default text-3xl border border-green-500 bg-white text-green-500">
               <FaCheck size={15} />
             </div>
             <dialog id={"my_modal_correct"} className="modal">
@@ -73,8 +93,7 @@ export default function ImageSelectInput({}: {}) {
                     className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                     onClick={() =>
                       document.getElementById("my_modal_correct").close()
-                    }
-                  >
+                    }>
                     ✕
                   </button>
                 </form>
@@ -96,14 +115,13 @@ export default function ImageSelectInput({}: {}) {
                   className="cursor-default"
                   onClick={() =>
                     document.getElementById("my_modal_correct").close()
-                  }
-                >
+                  }>
                   Close
                 </button>
               </form>
             </dialog>
           </div>
-          {images.map((image, index: number) => {
+          {incorrectImages.map((image, index: number) => {
             return (
               <div key={index} className="relative">
                 {image ? (
@@ -120,19 +138,17 @@ export default function ImageSelectInput({}: {}) {
                     className="w-64 h-64 grid place-items-center rounded-xl border cursor-pointer"
                     onClick={() =>
                       document.getElementById(`my_modal_${index}`).showModal()
-                    }
-                  >
+                    }>
                     <h1 className="px-2 text-center">
                       Add an incorrect image source
                     </h1>
                   </div>
                 )}
                 <div
-                  className="absolute -top-4 -right-4 rounded-full btn btn-circle text-3xl bg-[#ff0000] text-white"
+                  className="absolute -top-4 -right-4 rounded-full btn btn-circle text-3xl border border-red-500 bg-white text-red-500"
                   onClick={() => {
                     handleRemoveImage(index);
-                  }}
-                >
+                  }}>
                   -
                 </div>
                 <dialog id={`my_modal_${index}`} className="modal">
@@ -142,8 +158,7 @@ export default function ImageSelectInput({}: {}) {
                         className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                         onClick={() =>
                           document.getElementById(`my_modal_${index}`).close()
-                        }
-                      >
+                        }>
                         ✕
                       </button>
                     </form>
@@ -167,8 +182,7 @@ export default function ImageSelectInput({}: {}) {
                       className="cursor-default"
                       onClick={() =>
                         document.getElementById(`my_modal_${index}`).close()
-                      }
-                    >
+                      }>
                       Close
                     </button>
                   </form>
@@ -178,13 +192,12 @@ export default function ImageSelectInput({}: {}) {
           })}
         </div>
         <button
-          className="btn btn-lg bg-color-active text-white text-3xl w-full my-8"
-          onClick={handleAddImage}
-        >
+          className="btn w-full md:w-1/2 btn-secondary text-xl my-8"
+          onClick={handleAddImage}>
           +
         </button>
         <div className="flex justify-center">
-          <ContinueButton />
+          <ContinueButton onNext={onNext} />
         </div>
       </div>
     </div>

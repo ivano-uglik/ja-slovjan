@@ -30,8 +30,7 @@ export default function TranslateSentence({
                 }`}
                 onClick={() => {
                   options[index].isCorrect && isCorrect(true);
-                }}
-              >
+                }}>
                 {option.text}
               </li>
             );

@@ -1,15 +1,26 @@
 "use client";
 import Markdown from "react-markdown";
-import { decodeMarkdownFromJSON, encodeMarkdownForJSON } from "@/utils";
+import { encodeMarkdownForJSON } from "@/utils";
 import { useState } from "react";
 import ContinueButton from "../../ContinueLevelBuilderButton";
+import { useLevelBuilder } from "@/context/LevelBuilderContext";
 
-const MarkdownInput = ({}: {}) => {
+const MarkdownInput = ({ order }: { order: number }) => {
   const [markdown, setMarkdown] = useState<string>("");
   const [isPreview, setIsPreview] = useState<boolean>(false);
 
-  const encodedMarkdownCheatSheet =
-    '# Markdown Cheat Sheet\\n\\n## Text Formatting\\n\\n- **Bold**: `**Bold Text**` or `__Bold Text__`\\n- *Italic*: `*Italic Text*` or `_Italic Text_`\\n- ~~Strikethrough~~: `~~Strikethrough Text~~`\\n\\n## Headings\\n\\n``\\n# H1 Heading\\n## H2 Heading\\n### H3 Heading\\n#### H4 Heading\\n##### H5 Heading\\n###### H6 Heading\\n``\\n\\n## Lists\\n\\n### Unordered List\\n\\n``\\n- Item 1\\n- Item 2\\n  - Subitem 1\\n  - Subitem 2\\n``\\n\\n### Ordered List\\n\\n``\\n1. First Item\\n2. Second Item\\n   1. Subitem 1\\n   2. Subitem 2\\n``\\n\\n## Links and Images\\n\\n- **Links**: `[Link Text](URL)`\\n- **Images**: `![Alt Text](Image URL)`\\n\\n## Code Blocks\\n\\nInline code: `` `Inline Code` ``\\n\\nCode block:\\n``\\nfunction greet(name) {\\n  return `Hello, ${name}!`;\\n}\\n``\\n\\n## Blockquotes\\n\\n``\\n> This is a blockquote.\\n> It can span multiple lines.\\n``\\n\\n## Horizontal Line\\n\\n``\\n---\\n``\\n\\n## Tables\\n\\n``\\n| Header 1 | Header 2 |\\n|----------|----------|\\n| Cell 1   | Cell 2   |\\n| Cell 3   | Cell 4   |\\n``\\n\\n## Conclusion\\n\\nThis cheat sheet provides a quick reference to common Markdown syntax and formatting options. By familiarizing yourself with these elements, you can quickly and effectively create structured and formatted documents using Markdown."';
+  const { setSteps } = useLevelBuilder();
+
+  const onNext = () => {
+    setSteps((current) => [
+      ...current,
+      {
+        order: order,
+        component: "TranslateSentence",
+        markdown: encodeMarkdownForJSON(markdown),
+      },
+    ]);
+  };
 
   return (
     <div className="flex h-full overflow-x-hidden">
@@ -47,6 +58,7 @@ const MarkdownInput = ({}: {}) => {
 
         <ContinueButton
           isDisabled={markdown.length < 100 || markdown.length > 10000}
+          onNext={onNext}
         />
       </div>
     </div>

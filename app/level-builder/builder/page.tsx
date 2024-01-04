@@ -206,9 +206,7 @@ export default function Builder() {
           </form>
         ) : (
           <Matcher
-            component={
-              context.stepTemplates[context.stepsCompleted - 1].component
-            }
+            component={context.stepTemplates[context.stepsCompleted - 1]}
             isInput={true}
           />
         )}

@@ -4,9 +4,15 @@ interface MatcherProps {
   component: string;
   params?: Record<string, any>;
   isInput: boolean;
+  order?: number;
 }
 
-const Matcher: React.FC<MatcherProps> = ({ component, params, isInput }) => {
+const Matcher: React.FC<MatcherProps> = ({
+  component,
+  params,
+  isInput,
+  order,
+}) => {
   const Component = lazy(
     () =>
       import(
@@ -18,7 +24,7 @@ const Matcher: React.FC<MatcherProps> = ({ component, params, isInput }) => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <Component {...params} />
+      <Component {...params} {...(isInput && { order })} />
     </Suspense>
   );
 };

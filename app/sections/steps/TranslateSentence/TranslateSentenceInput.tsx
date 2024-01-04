@@ -4,13 +4,14 @@ import { useState } from "react";
 import ContinueButton from "../../ContinueLevelBuilderButton";
 import { useLevelBuilder } from "@/context/LevelBuilderContext";
 
-export default function TranslateSentenceInput({}: {}) {
+export default function TranslateSentenceInput({ order }: { order: number }) {
   const [correctOption, setCorrectOption] = useState<string>("");
   const [incorrectOptions, setIncorrectOptions] = useState<string[]>([]);
   const [title, setTitle] = useState<string>("");
 
   const { stepsCompleted, setSteps } = useLevelBuilder();
 
+  // update context state after clicking on the "next button"
   const onNext = () => {
     const incorrect = incorrectOptions.map((text) => {
       return { text: text, isCorrect: false };
@@ -20,7 +21,7 @@ export default function TranslateSentenceInput({}: {}) {
     setSteps((current) => [
       ...current,
       {
-        order: stepsCompleted + 1,
+        order: order,
         component: "TranslateSentence",
         params: { title, options },
       },
@@ -32,6 +33,7 @@ export default function TranslateSentenceInput({}: {}) {
     setIncorrectOptions([...incorrectOptions, ""]);
   };
 
+  // edit incorrect option
   const handleIncorrectOptionChange = (index: number, value: string) => {
     const updatedOptions = [...incorrectOptions];
     updatedOptions[index] = value;
