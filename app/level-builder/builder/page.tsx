@@ -182,7 +182,7 @@ export default function Builder() {
                       }}>
                       -
                     </button>
-                    <div className="pl-4 text-xl">{step.component}</div>
+                    <div className="pl-4 text-xl">{step}</div>
                   </div>
                 ))}
                 <button
@@ -207,6 +207,7 @@ export default function Builder() {
         ) : (
           <Matcher
             component={context.stepTemplates[context.stepsCompleted - 1]}
+            order={context.stepsCompleted}
             isInput={true}
           />
         )}

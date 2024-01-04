@@ -20,7 +20,9 @@ const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
   const [title, setTitle] = useState<string>("My title");
   const [description, setDescription] = useState<string>("");
 
-  const createLevel = async () => {};
+  const createLevel = async () => {
+    console.log("done", steps);
+  };
 
   const value = {
     stepsCompleted,
