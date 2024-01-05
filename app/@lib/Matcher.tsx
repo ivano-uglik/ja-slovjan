@@ -1,5 +1,6 @@
 import React, { ReactNode, lazy, Suspense } from "react";
 import Loading from "../sections/Loading";
+import Loading from "../sections/Loading";
 interface MatcherProps {
   component: string;
   params?: Record<string, any>;
