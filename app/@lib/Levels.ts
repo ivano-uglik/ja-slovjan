@@ -201,10 +201,9 @@ export const Groups = [
           },
           {
             step: 3,
-            component: "TextCompletion",
+            component: "MarkdownText",
             params: {
-              title: "Ktory",
-              titleTranslated: "Koji",
+              text: "",
             },
           },
         ],

@@ -1,4 +1,5 @@
 import React, { ReactNode, lazy, Suspense } from "react";
+import Loading from "../sections/Loading";
 interface MatcherProps {
   component: string;
   params?: Record<string, any>;
@@ -15,7 +16,7 @@ const Matcher: React.FC<MatcherProps> = ({ component, params, isInput }) => {
       )
   );
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <Component {...params} />
     </Suspense>
   );
