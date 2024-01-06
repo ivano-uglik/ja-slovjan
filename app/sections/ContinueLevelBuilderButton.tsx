@@ -30,7 +30,8 @@ export default function ContinueButton({
       className={`fixed btn btn-secondary mb-8 mr-8 bottom-0 right-0 ${
         isDisabled && "btn-disabled"
       }`}
-      onClick={handleNext}>
+      onClick={handleNext}
+    >
       {stepsCompleted === stepTemplates.length ? "complete" : "next"}
     </button>
   );
