@@ -2,6 +2,7 @@
 import { useAccountSetup } from "@/context/AccountSetupContext";
 import { dela } from "../@lib/Fonts";
 import { HiFire } from "react-icons/hi";
+import ContinueAccountSetupButton from "./ContinueAccountSetupButton";
 
 export default function SetStreakGoal() {
   const days = [
@@ -43,11 +44,7 @@ export default function SetStreakGoal() {
         })}
       </div>
       <div className="flex justify-center py-16">
-        <button
-          className={`${dela.className} btn btn-secondary btn-lg btn-wide text-center`}
-        >
-          Nastavi
-        </button>
+        <ContinueAccountSetupButton link="/" />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 import { dela } from "../@lib/Fonts";
 import { useAccountSetup } from "@/context/AccountSetupContext";
+import ContinueAccountSetupButton from "./ContinueAccountSetupButton";
 
 export default function WhyAreYouLearning() {
   const reasons = [
@@ -37,11 +38,7 @@ export default function WhyAreYouLearning() {
         })}
       </div>
       <div className="flex justify-center py-16">
-        <button
-          className={`${dela.className} btn btn-secondary btn-lg btn-wide text-center`}
-        >
-          Nastavi
-        </button>
+        <ContinueAccountSetupButton link="/account-setup/how-well-do-you-know" />
       </div>
     </div>
   );

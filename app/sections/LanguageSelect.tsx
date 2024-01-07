@@ -4,6 +4,7 @@ import Croatia from "@/public/flags/croatia.svg";
 import England from "@/public/flags/england.svg";
 import Rusyn from "@/public/flags/rusyn.svg";
 import { useAccountSetup } from "@/context/AccountSetupContext";
+import ContinueAccountSetupButton from "./ContinueAccountSetupButton";
 export default function LanguageSelect() {
   const languageOptions = [
     { name: "Hrvatski", flag: Croatia },
@@ -37,7 +38,7 @@ export default function LanguageSelect() {
         ))}
       </div>
       <div className="flex justify-center">
-        <button className="btn btn-wide btn-secondary btn-lg">Continue</button>
+        <ContinueAccountSetupButton link="/account-setup/welcome-screen" />
       </div>
       {context.selectedLanguage && (
         <div className="text-center pt-4">

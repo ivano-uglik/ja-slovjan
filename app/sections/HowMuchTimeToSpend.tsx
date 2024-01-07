@@ -1,6 +1,7 @@
 "use client";
 import { useAccountSetup } from "@/context/AccountSetupContext";
 import { dela } from "../@lib/Fonts";
+import ContinueAccountSetupButton from "./ContinueAccountSetupButton";
 
 export default function HowMuchTimeToSpend() {
   const time = [
@@ -35,11 +36,7 @@ export default function HowMuchTimeToSpend() {
         })}
       </div>
       <div className="flex justify-center py-16">
-        <button
-          className={`${dela.className} btn btn-secondary btn-lg btn-wide text-center`}
-        >
-          Nastavi
-        </button>
+        <ContinueAccountSetupButton link="/account-setup/streak" />
       </div>
     </div>
   );

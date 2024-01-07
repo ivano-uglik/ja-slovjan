@@ -1,6 +1,7 @@
 "use client";
 import { dela } from "../@lib/Fonts";
 import { useAccountSetup } from "@/context/AccountSetupContext";
+import ContinueAccountSetupButton from "./ContinueAccountSetupButton";
 
 export default function WelcomeScreen() {
   const context = useAccountSetup();
@@ -58,11 +59,10 @@ export default function WelcomeScreen() {
           />
         </label>
       </form>
-      <button
-        className={`${dela.className} btn btn-secondary btn-lg w-full max-w-xs my-4`}
-      >
-        Nastavi
-      </button>
+      <ContinueAccountSetupButton
+        className="my-4"
+        link="/account-setup/why-are-you-learning"
+      />
     </div>
   );
 }
