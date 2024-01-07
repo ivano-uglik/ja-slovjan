@@ -5,7 +5,7 @@ import England from "@/public/flags/england.svg";
 import Rusyn from "@/public/flags/rusyn.svg";
 import { useState } from "react";
 
-export default function CountrySelect() {
+export default function LanguageSelect() {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const languageOptions = [
     { name: "Hrvatski", flag: Croatia },
