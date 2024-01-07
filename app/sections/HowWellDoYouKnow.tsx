@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
 import { dela } from "../@lib/Fonts";
+import { useAccountSetup } from "@/context/AccountSetupContext";
 
 export default function HowWellDoYouKnow() {
   const howWell = [
@@ -9,7 +9,7 @@ export default function HowWellDoYouKnow() {
     { name: "Dobro" },
     { name: "Odlično" },
   ];
-  const [howWellDoYouKnow, setHowWellDoYouKnow] = useState("");
+  const context = useAccountSetup();
   return (
     <div className="content-wrap mx-auto">
       <h1 className="text-center py-8 text-3xl font-bold">
@@ -23,10 +23,10 @@ export default function HowWellDoYouKnow() {
               className={`${
                 dela.className
               } btn btn-lg btn-secondary rounded-full transition-all ${
-                howWellDoYouKnow === text.name && "btn-active"
+                context.howWellDoYouKnow === text.name && "btn-active"
               }`}
               onClick={() => {
-                setHowWellDoYouKnow(text.name);
+                context.setHowWellDoYouKnow(text.name);
               }}
             >
               {text.name}

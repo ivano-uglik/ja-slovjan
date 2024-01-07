@@ -3,16 +3,14 @@ import Image from "next/image";
 import Croatia from "@/public/flags/croatia.svg";
 import England from "@/public/flags/england.svg";
 import Rusyn from "@/public/flags/rusyn.svg";
-import { useState } from "react";
-
+import { useAccountSetup } from "@/context/AccountSetupContext";
 export default function LanguageSelect() {
-  const [selectedLanguage, setSelectedLanguage] = useState("");
   const languageOptions = [
     { name: "Hrvatski", flag: Croatia },
     { name: "English", flag: England },
     { name: "Русиньскый", flag: Rusyn },
   ];
-
+  const context = useAccountSetup();
   return (
     <div className="content-wrap mx-auto">
       <h1 className={"text-center text-3xl font-bold pt-8"}>
@@ -26,7 +24,7 @@ export default function LanguageSelect() {
             key={index}
             className="py-4 px-16 border border-gray-200 bg-gray-50 hover:bg-gray-100 hover:scale-105 transition-all rounded-xl"
             onClick={() => {
-              setSelectedLanguage(language.name);
+              context.setSelectedLanguage(language.name);
             }}
           >
             <Image
@@ -41,9 +39,9 @@ export default function LanguageSelect() {
       <div className="flex justify-center">
         <button className="btn btn-wide btn-secondary btn-lg">Continue</button>
       </div>
-      {selectedLanguage && (
+      {context.selectedLanguage && (
         <div className="text-center pt-4">
-          Selected Language: {selectedLanguage}
+          Selected Language: {context.selectedLanguage}
         </div>
       )}
     </div>

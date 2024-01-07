@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
 import { dela } from "../@lib/Fonts";
+import { useAccountSetup } from "@/context/AccountSetupContext";
 
 export default function WhyAreYouLearning() {
   const reasons = [
@@ -11,7 +11,7 @@ export default function WhyAreYouLearning() {
     { name: "Prevazilaženje jezičnih barijera" },
     { name: "Povezivanje s obitelji i/ili zajednicom" },
   ];
-  const [learningReason, setLearningReason] = useState("");
+  const context = useAccountSetup();
   return (
     <div className="content-wrap mx-auto">
       <h1 className="text-center py-8 text-3xl font-bold">
@@ -25,10 +25,10 @@ export default function WhyAreYouLearning() {
               className={`${
                 dela.className
               } btn btn-lg btn-secondary rounded-full transition-all ${
-                learningReason === reason.name && "btn-active"
+                context.learningReason === reason.name && "btn-active"
               }`}
               onClick={() => {
-                setLearningReason(reason.name);
+                context.setLearningReason(reason.name);
               }}
             >
               {reason.name}

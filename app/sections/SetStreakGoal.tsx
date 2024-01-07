@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useAccountSetup } from "@/context/AccountSetupContext";
 import { dela } from "../@lib/Fonts";
 import { HiFire } from "react-icons/hi";
 
@@ -11,7 +11,7 @@ export default function SetStreakGoal() {
     { name: "14 dana", color: "text-red-500 text-xl" },
     { name: "30 dana", color: "text-yellow-300 text-3xl" },
   ];
-  const [streak, setStreak] = useState("");
+  const context = useAccountSetup();
   return (
     <div className="content-wrap mx-auto">
       <h1 className="text-center pt-8 text-3xl font-bold">
@@ -28,10 +28,10 @@ export default function SetStreakGoal() {
               className={`${
                 dela.className
               } btn btn-lg btn-secondary rounded-full transition-all ${
-                streak === day.name && "btn-active"
+                context.streak === day.name && "btn-active"
               }`}
               onClick={() => {
-                setStreak(day.name);
+                context.setStreak(day.name);
               }}
             >
               <div className={day.color}>

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useAccountSetup } from "@/context/AccountSetupContext";
 import { dela } from "../@lib/Fonts";
 
 export default function HowMuchTimeToSpend() {
@@ -9,7 +9,7 @@ export default function HowMuchTimeToSpend() {
     { name: "15 min" },
     { name: "30+ min" },
   ];
-  const [timeLength, setTimeLength] = useState("");
+  const context = useAccountSetup();
   return (
     <div className="content-wrap mx-auto">
       <h1 className="text-center py-8 text-3xl font-bold">
@@ -23,10 +23,10 @@ export default function HowMuchTimeToSpend() {
               className={`${
                 dela.className
               } btn btn-lg btn-secondary rounded-full transition-all ${
-                timeLength === text.name && "btn-active"
+                context.timeLength === text.name && "btn-active"
               }`}
               onClick={() => {
-                setTimeLength(text.name);
+                context.setTimeLength(text.name);
               }}
             >
               {text.name}

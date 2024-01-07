@@ -5,7 +5,7 @@ import HowWellDoYouKnow from "../sections/HowWellDoYouKnow";
 import HowMuchTimeToSpend from "../sections/HowMuchTimeToSpend";
 import SetStreakGoal from "../sections/SetStreakGoal";
 
-export default function Page() {
+export default function AccountSetup() {
   return (
     <div className="flex flex-col gap-64">
       <LanguageSelect />

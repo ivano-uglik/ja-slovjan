@@ -1,12 +1,9 @@
 "use client";
-import { useState } from "react";
 import { dela } from "../@lib/Fonts";
+import { useAccountSetup } from "@/context/AccountSetupContext";
 
 export default function WelcomeScreen() {
-  const [username, setUsername] = useState("");
-  const [gender, setGender] = useState("");
-  const [DOB, setDOB] = useState("");
-
+  const context = useAccountSetup();
   return (
     <div className="content-wrap mx-auto">
       <div>
@@ -27,16 +24,16 @@ export default function WelcomeScreen() {
             type="text"
             placeholder="korisnik_"
             className="input input-bordered w-full max-w-xs"
-            value={username}
+            value={context.username}
             onChange={(e) => {
-              setUsername(e.target.value);
+              context.setUsername(e.target.value);
             }}
           />
         </label>
         <select
           className="select w-full max-w-xs"
           onChange={(e) => {
-            setGender(e.target.value);
+            context.setGender(e.target.value);
           }}
         >
           <option disabled selected>
@@ -54,9 +51,9 @@ export default function WelcomeScreen() {
             type="text"
             placeholder="DD/MM/YYYY"
             className="input input-bordered w-full max-w-xs"
-            value={DOB}
+            value={context.DOB}
             onChange={(e) => {
-              setDOB(e.target.value);
+              context.setDOB(e.target.value);
             }}
           />
         </label>
