@@ -26,7 +26,17 @@ export default function AccountSetupProvider({
 
   async function createAccountInformation() {
     const information = { selectedLanguage, username, gender, DOB };
-    console.log("done", information);
+    console.log("Create Account Preferences:", information);
+  }
+
+  async function createAccountPreferences() {
+    const information = {
+      learningReason,
+      howWellDoYouKnow,
+      timeLength,
+      streak,
+    };
+    console.log("Create Account Preferences:", information);
   }
 
   const value = {
@@ -46,6 +56,8 @@ export default function AccountSetupProvider({
     setTimeLength,
     streak,
     setStreak,
+    createAccountInformation,
+    createAccountPreferences,
   };
   return (
     <AccountSetupContext.Provider value={value}>
@@ -71,6 +83,8 @@ interface AccountSetupInterface {
   setTimeLength: (value: string) => void;
   streak: string;
   setStreak: (value: string) => void;
+  createAccountInformation: any;
+  createAccountPreferences: any;
 }
 
 export function useAccountSetup(): AccountSetupInterface {

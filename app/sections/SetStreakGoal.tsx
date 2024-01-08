@@ -44,7 +44,12 @@ export default function SetStreakGoal() {
         })}
       </div>
       <div className="flex justify-center py-16">
-        <ContinueAccountSetupButton link="/" />
+        <ContinueAccountSetupButton
+          link="/"
+          onClick={
+            (context.createAccountInformation, context.createAccountPreferences)
+          }
+        />
       </div>
     </div>
   );

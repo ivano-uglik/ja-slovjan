@@ -6,14 +6,5 @@ import HowMuchTimeToSpend from "../sections/HowMuchTimeToSpend";
 import SetStreakGoal from "../sections/SetStreakGoal";
 
 export default function AccountSetup() {
-  return (
-    <div className="flex flex-col gap-64">
-      <LanguageSelect />
-      <WelcomeScreen />
-      <WhyAreYouLearning />
-      <HowWellDoYouKnow />
-      <HowMuchTimeToSpend />
-      <SetStreakGoal />
-    </div>
-  );
+  return <LanguageSelect />;
 }
