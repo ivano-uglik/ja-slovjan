@@ -1,11 +1,5 @@
-import { Language, Completed_level, Guess_cyrillic_letter_param, Guess_cyrillic_letter_param_option, Guess_latin_letter_param, Guess_latin_letter_param_option, Image_select_param, Image_select_param_option, Level, Level_group, Level_step, Text_completion_param, Translate_sentence_param, Translate_sentence_param_option, User } from "../types";
+import { Language, ErrorType, Completed_level, Guess_cyrillic_letter_param, Guess_cyrillic_letter_param_option, Guess_latin_letter_param, Guess_latin_letter_param_option, Image_select_param, Image_select_param_option, Level, Level_group, Level_step, Text_completion_param, Translate_sentence_param, Translate_sentence_param_option, User } from "../types";
 import supabase from "@/supabase/supabase-server";
-
-type ErrorType = {
-  message: string;
-  details?: any;
-  error: any;
-};
 
 const handleError = (error: any): ErrorType => {
   console.error('Supabase error:', error);
