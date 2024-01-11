@@ -7,10 +7,16 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Я",
+    template: "%s | ЯС",
     default: "Ja, Slovjan | Я, Словян",
+    absolute: "Ja, Slovjan - learn slavic languages",
   },
-  description: "",
+  description:
+    "Ja, slovjan is an open-source, community-maintained language-learning platform for Slavic speakers.",
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -21,9 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <SessionProvider>
-          {children}
-        </SessionProvider>
+        <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
   );
