@@ -27,7 +27,8 @@ export default function Navbar() {
         </li>
       </ul>
       <div
-        className={`${dela.className} btn bg-white text-color-not-active px-4 py-2 rounded-full cursor-pointer`}>
+        className={`${dela.className} btn bg-white text-primary px-4 py-2 rounded-full cursor-pointer`}
+      >
         <Link href="/dashboard">Get Started</Link>
       </div>
     </div>

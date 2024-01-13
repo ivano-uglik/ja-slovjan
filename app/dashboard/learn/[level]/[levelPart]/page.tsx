@@ -34,10 +34,10 @@ export default function Page({
 
   return (
     <div className="h-full">
-      <div className="hidden text-center text-3xl font-bold text-color-not-active">
+      <div className="hidden text-center text-3xl font-bold text-primary">
         {selectedGroup.group}
       </div>
-      <div className="hidden text-center text-3xl font-bold text-color-not-active pt-2">
+      <div className="hidden text-center text-3xl font-bold text-primary pt-2">
         Uravenj {decodeURIComponent(params.levelPart)}
       </div>
       <Context.Provider value={[step, setStep]}>

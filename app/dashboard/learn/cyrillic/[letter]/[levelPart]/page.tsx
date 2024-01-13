@@ -44,10 +44,11 @@ export default function Page({
   ];
   return (
     <div>
-      <div className="text-center text-3xl font-bold text-color-not-active">
+      <div className="text-center text-3xl font-bold text-primary">
         {decodeURIComponent(params.letter)}{" "}
         {decodeURIComponent(params.levelPart)}
       </div>
+      col
       {
         LevelCyrillic[Number(params.letter) - 1].levels[
           Number(decodeURIComponent(params.levelPart)) - 1

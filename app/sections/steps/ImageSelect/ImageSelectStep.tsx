@@ -16,7 +16,7 @@ export default function ImageSelectStep({
     options[index].isCorrect ? isCorrect(true) : null;
   }
   return (
-    <div className="text-color-not-active">
+    <div className="text-primary">
       <div className="content-wrap mx-auto ">
         <div>
           <h2 className="text-center text-3xl font-bold">
@@ -33,7 +33,7 @@ export default function ImageSelectStep({
                 key={index}
                 className={` rounded-xl ${
                   correct && options[index].isCorrect
-                    ? "bg-color-active"
+                    ? "bg-success"
                     : "hover:bg-slate-100 hover:opacity-80"
                 }`}
                 onClick={() => handleClick(index)}

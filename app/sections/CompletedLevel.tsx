@@ -28,7 +28,7 @@ export default function Completed({ className }: { className?: string }) {
             Prěgledi
           </button>
           <button
-            className="px-12 py-4 text-xl font-semibold border rounded-lg bg-color-active"
+            className="px-12 py-4 text-xl font-semibold border rounded-lg bg-success"
             onClick={() => (setStep(step + 1), isCorrect(false))}
           >
             Slědujuči

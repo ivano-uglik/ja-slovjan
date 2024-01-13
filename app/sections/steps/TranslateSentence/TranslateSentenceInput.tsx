@@ -47,7 +47,7 @@ export default function TranslateSentenceInput({ order }: { order: number }) {
   };
 
   return (
-    <div className="text-color-not-active flex flex-col gap-8">
+    <div className="text-primary flex flex-col gap-8">
       <div className="flex justify-center">
         <input
           type="text"

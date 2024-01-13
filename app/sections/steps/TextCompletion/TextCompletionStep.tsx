@@ -17,7 +17,7 @@ export default function TextCompletionStep({
     <div>
       <div
         className={`text-center text-3xl py-8 font-bold ${
-          correct ? "text-color-active" : "text-color-not-active"
+          correct ? "text-success" : "text-primary"
         }`}
       >
         {title}
@@ -37,7 +37,7 @@ export default function TextCompletionStep({
               setInputValue(e.target.value);
             }}
             className={`w-[50vw] text-center text-3xl py-8 font-bold focus:outline-none  ${
-              correct ? "text-color-active" : "text-color-not-active"
+              correct ? "text-success" : "text-primary"
             }`}
             autoFocus
           />

@@ -71,8 +71,9 @@ export default function Sidebar({ children }: { children: ReactNode }) {
                   } flex items-center gap-8 px-6 py-4 text-lg ${
                     item.path == pathName
                       ? " bg-base-200 text-primary transition-all duration-500 ease-in-out"
-                      : "text-color-not-active hover:bg-base-200"
-                  }`}>
+                      : "text-primary hover:bg-base-200"
+                  }`}
+                >
                   <div className="w-6 aspect-square">{item.icon}</div>
                   <h5>{item.label}</h5>
                 </Link>
@@ -108,8 +109,9 @@ export default function Sidebar({ children }: { children: ReactNode }) {
                 } border-r border-t border-gray-300 w-full justify-center flex items-center p-5 ${
                   item.path == pathName
                     ? " bg-base-200 text-primary transition-all duration-500 ease-in-out"
-                    : "text-color-not-active"
-                }`}>
+                    : "text-primary"
+                }`}
+              >
                 <div className="w-6 aspect-square">{item.icon}</div>
               </Link>
             );

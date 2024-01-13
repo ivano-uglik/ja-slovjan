@@ -13,8 +13,8 @@ export default function TranslateSentence({
 }) {
   const [correct, isCorrect]: any = useContext(correctContext);
   return (
-    <div className="text-color-not-active">
-      <div className="text-center text-3xl py-8 font-bold text-color-not-active">
+    <div className="text-primary">
+      <div className="text-center text-3xl py-8 font-bold text-primary">
         {title}
       </div>
       <div>
@@ -24,13 +24,12 @@ export default function TranslateSentence({
               <li
                 key={index}
                 className={`p-2 rounded-3xl border font-semibold cursor-pointer ${
-                  correct &&
-                  options[index].isCorrect &&
-                  "bg-color-active text-white"
+                  correct && options[index].isCorrect && "bg-success text-white"
                 }`}
                 onClick={() => {
                   options[index].isCorrect && isCorrect(true);
-                }}>
+                }}
+              >
                 {option.text}
               </li>
             );

@@ -196,7 +196,7 @@ export default function Builder() {
                   </div>
                 ))}
                 <button
-                  className="rounded-xl text-3xl font-bold p-2 bg-color-active text-white"
+                  className="text-3xl font-bold p-2 btn btn-success btn-outline"
                   onClick={() =>
                     // show modal to add step, per daisyUI docs
                     document.getElementById("my_modal_3").showModal()

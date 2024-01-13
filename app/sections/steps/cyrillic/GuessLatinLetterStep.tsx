@@ -30,7 +30,7 @@ export default function GuessLatinLetterStep({
                 key={index}
                 className={`p-12 rounded-3xl text-5xl border mx-auto cursor-pointer ${
                   correct && options[index].isCorrect
-                    ? "bg-color-active"
+                    ? "bg-success"
                     : "hover:bg-slate-100 hover:opacity-80"
                 }`}
                 onClick={() => handleClick(index)}

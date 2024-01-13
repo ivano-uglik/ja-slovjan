@@ -47,7 +47,7 @@ export default function ImageSelectInput({ order }: { order: number }) {
   };
 
   return (
-    <div className="text-color-not-active">
+    <div className="text-primary">
       <div className="content-wrap overflow-x-hidden flex items-center flex-col mx-auto">
         <div>
           <h2 className="text-center text-3xl font-bold">
