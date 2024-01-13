@@ -23,7 +23,7 @@ export default function HowMuchTimeToSpend() {
               key={index}
               className={`${
                 dela.className
-              } btn btn-lg btn-secondary rounded-full transition-all ${
+              } btn btn-lg btn-primary rounded-full transition-all ${
                 context.timeLength === text.name && "btn-active"
               }`}
               onClick={() => {

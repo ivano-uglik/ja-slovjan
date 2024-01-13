@@ -23,7 +23,7 @@ export default function HowWellDoYouKnow() {
               key={index}
               className={`${
                 dela.className
-              } btn btn-lg btn-secondary rounded-full transition-all ${
+              } btn btn-lg btn-primary rounded-full transition-all ${
                 context.howWellDoYouKnow === text.name && "btn-active"
               }`}
               onClick={() => {

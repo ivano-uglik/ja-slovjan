@@ -30,7 +30,8 @@ const MarkdownInput = ({ order }: { order: number }) => {
             markdown.length < 100 || markdown.length > 10000
               ? "text-red-500"
               : "text-green-500"
-          }`}>
+          }`}
+        >
           {markdown.length}
         </div>
         <textarea
@@ -44,7 +45,8 @@ const MarkdownInput = ({ order }: { order: number }) => {
       <div className="p-8 w-1/2 relative">
         <button
           onClick={() => setIsPreview((current) => !current)}
-          className="fixed btn btn-secondary mr-8 mt-8 right-0 top-0">
+          className="fixed btn btn-primary mr-8 mt-8 right-0 top-0"
+        >
           {isPreview ? "Switch to Cheat Sheet" : "Switch to Preview"}
         </button>
 

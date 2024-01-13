@@ -61,7 +61,7 @@ export default function Cyrillic() {
           O 250 miliona ljudi koristajut kirilsko pismo. Spoznaj se so Kirilovom
           azbukoju tutdenj!
         </h3>
-        <button className="btn btn-lg btn-secondary btn-wide mt-8">
+        <button className="btn btn-lg btn-primary btn-wide mt-8">
           Започни уравењ 1!
         </button>
         <div className="py-16 flex flex-col gap-8">
@@ -106,7 +106,7 @@ export default function Cyrillic() {
                         <Link
                           href={`cyrillic/${OneLevel.group}/${i + 1}`}
                           key={i}
-                          className="p-4 w-16 text-center border border-secondary text-secondary rounded-xl text-xl cursor-pointer"
+                          className="p-4 w-16 text-center border border-primary text-primary rounded-xl text-xl cursor-pointer"
                         >
                           {i + 1}
                         </Link>

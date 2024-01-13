@@ -73,7 +73,8 @@ export default function TranslateSentenceInput({ order }: { order: number }) {
                 className="btn btn-square rounded-full"
                 onClick={() => {
                   handleRemoveIncorrectOption(index);
-                }}>
+                }}
+              >
                 -
               </button>
               <input
@@ -88,8 +89,9 @@ export default function TranslateSentenceInput({ order }: { order: number }) {
             </div>
           ))}
           <div
-            className="btn w-full btn-secondary text-xl"
-            onClick={handleAddIncorrectOption}>
+            className="btn w-full btn-primary text-xl"
+            onClick={handleAddIncorrectOption}
+          >
             +
           </div>
         </div>

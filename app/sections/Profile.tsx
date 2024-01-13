@@ -78,15 +78,14 @@ const Profile = () => {
                   <p className="mb-6 opacity-50">
                     Contribute to Ja-Slovjan by utilizing your language speaking
                     skills to create community levels!{" "}
-                    <Link
-                      className="text-secondary underline font-bold"
-                      href="#">
+                    <Link className="text-primary underline font-bold" href="#">
                       Learn more
                     </Link>
                   </p>
                   <Link
                     href="/level-builder"
-                    className="uppercase btn btn-secondary">
+                    className="uppercase btn btn-primary"
+                  >
                     {"→"} go to level builder
                   </Link>
                 </div>
@@ -96,7 +95,8 @@ const Profile = () => {
           {session?.user && (
             <button
               onClick={handleSignOut}
-              className="btn btn-ghost w-full opacity-50 mb-12 hover:btn-primary hover:btn-outline hover:opacity-100">
+              className="btn btn-ghost w-full opacity-50 mb-12 hover:btn-primary hover:btn-outline hover:opacity-100"
+            >
               Logout
             </button>
           )}

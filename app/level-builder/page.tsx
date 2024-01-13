@@ -22,7 +22,8 @@ export default function LevelBuilder() {
             Please check out{" "}
             <Link
               href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              className="text-secondary underline underline-offset-4">
+              className="text-primary underline underline-offset-4"
+            >
               our docs
             </Link>
             , or watch a short video on how to build your first template:
@@ -30,28 +31,10 @@ export default function LevelBuilder() {
           <div className="flex justify-center py-8">
             <Image src={image} alt="" />
           </div>
-          <div className="hidden">
-            <h3 className="text-xl">
-              {
-                "Or if you've done this sort of thing before, pick a template from our marketplace:"
-              }
-            </h3>
-            <div className="flex justify-center gap-8 py-8">
-              <button
-                className={`${dela.className} btn btn-lg btn-secondary`}
-                onClick={() =>
-                  document.getElementById("my_modal_3").showModal()
-                }>
-                Marketplace
-              </button>
-              <button className={`${dela.className} btn btn-lg btn-secondary`}>
-                My Themes
-              </button>
-            </div>
-          </div>
           <Link href="/level-builder/builder">
             <button
-              className={`${dela.className} btn btn-lg btn-wide btn-secondary`}>
+              className={`${dela.className} btn btn-lg btn-wide btn-primary`}
+            >
               Start
             </button>
           </Link>

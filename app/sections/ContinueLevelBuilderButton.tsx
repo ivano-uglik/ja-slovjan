@@ -27,7 +27,7 @@ export default function ContinueButton({
     <button
       type="submit"
       value="Continue"
-      className={`fixed btn btn-secondary mb-8 mr-8 bottom-0 right-0 ${
+      className={`fixed btn btn-primary mb-8 mr-8 bottom-0 right-0 ${
         isDisabled && "btn-disabled"
       }`}
       onClick={handleNext}

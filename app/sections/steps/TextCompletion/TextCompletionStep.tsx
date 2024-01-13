@@ -45,7 +45,7 @@ export default function TextCompletionStep({
             type="submit"
             value="Submit"
             className={`btn btn-lg btn-wide mt-8 ${
-              correct ? "btn-accent" : "btn-secondary"
+              correct ? "btn-accent" : "btn-primary"
             }`}
           />
         </form>

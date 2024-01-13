@@ -28,7 +28,7 @@ export default function SetStreakGoal() {
               key={index}
               className={`${
                 dela.className
-              } btn btn-lg btn-secondary rounded-full transition-all ${
+              } btn btn-lg btn-primary rounded-full transition-all ${
                 context.streak === day.name && "btn-active"
               }`}
               onClick={() => {

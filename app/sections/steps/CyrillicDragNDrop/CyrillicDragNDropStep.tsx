@@ -27,7 +27,8 @@ const CyrillicDragNDrop = ({ title, options }: Params) => {
 
   return (
     <DndProvider
-      backend={window.innerWidth < 768 ? TouchBackend : HTML5Backend}>
+      backend={window.innerWidth < 768 ? TouchBackend : HTML5Backend}
+    >
       <div className="w-full h-full text-4xl flex flex-col padding-mobile-x md:padding-tablet-x lg:padding-large-x">
         <div className="flex justify-between w-full h-1/5">
           <DraggableOption
@@ -102,8 +103,9 @@ const DropZone = ({
       ref={drop}
       onDragOver={handleDragOver}
       className={`text-7xl font-bold transition-all ${
-        isDragOver && "scale-125 text-secondary"
-      } ${isWrong && "text-red-500"} ${isCorrect && "text-green-500"}`}>
+        isDragOver && "scale-125 text-primary"
+      } ${isWrong && "text-red-500"} ${isCorrect && "text-green-500"}`}
+    >
       {title}
     </p>
   );

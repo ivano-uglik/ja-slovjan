@@ -77,7 +77,8 @@ export default function ImageSelectInput({ order }: { order: number }) {
                 className="w-64 h-64 grid place-items-center rounded-xl border cursor-pointer"
                 onClick={() =>
                   document.getElementById("my_modal_correct").showModal()
-                }>
+                }
+              >
                 <h1 className="px-2 text-center">
                   Add a source for the correct image
                 </h1>
@@ -93,7 +94,8 @@ export default function ImageSelectInput({ order }: { order: number }) {
                     className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                     onClick={() =>
                       document.getElementById("my_modal_correct").close()
-                    }>
+                    }
+                  >
                     ✕
                   </button>
                 </form>
@@ -115,7 +117,8 @@ export default function ImageSelectInput({ order }: { order: number }) {
                   className="cursor-default"
                   onClick={() =>
                     document.getElementById("my_modal_correct").close()
-                  }>
+                  }
+                >
                   Close
                 </button>
               </form>
@@ -138,7 +141,8 @@ export default function ImageSelectInput({ order }: { order: number }) {
                     className="w-64 h-64 grid place-items-center rounded-xl border cursor-pointer"
                     onClick={() =>
                       document.getElementById(`my_modal_${index}`).showModal()
-                    }>
+                    }
+                  >
                     <h1 className="px-2 text-center">
                       Add an incorrect image source
                     </h1>
@@ -148,7 +152,8 @@ export default function ImageSelectInput({ order }: { order: number }) {
                   className="absolute -top-4 -right-4 rounded-full btn btn-circle text-3xl border border-red-500 bg-white text-red-500"
                   onClick={() => {
                     handleRemoveImage(index);
-                  }}>
+                  }}
+                >
                   -
                 </div>
                 <dialog id={`my_modal_${index}`} className="modal">
@@ -158,7 +163,8 @@ export default function ImageSelectInput({ order }: { order: number }) {
                         className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                         onClick={() =>
                           document.getElementById(`my_modal_${index}`).close()
-                        }>
+                        }
+                      >
                         ✕
                       </button>
                     </form>
@@ -182,7 +188,8 @@ export default function ImageSelectInput({ order }: { order: number }) {
                       className="cursor-default"
                       onClick={() =>
                         document.getElementById(`my_modal_${index}`).close()
-                      }>
+                      }
+                    >
                       Close
                     </button>
                   </form>
@@ -192,8 +199,9 @@ export default function ImageSelectInput({ order }: { order: number }) {
           })}
         </div>
         <button
-          className="btn w-full md:w-1/2 btn-secondary text-xl my-8"
-          onClick={handleAddImage}>
+          className="btn w-full md:w-1/2 btn-primary text-xl my-8"
+          onClick={handleAddImage}
+        >
           +
         </button>
         <div className="flex justify-center">

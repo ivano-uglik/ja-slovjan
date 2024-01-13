@@ -11,11 +11,13 @@ export default function HomePage({}: {}) {
             {group.levels.map((level, levelIndex) => (
               <Link
                 key={levelIndex}
-                href={`dashboard/learn/${group.id}/${levelIndex + 1}`}>
+                href={`dashboard/learn/${group.id}/${levelIndex + 1}`}
+              >
                 <div
                   className={`btn btn-square btn-lg ${
-                    level.isCompleted ? "btn-secondary" : "btn-outline"
-                  }`}>
+                    level.isCompleted ? "btn-primary" : "btn-outline"
+                  }`}
+                >
                   {levelIndex + 1}
                 </div>
               </Link>
