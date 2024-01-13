@@ -1,7 +1,5 @@
 // TO-DO where to continue off tomorrow: go to chatgpt and continue adding unit tests for the supabaseFunctions and then run jest and try to get it running
 
-
-import supabase from '@/supabase/supabase-server';
 import {
   createLanguage,
   getLanguage,
@@ -9,8 +7,7 @@ import {
   deleteLanguage,
   getAllLanguages,
   // ... (other functions)
-} from "@/supabase/actions"; // Replace with the correct import path
-import { ErrorType } from "@/supabase/types"
+} from "@/supabase/actions";
 
 describe('Language CRUD functions', () => {
 
@@ -25,8 +22,12 @@ describe('Language CRUD functions', () => {
   it('should create a new language', async () => {
     const mockLanguage = { name: 'English' };
     const result = await createLanguage(mockLanguage);
+
     expect(result).toHaveProperty('id');
-    createdLanguageId = result.id;
+
+    if ("id" in result) {
+      createdLanguageId = result?.id || null;
+    }
   });
 
   it('should get a language by ID', async () => {

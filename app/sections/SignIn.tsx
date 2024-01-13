@@ -57,12 +57,12 @@ const SignIn = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center ">
+    <div className="flex items-center justify-center w-screen h-screen ">
       <div className="w-full text-gray-500 padding-mobile-x md:w-1/2 xl:w-1/3">
-        <div className="flex-col flex gap-2">
+        <div className="flex flex-col gap-2">
           <button
             onClick={handleSignInWithGoogle}
-            className="w-full input input-bordered items-center text-gray-500 flex justify-center gap-2">
+            className="flex items-center justify-center w-full gap-2 text-gray-500 input input-bordered">
             <svg
               className="c-eSSyNk"
               xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,7 @@ const SignIn = () => {
               name="password"
             />
           </div>
-          {error && <p className="text-red-600 text-sm">{error}</p>}
+          {error && <p className="text-sm text-red-600">{error}</p>}
           {isLoading ? (
             <div className="flex justify-center mt-4">
               <div className="loading-spinner loading-md loading"></div>
@@ -113,17 +113,17 @@ const SignIn = () => {
           ) : (
             <button
               onClick={handleSignIn}
-              className="mt-8 btn w-full btn-secondary">
+              className="w-full mt-8 btn btn-secondary">
               Sign in
             </button>
           )}
           {/* TO-DO add password recovery */}
-          <div className="text-sm flex flex-col gap-2 mt-4">
-            <Link href="#" className="underline text-center">
+          <div className="flex flex-col gap-2 mt-4 text-sm">
+            <Link href="#" className="text-center underline">
               {" "}
               Forgot your password?
             </Link>
-            <Link href="/auth/sign-up" className="underline text-center">
+            <Link href="/auth/sign-up" className="text-center underline">
               {" "}
               {"Don't"} have an account? Sign up...
             </Link>
