@@ -3,6 +3,7 @@
 import { useContext, useState } from "react";
 import Completed from "../../CompletedLevel";
 import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
+import ProgressBar from "../../ProgressBar";
 
 export default function TextCompletionStep({
   title,
@@ -15,6 +16,7 @@ export default function TextCompletionStep({
   const [inputValue, setInputValue] = useState("");
   return (
     <div>
+      <ProgressBar size={"w-[45%]"} />
       <div
         className={`text-center text-3xl py-8 font-bold ${
           correct ? "text-success" : "text-primary"
