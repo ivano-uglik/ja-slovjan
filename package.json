@@ -1,0 +1,11 @@
+{
+  "name": "ja-slovjan-testing",
+  "version": "1.0.0",
+  "description": "jest unit testing for ja-slovjan ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Teo Međeši",
+  "license": "ISC"
+}
