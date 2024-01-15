@@ -2,6 +2,7 @@
 import Matcher from "@/app/@lib/Matcher";
 import { createContext, useState } from "react";
 import { Groups } from "@/app/@lib/Levels";
+import Navbar from "@/app/sections/levels/LevelNavbar";
 
 export const Context: any = createContext(0);
 export const correctContext: any = createContext(false);
@@ -33,7 +34,8 @@ export default function Page({
   }
 
   return (
-    <div className="h-full">
+    <div>
+      <Navbar explainer="Choose the correct image." />
       <div className="hidden text-center text-3xl font-bold text-primary">
         {selectedGroup.group}
       </div>

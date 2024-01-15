@@ -3,8 +3,8 @@
 import Rocket from "@/public/svg/rocket-svgrepo.svg";
 import Image from "next/image";
 import { useContext } from "react";
-import { Context } from "../dashboard/learn/[level]/[levelPart]/page";
-import { correctContext } from "../dashboard/learn/[level]/[levelPart]/page";
+import { Context } from "../learn/[level]/[levelPart]/page";
+import { correctContext } from "../learn/[level]/[levelPart]/page";
 export default function Completed({ className }: { className?: string }) {
   const [step, setStep]: any = useContext(Context);
   const [correct, isCorrect]: any = useContext(correctContext);
@@ -28,7 +28,7 @@ export default function Completed({ className }: { className?: string }) {
             Prěgledi
           </button>
           <button
-            className="px-12 py-4 text-xl font-semibold border rounded-lg bg-success"
+            className="px-12 py-4 text-xl font-semibold border rounded-lg bg-success text-white"
             onClick={() => (setStep(step + 1), isCorrect(false))}
           >
             Slědujuči
