@@ -7,7 +7,11 @@ import {
   deleteLanguage,
   getAllLanguages,
   // ... (other functions)
-} from "@/supabase/actions";
+} from "../supabase/actions";
+
+function fail(reason = "fail was called in a test.") {
+  throw new Error(reason);
+}
 
 describe('Language CRUD functions', () => {
 
@@ -22,6 +26,7 @@ describe('Language CRUD functions', () => {
   it('should create a new language', async () => {
     const mockLanguage = { name: 'English' };
     const result = await createLanguage(mockLanguage);
+    console.log(result)
 
     expect(result).toHaveProperty('id');
 

@@ -1,22 +1,26 @@
 import { Language, ErrorType, Completed_level, Guess_cyrillic_letter_param, Guess_cyrillic_letter_param_option, Guess_latin_letter_param, Guess_latin_letter_param_option, Image_select_param, Image_select_param_option, Level, Level_group, Level_step, Text_completion_param, Translate_sentence_param, Translate_sentence_param_option, User } from "../types";
-import supabase from "@/supabase/supabase-server";
+import supabase from "../supabase.config";
 
 const handleError = (error: any): ErrorType => {
   console.error('Supabase error:', error);
   return { message: 'An error occurred with Supabase.', error };
 };
 
+// TO-DO: rewrite all functions to return data on insert, upsert or delete using the select() function
 
 /* --------------- CRUD functions for Language table --------------- */
 
 export const createLanguage = async (languageData: Language): Promise<Language | ErrorType> => {
   try {
+
     const { data, error } = await supabase
-      .from('Language')
+      .from('languages')
       .insert(languageData)
+      .select()
       .single();
     if (error) throw error;
     return data!;
+
   } catch (error) {
     return handleError(error);
   }
@@ -25,7 +29,7 @@ export const createLanguage = async (languageData: Language): Promise<Language |
 export const getLanguage = async (languageId: number): Promise<Language | null | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('Language')
+      .from('languages')
       .select('*')
       .eq('id', languageId)
       .single();
@@ -39,7 +43,7 @@ export const getLanguage = async (languageId: number): Promise<Language | null |
 export const updateLanguage = async (languageId: number, updates: Partial<Language>): Promise<Language | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('Language')
+      .from('languages')
       .update(updates)
       .eq('id', languageId)
       .single();
@@ -53,7 +57,7 @@ export const updateLanguage = async (languageId: number, updates: Partial<Langua
 export const deleteLanguage = async (languageId: number): Promise<void | ErrorType> => {
   try {
     const { error } = await supabase
-      .from('Language')
+      .from('languages')
       .delete()
       .eq('id', languageId);
     if (error) throw error;
@@ -65,7 +69,7 @@ export const deleteLanguage = async (languageId: number): Promise<void | ErrorTy
 export const getAllLanguages = async (): Promise<Language[] | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('Language')
+      .from('languages')
       .select('*');
     if (error) throw error;
     return data || [];
