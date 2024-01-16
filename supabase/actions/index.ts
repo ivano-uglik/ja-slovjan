@@ -227,12 +227,12 @@ export const getAllLevels = async (): Promise<Level[] | ErrorType> => {
   }
 };
 
-// CRUD functions for Level_steps table
+// CRUD functions for level_steps table
 
 export const createLevelStep = async (stepData: Level_step): Promise<Level_step | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('Level_steps')
+      .from('level_steps')
       .insert(stepData)
       .select()
       .single();
@@ -246,7 +246,7 @@ export const createLevelStep = async (stepData: Level_step): Promise<Level_step 
 export const getLevelStep = async (stepId: number): Promise<Level_step | null | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('Level_steps')
+      .from('level_steps')
       .select('*')
       .eq('id', stepId)
       .single();
@@ -260,7 +260,7 @@ export const getLevelStep = async (stepId: number): Promise<Level_step | null | 
 export const updateLevelStep = async (stepId: number, updates: Partial<Level_step>): Promise<Level_step | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('Level_steps')
+      .from('level_steps')
       .update(updates)
       .eq('id', stepId)
       .select()
@@ -275,7 +275,7 @@ export const updateLevelStep = async (stepId: number, updates: Partial<Level_ste
 export const deleteLevelStep = async (stepId: number): Promise<void | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('Level_steps')
+      .from('level_steps')
       .delete()
       .eq('id', stepId)
       .select()
@@ -291,7 +291,7 @@ export const deleteLevelStep = async (stepId: number): Promise<void | ErrorType>
 export const getAllLevelSteps = async (): Promise<Level_step[] | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('Level_steps')
+      .from('level_steps')
       .select('*');
     if (error) throw error;
     return data || [];

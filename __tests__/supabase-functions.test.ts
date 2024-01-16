@@ -16,6 +16,11 @@ import {
   updateLevel,
   deleteLevel,
   getAllLevels,
+  getLevelStep,
+  updateLevelStep,
+  deleteLevelStep,
+  createLevelStep,
+  getAllLevelSteps,
   // ... (other functions)
 } from "../supabase/actions";
 
@@ -211,3 +216,69 @@ describe('Level CRUD functions', () => {
   });
 });
 
+describe('Level_step CRUD functions', () => {
+  let createdLevelStepId: number;
+
+  afterAll(async () => {
+    if (createdLevelStepId) {
+      await deleteLevelStep(createdLevelStepId);
+    }
+  });
+
+  // Test createLevelStep function
+  test('createLevelStep - creates a new level step', async () => {
+    const newLevelStepData: Level_step = {
+      order: 1,
+      component: 'Test Component',
+      // Add other properties based on your data structure
+      level_id: 1,
+    };
+
+    const createdLevelStep = await createLevelStep(newLevelStepData);
+    if ("id" in createdLevelStep) createdLevelStepId = createdLevelStep.id!;
+
+    // Ensure the returned data has the expected properties
+    expect(createdLevelStep).toHaveProperty('id');
+    // Add other expected properties here based on your data structure
+  });
+
+  // Test getLevelStep function
+  test('getLevelStep - retrieves a level step by ID', async () => {
+    const retrievedLevelStep = await getLevelStep(createdLevelStepId);
+
+    // Ensure the retrieved level step matches the created level step
+    expect(retrievedLevelStep).toEqual(expect.objectContaining({ id: createdLevelStepId }));
+  });
+
+  // Test updateLevelStep function
+  test('updateLevelStep - updates an existing level step', async () => {
+    const updatedLevelStepData: Level_step = {
+      order: 2,
+      component: 'Updated Test Component',
+      // Add other properties for updating the level step
+    };
+
+    const updatedLevelStep = await updateLevelStep(createdLevelStepId, updatedLevelStepData);
+
+    // Ensure the returned data has the expected properties after update
+    expect(updatedLevelStep).toHaveProperty('order', updatedLevelStepData.order);
+
+    // Check if the updated data is reflected in the retrieved level step
+    const retrievedLevelStep = await getLevelStep(createdLevelStepId);
+    expect(retrievedLevelStep).toEqual(expect.objectContaining(updatedLevelStepData));
+  });
+
+  // Test deleteLevelStep function
+  test('deleteLevelStep - deletes an existing level step', async () => {
+    // Delete the level step created for testing
+    const deletedLevelStep = await deleteLevelStep(createdLevelStepId);
+    expect(deletedLevelStep).toHaveProperty('id', createdLevelStepId);
+  });
+
+  // Test getAllLevelSteps function
+  test('getAllLevelSteps - retrieves all level steps', async () => {
+    // Ensure the function returns an array
+    const allLevelSteps = await getAllLevelSteps();
+    expect(Array.isArray(allLevelSteps)).toBe(true);
+  });
+});
