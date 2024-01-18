@@ -593,12 +593,12 @@ export const getAllImageSelectParams = async (): Promise<Image_select_param[] | 
   }
 };
 
-// CRUD functions for image_select_params_option table
+// CRUD functions for image_select_params_options table
 
 export const createImageSelectParamOption = async (optionData: Image_select_param_option): Promise<Image_select_param_option | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('image_select_params_option')
+      .from('image_select_params_options')
       .insert(optionData)
       .select()
       .single();
@@ -612,7 +612,7 @@ export const createImageSelectParamOption = async (optionData: Image_select_para
 export const getImageSelectParamOption = async (optionId: number): Promise<Image_select_param_option | null | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('image_select_params_option')
+      .from('image_select_params_options')
       .select('*')
       .eq('id', optionId)
       .single();
@@ -626,7 +626,7 @@ export const getImageSelectParamOption = async (optionId: number): Promise<Image
 export const updateImageSelectParamOption = async (optionId: number, updates: Partial<Image_select_param_option>): Promise<Image_select_param_option | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('image_select_params_option')
+      .from('image_select_params_options')
       .update(updates)
       .eq('id', optionId)
       .select()
@@ -641,7 +641,7 @@ export const updateImageSelectParamOption = async (optionId: number, updates: Pa
 export const deleteImageSelectParamOption = async (optionId: number): Promise<void | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('image_select_params_option')
+      .from('image_select_params_options')
       .delete()
       .eq('id', optionId)
       .select()
@@ -657,7 +657,7 @@ export const deleteImageSelectParamOption = async (optionId: number): Promise<vo
 export const getAllImageSelectParamOptions = async (): Promise<Image_select_param_option[] | ErrorType> => {
   try {
     const { data, error } = await supabase
-      .from('image_select_params_option')
+      .from('image_select_params_options')
       .select('*');
     if (error) throw error;
     return data || [];
@@ -813,3 +813,177 @@ export const getAllGuessCyrillicLetterParams = async (): Promise<Guess_cyrillic_
   }
 };
 
+// Create a new translate sentence parameter option
+export const createTranslateSentenceParamOption = async (
+  optionData: Translate_sentence_param_option
+): Promise<Translate_sentence_param_option | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from("translate_sentence_params_options")
+      .upsert([optionData])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    return data!;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+// Retrieve a translate sentence parameter option by ID
+export const getTranslateSentenceParamOption = async (
+  optionId: number
+): Promise<Translate_sentence_param_option | null | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from("translate_sentence_params_options")
+      .select("*")
+      .eq("id", optionId)
+      .single();
+
+    if (error) throw error;
+
+    return data || null;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+// Update an existing translate sentence parameter option
+export const updateTranslateSentenceParamOption = async (
+  optionId: number,
+  updates: Partial<Translate_sentence_param_option>
+): Promise<Translate_sentence_param_option | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from("translate_sentence_params_options")
+      .upsert([{ id: optionId, ...updates }])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    return data!;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+// Delete an existing translate sentence parameter option
+export const deleteTranslateSentenceParamOption = async (
+  optionId: number
+): Promise<void | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from("translate_sentence_params_options")
+      .delete()
+      .eq("id", optionId)
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    return data!;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+// Retrieve all translate sentence parameter options
+export const getAllTranslateSentenceParamOptions = async (): Promise<
+  Translate_sentence_param_option[] | ErrorType
+> => {
+  try {
+    const { data, error } = await supabase
+      .from("translate_sentence_params_options")
+      .select("*");
+
+    if (error) throw error;
+
+    return data || [];
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+export const createGuessCyrillicLetterParamOption = async (
+  optionData: Guess_cyrillic_letter_param_option
+): Promise<Guess_cyrillic_letter_param_option | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from('guess_cyrillic_letter_params_options')
+      .insert(optionData)
+      .select()
+      .single();
+    if (error) throw error;
+    return data!;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+export const getGuessCyrillicLetterParamOption = async (
+  optionId: number
+): Promise<Guess_cyrillic_letter_param_option | null | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from('guess_cyrillic_letter_params_options')
+      .select('*')
+      .eq('id', optionId)
+      .single();
+    if (error) throw error;
+    return data || null;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+export const updateGuessCyrillicLetterParamOption = async (
+  optionId: number,
+  updates: Partial<Guess_cyrillic_letter_param_option>
+): Promise<Guess_cyrillic_letter_param_option | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from('guess_cyrillic_letter_params_options')
+      .update(updates)
+      .eq('id', optionId)
+      .select()
+      .single();
+    if (error) throw error;
+    return data!;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+export const deleteGuessCyrillicLetterParamOption = async (
+  optionId: number
+): Promise<void | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from('guess_cyrillic_letter_params_options')
+      .delete()
+      .eq('id', optionId)
+      .select()
+      .single();
+    if (error) throw error;
+
+    return data!;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+export const getAllGuessCyrillicLetterParamOptions = async (): Promise<Guess_cyrillic_letter_param_option[] | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from('guess_cyrillic_letter_params_options')
+      .select('*');
+    if (error) throw error;
+    return data || [];
+  } catch (error) {
+    return handleError(error);
+  }
+};

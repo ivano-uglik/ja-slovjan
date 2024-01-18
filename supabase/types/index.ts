@@ -87,7 +87,7 @@ interface Translate_sentence_param_option {
   created_at?: string;
   text: string;
   is_correct: boolean;
-  translate_sentence_param_id?: number;   /* foreign key to translate_sentence_params.id */
+  translate_sentence_params_id?: number;   /* foreign key to translate_sentence_params.id */
   translate_sentence_param?: Translate_sentence_param;
 }
 
@@ -104,7 +104,7 @@ interface Guess_latin_letter_param_option {
   created_at?: string;
   text: string;
   is_correct: boolean;
-  guess_latin_letter_param_id?: number;   /* foreign key to guess_latin_letter_params.id */
+  guess_latin_letter_params_id?: number;   /* foreign key to guess_latin_letter_params.id */
   guess_latin_letter_param?: Guess_latin_letter_param;
 }
 
@@ -113,7 +113,7 @@ interface Guess_cyrillic_letter_param_option {
   created_at?: string;
   text: string;
   is_correct: boolean;
-  guess_cyrillic_letter_param_id?: number;   /* foreign key to guess_cyrillic_letter_params.id */
+  guess_cyrillic_letter_params_id?: number;   /* foreign key to guess_cyrillic_letter_params.id */
   guess_cyrillic_letter_param?: Guess_cyrillic_letter_param;
 }
 
@@ -130,7 +130,7 @@ interface Image_select_param_option {
   created_at?: string;
   imageURL: string;
   is_correct: boolean;
-  image_select_param_id?: number;   /* foreign key to image_select_params.id */
+  image_select_params_id?: number;   /* foreign key to image_select_params.id */
   image_select_param?: Image_select_param;
 }
 
