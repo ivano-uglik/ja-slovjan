@@ -1,6 +1,16 @@
 // TO-DO where to continue off tomorrow: go to chatgpt and continue adding unit tests for the supabaseFunctions and then run jest and try to get it running
 
 import {
+  createGuessLatinLetterParamOption,
+  getGuessLatinLetterParamOption,
+  updateGuessLatinLetterParamOption,
+  deleteGuessLatinLetterParamOption,
+  getAllGuessLatinLetterParamOptions,
+  createGuessLatinLetterParam,
+  getGuessLatinLetterParam,
+  updateGuessLatinLetterParam,
+  deleteGuessLatinLetterParam,
+  getAllGuessLatinLetterParams,
   createGuessCyrillicLetterParamOption,
   getGuessCyrillicLetterParamOption,
   updateGuessCyrillicLetterParamOption,
@@ -785,3 +795,120 @@ describe('Guess_cyrillic_letter_param_option CRUD functions', () => {
   });
 });
 
+describe('Guess_latin_letter_param CRUD functions', () => {
+  let createdParamId: number | null = null;
+
+  afterAll(async () => {
+    if (createdParamId) {
+      await deleteGuessLatinLetterParam(createdParamId);
+    }
+  });
+
+  it('should create a new guess_latin_letter_param', async () => {
+    const mockParam: Guess_latin_letter_param = { latin_letter: 'A', level_step_id: 6 };
+    const result = await createGuessLatinLetterParam(mockParam);
+
+    expect(result).toHaveProperty('id');
+
+    if ("id" in result) {
+      createdParamId = result?.id || null;
+    }
+  });
+
+  it('should get a guess_latin_letter_param by ID', async () => {
+    if (!createdParamId) {
+      fail('Param ID is not set.');
+      return;
+    }
+    const result = await getGuessLatinLetterParam(createdParamId);
+    expect(result).toHaveProperty('id', createdParamId);
+  });
+
+  it('should update a guess_latin_letter_param by ID', async () => {
+    if (!createdParamId) {
+      fail('Param ID is not set.');
+      return;
+    }
+    const updates = { latin_letter: 'B' };
+    const result = await updateGuessLatinLetterParam(createdParamId, updates);
+    expect(result).toHaveProperty('latin_letter', updates.latin_letter);
+  });
+
+  it('should delete a guess_latin_letter_param by ID', async () => {
+    if (!createdParamId) {
+      fail('Param ID is not set.');
+      return;
+    }
+    const result = await deleteGuessLatinLetterParam(createdParamId);
+    expect(result).toHaveProperty('id', createdParamId);
+    createdParamId = null;
+  });
+
+  it('should get all guess_latin_letter_params', async () => {
+    const allParams = await getAllGuessLatinLetterParams();
+    expect(Array.isArray(allParams)).toBe(true);
+  });
+});
+
+describe("Guess_latin_letter_param_option CRUD functions", () => {
+  let createdOptionId: number;
+
+  // Test createGuessLatinLetterParamOption function
+  test("createGuessLatinLetterParamOption - creates a new option", async () => {
+    const newOptionData: Guess_latin_letter_param_option = {
+      text: "A",
+      is_correct: true,
+      guess_latin_letter_params_id: 1,
+    };
+
+    const createdOption = await createGuessLatinLetterParamOption(newOptionData);
+    if ("id" in createdOption) createdOptionId = createdOption.id!;
+
+    // Ensure the returned data has the expected properties
+    expect(createdOption).toHaveProperty("id");
+    // Add other expected properties here based on your data structure
+  });
+
+  // Test getGuessLatinLetterParamOption function
+  test("getGuessLatinLetterParamOption - retrieves an option by ID", async () => {
+    const retrievedOption = await getGuessLatinLetterParamOption(createdOptionId);
+
+    // Ensure the retrieved option matches the created option
+    expect(retrievedOption).toEqual(expect.objectContaining({ id: createdOptionId }));
+  });
+
+  // Test updateGuessLatinLetterParamOption function
+  test("updateGuessLatinLetterParamOption - updates an existing option", async () => {
+    const updatedOptionData = {
+      text: "B",
+      // Add other properties for updating the option
+    };
+
+    const updatedOption = await updateGuessLatinLetterParamOption(
+      createdOptionId,
+      updatedOptionData
+    );
+
+    // Ensure the returned data has the expected properties after update
+    expect(updatedOption).toHaveProperty("text", "B");
+    expect(updatedOption).toHaveProperty("is_correct", true);
+
+    // Check if the updated data is reflected in the retrieved option
+    const retrievedOption = await getGuessLatinLetterParamOption(createdOptionId);
+    expect(retrievedOption).toEqual(expect.objectContaining(updatedOptionData));
+  });
+
+  // Test deleteGuessLatinLetterParamOption function
+  test("deleteGuessLatinLetterParamOption - deletes an existing option", async () => {
+    // Delete the option created for testing
+    const retrievedOption = await deleteGuessLatinLetterParamOption(createdOptionId);
+    expect(retrievedOption).toHaveProperty("id");
+  });
+
+  // Test getAllGuessLatinLetterParamOptions function
+  test("getAllGuessLatinLetterParamOptions - retrieves all options", async () => {
+    // Ensure the function returns an array
+    const allOptions = await getAllGuessLatinLetterParamOptions();
+    expect(Array.isArray(allOptions)).toBe(true);
+  });
+});

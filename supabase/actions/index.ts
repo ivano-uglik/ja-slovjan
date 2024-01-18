@@ -987,3 +987,85 @@ export const getAllGuessCyrillicLetterParamOptions = async (): Promise<Guess_cyr
     return handleError(error);
   }
 };
+
+export const createGuessLatinLetterParamOption = async (
+  optionData: Guess_latin_letter_param_option
+): Promise<Guess_latin_letter_param_option | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from("guess_latin_letter_params_options")
+      .insert(optionData)
+      .select()
+      .single();
+    if (error) throw error;
+    return data!;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+export const getGuessLatinLetterParamOption = async (
+  optionId: number
+): Promise<Guess_latin_letter_param_option | null | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from("guess_latin_letter_params_options")
+      .select("*")
+      .eq("id", optionId)
+      .single();
+    if (error) throw error;
+    return data || null;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+export const updateGuessLatinLetterParamOption = async (
+  optionId: number,
+  updates: Partial<Guess_latin_letter_param_option>
+): Promise<Guess_latin_letter_param_option | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from("guess_latin_letter_params_options")
+      .update(updates)
+      .eq("id", optionId)
+      .select()
+      .single();
+    if (error) throw error;
+    return data!;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+export const deleteGuessLatinLetterParamOption = async (
+  optionId: number
+): Promise<void | ErrorType> => {
+  try {
+    const { data, error } = await supabase
+      .from("guess_latin_letter_params_options")
+      .delete()
+      .eq("id", optionId)
+      .select()
+      .single();
+    if (error) throw error;
+
+    return data!;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+export const getAllGuessLatinLetterParamOptions = async (): Promise<
+  Guess_latin_letter_param_option[] | ErrorType
+> => {
+  try {
+    const { data, error } = await supabase
+      .from("guess_latin_letter_params_options")
+      .select("*");
+    if (error) throw error;
+    return data || [];
+  } catch (error) {
+    return handleError(error);
+  }
+};
