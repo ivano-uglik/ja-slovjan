@@ -8,6 +8,7 @@ import {
   SetStateAction,
 } from "react";
 import supabase from "@/supabase/supabase-client";
+import { Level } from "@/supabase/types";
 
 const LevelBuilderContext = createContext<any>(null);
 

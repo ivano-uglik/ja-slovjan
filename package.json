@@ -2,18 +2,19 @@
   "name": "ja-slovjan",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/supabase-js": "^2.39.1",
     "@tailwindcss/typography": "^0.5.10",
     "daisyui": "^4.4.19",
-    "lodash": "^4.17.21",
     "next": "14.0.3",
     "react": "^18",
     "react-dnd": "^16.0.1",
@@ -24,7 +25,6 @@
     "react-markdown": "^9.0.1"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.202",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20",
     "@types/react": "^18",
