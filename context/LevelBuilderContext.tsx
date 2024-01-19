@@ -20,16 +20,19 @@ const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
   const [levelGroup, setLevelGroup] = useState<string>("");
   const [title, setTitle] = useState<string>("My title");
   const [description, setDescription] = useState<string>("");
+  const [order, setOrder] = useState<number>(0);
 
   const createLevel = async () => {
-    const level = {
-      levelGroup,
-      title,
-      description,
-      language,
-      steps,
+    // check if level group exists if not create it
+
+    let level_group_id = 1;
+
+    // figure all of this shit out, aaaaaaaaaaaaaa
+
+    const level: Level = {
+      order,
+      level_group_id,
     };
-    console.log("done", level);
 
     // TO-DO: save to supabase
   };
@@ -50,6 +53,8 @@ const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
     stepTemplates,
     setStepTemplates,
     createLevel,
+    order,
+    setOrder,
   };
 
   useEffect(() => {
@@ -85,6 +90,8 @@ interface LevelBuilderInterface {
   stepTemplates: string[];
   setStepTemplates: (value: SetStateAction<string[]>) => void;
   createLevel: () => void;
+  order: number;
+  setOrder: (value: SetStateAction<number>) => void;
 }
 
 export const useLevelBuilder = (): LevelBuilderInterface =>
