@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import Completed from "../../CompletedLevel";
 import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
 import ProgressBar from "../../ProgressBar";
+import UnderlineToInput from "../../UnderlineInput";
 
 export default function TextCompletionStep({
   title,
@@ -17,7 +18,7 @@ export default function TextCompletionStep({
   return (
     <div>
       <ProgressBar size={"w-[45%]"} />
-      <div
+      {/* <div
         className={`text-center text-3xl py-8 font-bold ${
           correct ? "text-success" : "text-primary"
         }`}
@@ -51,6 +52,9 @@ export default function TextCompletionStep({
             }`}
           />
         </form>
+      </div> */}
+      <div className="flex justify-center">
+        <UnderlineToInput inputString="Mudri ljudi _znajut_ , že ne _znajut_" />
       </div>
       {correct && <Completed />}
     </div>
