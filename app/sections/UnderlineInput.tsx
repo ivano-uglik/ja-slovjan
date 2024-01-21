@@ -5,8 +5,10 @@ import { dela } from "../@lib/Fonts";
 
 export default function UnderlineToInput({
   inputString,
+  nativeLanguage,
 }: {
   inputString: string;
+  nativeLanguage: string;
 }) {
   const [inputValues, setInputValues] = useState<string[]>([]);
 
@@ -18,21 +20,33 @@ export default function UnderlineToInput({
 
   function filter() {
     const wordsArray = inputString.split(" ");
-    return wordsArray.map((word, index) =>
-      word.startsWith("_") && word.endsWith("_") ? (
-        <input
-          key={index}
-          type="text"
-          className="w-[8rem]"
-          value={inputValues[index] || ""}
-          onChange={(e) => {
-            handleInputChange(index, e.target.value);
-          }}
-        />
-      ) : (
-        <span key={index}>{word} </span>
-      )
-    );
+    let smallestIndex = Infinity;
+
+    return wordsArray.map((word, index) => {
+      if (word.startsWith("_") && word.endsWith("_")) {
+        smallestIndex = Math.min(smallestIndex, index);
+
+        return (
+          <input
+            key={index}
+            type="text"
+            className="input input-bordered w-32"
+            value={inputValues[index] || ""}
+            autoFocus={index === smallestIndex}
+            onChange={(e) => {
+              handleInputChange(index, e.target.value),
+                console.log(inputValues[index]);
+            }}
+          />
+        );
+      } else {
+        return (
+          <span key={index} className="font-bold text-2xl">
+            {word}{" "}
+          </span>
+        );
+      }
+    });
   }
 
   function compareValues() {
@@ -48,10 +62,11 @@ export default function UnderlineToInput({
   }
 
   return (
-    <div>
+    <div className="mx-auto text-center pt-8">
       {filter()}
+      <h2 className="pt-8">{nativeLanguage}</h2>
       <button
-        className={`${dela.className} btn btn-primary btn-lg w-full max-w-xs`}
+        className={`${dela.className} btn btn-primary btn-lg w-full max-w-xs mt-16`}
         onClick={compareValues}
       >
         Nastavi

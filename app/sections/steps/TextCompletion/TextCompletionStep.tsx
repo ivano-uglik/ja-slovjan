@@ -5,7 +5,7 @@ import Completed from "../../CompletedLevel";
 import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
 import ProgressBar from "../../ProgressBar";
 import UnderlineToInput from "../../UnderlineInput";
-
+import SpecialLetters from "../../SpecialLetters";
 export default function TextCompletionStep({
   title,
   titleTranslated,
@@ -18,44 +18,13 @@ export default function TextCompletionStep({
   return (
     <div>
       <ProgressBar size={"w-[45%]"} />
-      {/* <div
-        className={`text-center text-3xl py-8 font-bold ${
-          correct ? "text-success" : "text-primary"
-        }`}
-      >
-        {title}
-      </div>
-      <div>
-        <form
-          className="flex flex-col items-center justify-center"
-          onSubmit={(e) => {
-            e.preventDefault();
-            inputValue == titleTranslated && isCorrect(true);
-          }}
-        >
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => {
-              setInputValue(e.target.value);
-            }}
-            className={`w-[50vw] text-center text-3xl py-8 font-bold focus:outline-none  ${
-              correct ? "text-success" : "text-primary"
-            }`}
-            autoFocus
-          />
-          <input
-            type="submit"
-            value="Submit"
-            className={`btn btn-lg btn-wide mt-8 ${
-              correct ? "btn-accent" : "btn-primary"
-            }`}
-          />
-        </form>
-      </div> */}
       <div className="flex justify-center">
-        <UnderlineToInput inputString="Mudri ljudi _znajut_ , že ne _znajut_" />
+        <UnderlineToInput
+          inputString="Mudri ljudi _znajut_ , že ne _znajut_ . Drugi ljudi ne _znajut_ , že ne _znajut_ ."
+          nativeLanguage="Mudri ljudi znaju da ne znaju. Drugi ljudi ne znaju da ne znaju."
+        />
       </div>
+      <SpecialLetters />
       {correct && <Completed />}
     </div>
   );
