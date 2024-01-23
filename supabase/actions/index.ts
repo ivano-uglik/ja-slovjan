@@ -1,16 +1,16 @@
-import { Language, ErrorType, Completed_level, Guess_cyrillic_letter_param, Guess_cyrillic_letter_param_option, Guess_latin_letter_param, Guess_latin_letter_param_option, Image_select_param, Image_select_param_option, Level_group, Level_step, Text_completion_param, Translate_sentence_param, Translate_sentence_param_option, User, Level } from "../types";
+import { Language, ErrorType, Completed_level, Guess_cyrillic_letter_param, Guess_cyrillic_letter_param_option, Guess_latin_letter_param, Guess_latin_letter_param_option, Image_select_param, Image_select_param_option, Level_group, Level_step, Text_completion_param, Translate_sentence_param, Translate_sentence_param_option, User, Level, Level_with_steps } from "../types";
 import supabase from "../supabase.config";
 
-const handleError = (error: any): ErrorType => {
+const handleError = (error: any): null => {
   console.error('Supabase error:', error);
-  return { message: 'An error occurred with Supabase.', error };
+  return null;
 };
 
 // TO-DO: rewrite all functions to return data on insert, upsert or delete using the select() function
 
 /* --------------- CRUD functions for Language table --------------- */
 
-export const createLanguage = async (languageData: Language): Promise<Language | ErrorType> => {
+export const createLanguage = async (languageData: Language): Promise<Language | null> => {
   try {
 
     const { data, error } = await supabase
@@ -26,7 +26,7 @@ export const createLanguage = async (languageData: Language): Promise<Language |
   }
 };
 
-export const getLanguage = async (languageId: number): Promise<Language | null | ErrorType> => {
+export const getLanguage = async (languageId: number): Promise<Language | null> => {
   try {
     const { data, error } = await supabase
       .from('languages')
@@ -40,7 +40,21 @@ export const getLanguage = async (languageId: number): Promise<Language | null |
   }
 };
 
-export const updateLanguage = async (languageId: number, updates: Partial<Language>): Promise<Language | ErrorType> => {
+export const getLanguageByName = async (name: string): Promise<Language | null> => {
+  try {
+    const { data, error } = await supabase
+      .from('languages')
+      .select('*')
+      .eq('name', name)
+      .single();
+    if (error) throw error;
+    return data || null;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+export const updateLanguage = async (languageId: number, updates: Partial<Language>): Promise<Language | null> => {
   try {
     const { data, error } = await supabase
       .from('languages')
@@ -55,7 +69,7 @@ export const updateLanguage = async (languageId: number, updates: Partial<Langua
   }
 };
 
-export const deleteLanguage = async (languageId: number): Promise<Language | ErrorType> => {
+export const deleteLanguage = async (languageId: number): Promise<Language | null> => {
   try {
     const { data, error } = await supabase
       .from('languages')
@@ -70,7 +84,7 @@ export const deleteLanguage = async (languageId: number): Promise<Language | Err
   }
 };
 
-export const getAllLanguages = async (): Promise<Language[] | ErrorType> => {
+export const getAllLanguages = async (): Promise<Language[] | null> => {
   try {
     const { data, error } = await supabase
       .from('languages')
@@ -84,7 +98,7 @@ export const getAllLanguages = async (): Promise<Language[] | ErrorType> => {
 
 // CRUD functions for Level_group table
 
-export const createLevelGroup = async (groupData: Level_group): Promise<Level_group | ErrorType> => {
+export const createLevelGroup = async (groupData: Level_group): Promise<Level_group | null> => {
   try {
     const { data, error } = await supabase
       .from('level_groups')
@@ -98,7 +112,7 @@ export const createLevelGroup = async (groupData: Level_group): Promise<Level_gr
   }
 };
 
-export const getLevelGroup = async (groupId: number): Promise<Level_group | null | ErrorType> => {
+export const getLevelGroup = async (groupId: number): Promise<Level_group | null> => {
   try {
     const { data, error } = await supabase
       .from('level_groups')
@@ -112,7 +126,25 @@ export const getLevelGroup = async (groupId: number): Promise<Level_group | null
   }
 };
 
-export const updateLevelGroup = async (groupId: number, updates: Partial<Level_group>): Promise<Level_group | ErrorType> => {
+export const getLevelGroupByName = async (
+  groupName: string
+): Promise<Level_group | null> => {
+  try {
+    const { data, error } = await supabase
+      .from("level_groups")
+      .select("*")
+      .eq("name", groupName)
+      .single();
+
+    if (error) throw error;
+    return data!;
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+
+export const updateLevelGroup = async (groupId: number, updates: Partial<Level_group>): Promise<Level_group | null> => {
   try {
     const { data, error } = await supabase
       .from('level_groups')
@@ -127,7 +159,7 @@ export const updateLevelGroup = async (groupId: number, updates: Partial<Level_g
   }
 };
 
-export const deleteLevelGroup = async (groupId: number): Promise<Level_group | ErrorType> => {
+export const deleteLevelGroup = async (groupId: number): Promise<Level_group | null> => {
   try {
     const { data, error, status } = await supabase
       .from('level_groups')
@@ -142,7 +174,7 @@ export const deleteLevelGroup = async (groupId: number): Promise<Level_group | E
   }
 };
 
-export const getAllLevelGroups = async (): Promise<Level_group[] | ErrorType> => {
+export const getAllLevelGroups = async (): Promise<Level_group[] | null> => {
   try {
     const { data, error } = await supabase
       .from('level_groups')
@@ -156,7 +188,7 @@ export const getAllLevelGroups = async (): Promise<Level_group[] | ErrorType> =>
 
 // CRUD functions for Level table
 
-export const createLevel = async (levelData: Level): Promise<Level | ErrorType> => {
+export const createLevel = async (levelData: Level): Promise<Level | null> => {
   try {
     const { data, error } = await supabase
       .from('levels')
@@ -170,7 +202,7 @@ export const createLevel = async (levelData: Level): Promise<Level | ErrorType> 
   }
 };
 
-export const getLevel = async (levelId: number): Promise<Level | null | ErrorType> => {
+export const getLevel = async (levelId: number): Promise<Level | null> => {
   try {
     const { data, error } = await supabase
       .from('levels')
@@ -184,7 +216,7 @@ export const getLevel = async (levelId: number): Promise<Level | null | ErrorTyp
   }
 };
 
-export const updateLevel = async (levelId: number, updates: Partial<Level>): Promise<Level | ErrorType> => {
+export const updateLevel = async (levelId: number, updates: Partial<Level>): Promise<Level | null> => {
   try {
     const { data, error } = await supabase
       .from('levels')
@@ -199,7 +231,7 @@ export const updateLevel = async (levelId: number, updates: Partial<Level>): Pro
   }
 };
 
-export const deleteLevel = async (levelId: number): Promise<void | ErrorType> => {
+export const deleteLevel = async (levelId: number): Promise<void | null> => {
   try {
     const { error, data } = await supabase
       .from('levels')
@@ -215,7 +247,7 @@ export const deleteLevel = async (levelId: number): Promise<void | ErrorType> =>
   }
 };
 
-export const getAllLevels = async (): Promise<Level[] | ErrorType> => {
+export const getAllLevels = async (): Promise<Level[] | null> => {
   try {
     const { data, error } = await supabase
       .from('levels')
@@ -229,7 +261,7 @@ export const getAllLevels = async (): Promise<Level[] | ErrorType> => {
 
 // CRUD functions for level_steps table
 
-export const createLevelStep = async (stepData: Level_step): Promise<Level_step | ErrorType> => {
+export const createLevelStep = async (stepData: Level_step): Promise<Level_step | null> => {
   try {
     const { data, error } = await supabase
       .from('level_steps')
@@ -243,7 +275,7 @@ export const createLevelStep = async (stepData: Level_step): Promise<Level_step 
   }
 };
 
-export const getLevelStep = async (stepId: number): Promise<Level_step | null | ErrorType> => {
+export const getLevelStep = async (stepId: number): Promise<Level_step | null> => {
   try {
     const { data, error } = await supabase
       .from('level_steps')
@@ -257,7 +289,7 @@ export const getLevelStep = async (stepId: number): Promise<Level_step | null | 
   }
 };
 
-export const updateLevelStep = async (stepId: number, updates: Partial<Level_step>): Promise<Level_step | ErrorType> => {
+export const updateLevelStep = async (stepId: number, updates: Partial<Level_step>): Promise<Level_step | null> => {
   try {
     const { data, error } = await supabase
       .from('level_steps')
@@ -272,7 +304,7 @@ export const updateLevelStep = async (stepId: number, updates: Partial<Level_ste
   }
 };
 
-export const deleteLevelStep = async (stepId: number): Promise<void | ErrorType> => {
+export const deleteLevelStep = async (stepId: number): Promise<void | null> => {
   try {
     const { data, error } = await supabase
       .from('level_steps')
@@ -288,7 +320,7 @@ export const deleteLevelStep = async (stepId: number): Promise<void | ErrorType>
   }
 };
 
-export const getAllLevelSteps = async (): Promise<Level_step[] | ErrorType> => {
+export const getAllLevelSteps = async (): Promise<Level_step[] | null> => {
   try {
     const { data, error } = await supabase
       .from('level_steps')
@@ -302,7 +334,7 @@ export const getAllLevelSteps = async (): Promise<Level_step[] | ErrorType> => {
 
 // CRUD functions for completed_levels table
 
-export const createCompletedLevel = async (completedData: Completed_level): Promise<Completed_level | ErrorType> => {
+export const createCompletedLevel = async (completedData: Completed_level): Promise<Completed_level | null> => {
   try {
     const { data, error } = await supabase
       .from('completed_levels')
@@ -316,7 +348,7 @@ export const createCompletedLevel = async (completedData: Completed_level): Prom
   }
 };
 
-export const getCompletedLevel = async (completedId: number): Promise<Completed_level | null | ErrorType> => {
+export const getCompletedLevel = async (completedId: number): Promise<Completed_level | null> => {
   try {
     const { data, error } = await supabase
       .from('completed_levels')
@@ -330,7 +362,7 @@ export const getCompletedLevel = async (completedId: number): Promise<Completed_
   }
 };
 
-export const updateCompletedLevel = async (completedId: number, updates: Partial<Completed_level>): Promise<Completed_level | ErrorType> => {
+export const updateCompletedLevel = async (completedId: number, updates: Partial<Completed_level>): Promise<Completed_level | null> => {
   try {
     const { data, error } = await supabase
       .from('completed_levels')
@@ -345,7 +377,7 @@ export const updateCompletedLevel = async (completedId: number, updates: Partial
   }
 };
 
-export const deleteCompletedLevel = async (completedId: number): Promise<void | ErrorType> => {
+export const deleteCompletedLevel = async (completedId: number): Promise<void | null> => {
   try {
     const { data, error } = await supabase
       .from('completed_levels')
@@ -361,7 +393,7 @@ export const deleteCompletedLevel = async (completedId: number): Promise<void | 
   }
 };
 
-export const getAllCompletedLevels = async (): Promise<Completed_level[] | ErrorType> => {
+export const getAllCompletedLevels = async (): Promise<Completed_level[] | null> => {
   try {
     const { data, error } = await supabase
       .from('completed_levels')
@@ -375,7 +407,7 @@ export const getAllCompletedLevels = async (): Promise<Completed_level[] | Error
 
 // CRUD functions for text_completion_params table
 
-export const createTextCompletionParam = async (paramData: Text_completion_param): Promise<Text_completion_param | ErrorType> => {
+export const createTextCompletionParam = async (paramData: Text_completion_param): Promise<Text_completion_param | null> => {
   try {
     const { data, error } = await supabase
       .from('text_completion_params')
@@ -389,7 +421,7 @@ export const createTextCompletionParam = async (paramData: Text_completion_param
   }
 };
 
-export const getTextCompletionParam = async (paramId: number): Promise<Text_completion_param | null | ErrorType> => {
+export const getTextCompletionParam = async (paramId: number): Promise<Text_completion_param | null> => {
   try {
     const { data, error } = await supabase
       .from('text_completion_params')
@@ -403,7 +435,7 @@ export const getTextCompletionParam = async (paramId: number): Promise<Text_comp
   }
 };
 
-export const updateTextCompletionParam = async (paramId: number, updates: Partial<Text_completion_param>): Promise<Text_completion_param | ErrorType> => {
+export const updateTextCompletionParam = async (paramId: number, updates: Partial<Text_completion_param>): Promise<Text_completion_param | null> => {
   try {
     const { data, error } = await supabase
       .from('text_completion_params')
@@ -418,7 +450,7 @@ export const updateTextCompletionParam = async (paramId: number, updates: Partia
   }
 };
 
-export const deleteTextCompletionParam = async (paramId: number): Promise<void | ErrorType> => {
+export const deleteTextCompletionParam = async (paramId: number): Promise<void | null> => {
   try {
     const { data, error } = await supabase
       .from('text_completion_params')
@@ -434,7 +466,7 @@ export const deleteTextCompletionParam = async (paramId: number): Promise<void |
   }
 };
 
-export const getAllTextCompletionParams = async (): Promise<Text_completion_param[] | ErrorType> => {
+export const getAllTextCompletionParams = async (): Promise<Text_completion_param[] | null> => {
   try {
     const { data, error } = await supabase
       .from('text_completion_params')
@@ -449,7 +481,7 @@ export const getAllTextCompletionParams = async (): Promise<Text_completion_para
 
 // CRUD functions for Guess_latin_letter_params table
 
-export const createGuessLatinLetterParam = async (paramData: Guess_latin_letter_param): Promise<Guess_latin_letter_param | ErrorType> => {
+export const createGuessLatinLetterParam = async (paramData: Guess_latin_letter_param): Promise<Guess_latin_letter_param | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_latin_letter_params')
@@ -463,7 +495,7 @@ export const createGuessLatinLetterParam = async (paramData: Guess_latin_letter_
   }
 };
 
-export const getGuessLatinLetterParam = async (paramId: number): Promise<Guess_latin_letter_param | null | ErrorType> => {
+export const getGuessLatinLetterParam = async (paramId: number): Promise<Guess_latin_letter_param | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_latin_letter_params')
@@ -477,7 +509,7 @@ export const getGuessLatinLetterParam = async (paramId: number): Promise<Guess_l
   }
 };
 
-export const updateGuessLatinLetterParam = async (paramId: number, updates: Partial<Guess_latin_letter_param>): Promise<Guess_latin_letter_param | ErrorType> => {
+export const updateGuessLatinLetterParam = async (paramId: number, updates: Partial<Guess_latin_letter_param>): Promise<Guess_latin_letter_param | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_latin_letter_params')
@@ -492,7 +524,7 @@ export const updateGuessLatinLetterParam = async (paramId: number, updates: Part
   }
 };
 
-export const deleteGuessLatinLetterParam = async (paramId: number): Promise<void | ErrorType> => {
+export const deleteGuessLatinLetterParam = async (paramId: number): Promise<void | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_latin_letter_params')
@@ -508,7 +540,7 @@ export const deleteGuessLatinLetterParam = async (paramId: number): Promise<void
   }
 };
 
-export const getAllGuessLatinLetterParams = async (): Promise<Guess_latin_letter_param[] | ErrorType> => {
+export const getAllGuessLatinLetterParams = async (): Promise<Guess_latin_letter_param[] | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_latin_letter_params')
@@ -522,7 +554,7 @@ export const getAllGuessLatinLetterParams = async (): Promise<Guess_latin_letter
 
 // CRUD functions for image_select_params table
 
-export const createImageSelectParam = async (paramData: Image_select_param): Promise<Image_select_param | ErrorType> => {
+export const createImageSelectParam = async (paramData: Image_select_param): Promise<Image_select_param | null> => {
   try {
     const { data, error } = await supabase
       .from('image_select_params')
@@ -536,7 +568,7 @@ export const createImageSelectParam = async (paramData: Image_select_param): Pro
   }
 };
 
-export const getImageSelectParam = async (paramId: number): Promise<Image_select_param | null | ErrorType> => {
+export const getImageSelectParam = async (paramId: number): Promise<Image_select_param | null> => {
   try {
     const { data, error } = await supabase
       .from('image_select_params')
@@ -550,7 +582,7 @@ export const getImageSelectParam = async (paramId: number): Promise<Image_select
   }
 };
 
-export const updateImageSelectParam = async (paramId: number, updates: Partial<Image_select_param>): Promise<Image_select_param | ErrorType> => {
+export const updateImageSelectParam = async (paramId: number, updates: Partial<Image_select_param>): Promise<Image_select_param | null> => {
   try {
     const { data, error } = await supabase
       .from('image_select_params')
@@ -565,7 +597,7 @@ export const updateImageSelectParam = async (paramId: number, updates: Partial<I
   }
 };
 
-export const deleteImageSelectParam = async (paramId: number): Promise<void | ErrorType> => {
+export const deleteImageSelectParam = async (paramId: number): Promise<void | null> => {
   try {
     const { data, error } = await supabase
       .from('image_select_params')
@@ -581,7 +613,7 @@ export const deleteImageSelectParam = async (paramId: number): Promise<void | Er
   }
 };
 
-export const getAllImageSelectParams = async (): Promise<Image_select_param[] | ErrorType> => {
+export const getAllImageSelectParams = async (): Promise<Image_select_param[] | null> => {
   try {
     const { data, error } = await supabase
       .from('image_select_params')
@@ -595,7 +627,7 @@ export const getAllImageSelectParams = async (): Promise<Image_select_param[] | 
 
 // CRUD functions for image_select_params_options table
 
-export const createImageSelectParamOption = async (optionData: Image_select_param_option): Promise<Image_select_param_option | ErrorType> => {
+export const createImageSelectParamOption = async (optionData: Image_select_param_option): Promise<Image_select_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from('image_select_params_options')
@@ -609,7 +641,7 @@ export const createImageSelectParamOption = async (optionData: Image_select_para
   }
 };
 
-export const getImageSelectParamOption = async (optionId: number): Promise<Image_select_param_option | null | ErrorType> => {
+export const getImageSelectParamOption = async (optionId: number): Promise<Image_select_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from('image_select_params_options')
@@ -623,7 +655,7 @@ export const getImageSelectParamOption = async (optionId: number): Promise<Image
   }
 };
 
-export const updateImageSelectParamOption = async (optionId: number, updates: Partial<Image_select_param_option>): Promise<Image_select_param_option | ErrorType> => {
+export const updateImageSelectParamOption = async (optionId: number, updates: Partial<Image_select_param_option>): Promise<Image_select_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from('image_select_params_options')
@@ -638,7 +670,7 @@ export const updateImageSelectParamOption = async (optionId: number, updates: Pa
   }
 };
 
-export const deleteImageSelectParamOption = async (optionId: number): Promise<void | ErrorType> => {
+export const deleteImageSelectParamOption = async (optionId: number): Promise<void | null> => {
   try {
     const { data, error } = await supabase
       .from('image_select_params_options')
@@ -654,7 +686,7 @@ export const deleteImageSelectParamOption = async (optionId: number): Promise<vo
   }
 };
 
-export const getAllImageSelectParamOptions = async (): Promise<Image_select_param_option[] | ErrorType> => {
+export const getAllImageSelectParamOptions = async (): Promise<Image_select_param_option[] | null> => {
   try {
     const { data, error } = await supabase
       .from('image_select_params_options')
@@ -669,7 +701,7 @@ export const getAllImageSelectParamOptions = async (): Promise<Image_select_para
 
 // CRUD functions for translate_sentence_params table
 
-export const createTranslateSentenceParam = async (paramData: Translate_sentence_param): Promise<Translate_sentence_param | ErrorType> => {
+export const createTranslateSentenceParam = async (paramData: Translate_sentence_param): Promise<Translate_sentence_param | null> => {
   try {
     const { data, error } = await supabase
       .from('translate_sentence_params')
@@ -683,7 +715,7 @@ export const createTranslateSentenceParam = async (paramData: Translate_sentence
   }
 };
 
-export const getTranslateSentenceParam = async (paramId: number): Promise<Translate_sentence_param | null | ErrorType> => {
+export const getTranslateSentenceParam = async (paramId: number): Promise<Translate_sentence_param | null> => {
   try {
     const { data, error } = await supabase
       .from('translate_sentence_params')
@@ -697,7 +729,7 @@ export const getTranslateSentenceParam = async (paramId: number): Promise<Transl
   }
 };
 
-export const updateTranslateSentenceParam = async (paramId: number, updates: Partial<Translate_sentence_param>): Promise<Translate_sentence_param | ErrorType> => {
+export const updateTranslateSentenceParam = async (paramId: number, updates: Partial<Translate_sentence_param>): Promise<Translate_sentence_param | null> => {
   try {
     const { data, error } = await supabase
       .from('translate_sentence_params')
@@ -712,7 +744,7 @@ export const updateTranslateSentenceParam = async (paramId: number, updates: Par
   }
 };
 
-export const deleteTranslateSentenceParam = async (paramId: number): Promise<void | ErrorType> => {
+export const deleteTranslateSentenceParam = async (paramId: number): Promise<void | null> => {
   try {
     const { data, error } = await supabase
       .from('translate_sentence_params')
@@ -728,7 +760,7 @@ export const deleteTranslateSentenceParam = async (paramId: number): Promise<voi
   }
 };
 
-export const getAllTranslateSentenceParams = async (): Promise<Translate_sentence_param[] | ErrorType> => {
+export const getAllTranslateSentenceParams = async (): Promise<Translate_sentence_param[] | null> => {
   try {
     const { data, error } = await supabase
       .from('translate_sentence_params')
@@ -742,7 +774,7 @@ export const getAllTranslateSentenceParams = async (): Promise<Translate_sentenc
 
 // CRUD functions for guess_cyrillic_letter_params table
 
-export const createGuessCyrillicLetterParam = async (paramData: Guess_cyrillic_letter_param): Promise<Guess_cyrillic_letter_param | ErrorType> => {
+export const createGuessCyrillicLetterParam = async (paramData: Guess_cyrillic_letter_param): Promise<Guess_cyrillic_letter_param | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_cyrillic_letter_params')
@@ -756,7 +788,7 @@ export const createGuessCyrillicLetterParam = async (paramData: Guess_cyrillic_l
   }
 };
 
-export const getGuessCyrillicLetterParam = async (paramId: number): Promise<Guess_cyrillic_letter_param | null | ErrorType> => {
+export const getGuessCyrillicLetterParam = async (paramId: number): Promise<Guess_cyrillic_letter_param | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_cyrillic_letter_params')
@@ -770,7 +802,7 @@ export const getGuessCyrillicLetterParam = async (paramId: number): Promise<Gues
   }
 };
 
-export const updateGuessCyrillicLetterParam = async (paramId: number, updates: Partial<Guess_cyrillic_letter_param>): Promise<Guess_cyrillic_letter_param | ErrorType> => {
+export const updateGuessCyrillicLetterParam = async (paramId: number, updates: Partial<Guess_cyrillic_letter_param>): Promise<Guess_cyrillic_letter_param | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_cyrillic_letter_params')
@@ -785,7 +817,7 @@ export const updateGuessCyrillicLetterParam = async (paramId: number, updates: P
   }
 };
 
-export const deleteGuessCyrillicLetterParam = async (paramId: number): Promise<void | ErrorType> => {
+export const deleteGuessCyrillicLetterParam = async (paramId: number): Promise<void | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_cyrillic_letter_params')
@@ -801,7 +833,7 @@ export const deleteGuessCyrillicLetterParam = async (paramId: number): Promise<v
   }
 };
 
-export const getAllGuessCyrillicLetterParams = async (): Promise<Guess_cyrillic_letter_param[] | ErrorType> => {
+export const getAllGuessCyrillicLetterParams = async (): Promise<Guess_cyrillic_letter_param[] | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_cyrillic_letter_params')
@@ -816,7 +848,7 @@ export const getAllGuessCyrillicLetterParams = async (): Promise<Guess_cyrillic_
 // Create a new translate sentence parameter option
 export const createTranslateSentenceParamOption = async (
   optionData: Translate_sentence_param_option
-): Promise<Translate_sentence_param_option | ErrorType> => {
+): Promise<Translate_sentence_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from("translate_sentence_params_options")
@@ -835,7 +867,7 @@ export const createTranslateSentenceParamOption = async (
 // Retrieve a translate sentence parameter option by ID
 export const getTranslateSentenceParamOption = async (
   optionId: number
-): Promise<Translate_sentence_param_option | null | ErrorType> => {
+): Promise<Translate_sentence_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from("translate_sentence_params_options")
@@ -845,7 +877,7 @@ export const getTranslateSentenceParamOption = async (
 
     if (error) throw error;
 
-    return data || null;
+    return data;
   } catch (error) {
     return handleError(error);
   }
@@ -855,7 +887,7 @@ export const getTranslateSentenceParamOption = async (
 export const updateTranslateSentenceParamOption = async (
   optionId: number,
   updates: Partial<Translate_sentence_param_option>
-): Promise<Translate_sentence_param_option | ErrorType> => {
+): Promise<Translate_sentence_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from("translate_sentence_params_options")
@@ -874,7 +906,7 @@ export const updateTranslateSentenceParamOption = async (
 // Delete an existing translate sentence parameter option
 export const deleteTranslateSentenceParamOption = async (
   optionId: number
-): Promise<void | ErrorType> => {
+): Promise<void | null> => {
   try {
     const { data, error } = await supabase
       .from("translate_sentence_params_options")
@@ -893,7 +925,7 @@ export const deleteTranslateSentenceParamOption = async (
 
 // Retrieve all translate sentence parameter options
 export const getAllTranslateSentenceParamOptions = async (): Promise<
-  Translate_sentence_param_option[] | ErrorType
+  Translate_sentence_param_option[] | null
 > => {
   try {
     const { data, error } = await supabase
@@ -910,7 +942,7 @@ export const getAllTranslateSentenceParamOptions = async (): Promise<
 
 export const createGuessCyrillicLetterParamOption = async (
   optionData: Guess_cyrillic_letter_param_option
-): Promise<Guess_cyrillic_letter_param_option | ErrorType> => {
+): Promise<Guess_cyrillic_letter_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_cyrillic_letter_params_options')
@@ -926,7 +958,7 @@ export const createGuessCyrillicLetterParamOption = async (
 
 export const getGuessCyrillicLetterParamOption = async (
   optionId: number
-): Promise<Guess_cyrillic_letter_param_option | null | ErrorType> => {
+): Promise<Guess_cyrillic_letter_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_cyrillic_letter_params_options')
@@ -934,7 +966,7 @@ export const getGuessCyrillicLetterParamOption = async (
       .eq('id', optionId)
       .single();
     if (error) throw error;
-    return data || null;
+    return data!;
   } catch (error) {
     return handleError(error);
   }
@@ -943,7 +975,7 @@ export const getGuessCyrillicLetterParamOption = async (
 export const updateGuessCyrillicLetterParamOption = async (
   optionId: number,
   updates: Partial<Guess_cyrillic_letter_param_option>
-): Promise<Guess_cyrillic_letter_param_option | ErrorType> => {
+): Promise<Guess_cyrillic_letter_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_cyrillic_letter_params_options')
@@ -960,7 +992,7 @@ export const updateGuessCyrillicLetterParamOption = async (
 
 export const deleteGuessCyrillicLetterParamOption = async (
   optionId: number
-): Promise<void | ErrorType> => {
+): Promise<void | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_cyrillic_letter_params_options')
@@ -976,7 +1008,7 @@ export const deleteGuessCyrillicLetterParamOption = async (
   }
 };
 
-export const getAllGuessCyrillicLetterParamOptions = async (): Promise<Guess_cyrillic_letter_param_option[] | ErrorType> => {
+export const getAllGuessCyrillicLetterParamOptions = async (): Promise<Guess_cyrillic_letter_param_option[] | null> => {
   try {
     const { data, error } = await supabase
       .from('guess_cyrillic_letter_params_options')
@@ -990,7 +1022,7 @@ export const getAllGuessCyrillicLetterParamOptions = async (): Promise<Guess_cyr
 
 export const createGuessLatinLetterParamOption = async (
   optionData: Guess_latin_letter_param_option
-): Promise<Guess_latin_letter_param_option | ErrorType> => {
+): Promise<Guess_latin_letter_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from("guess_latin_letter_params_options")
@@ -1006,7 +1038,7 @@ export const createGuessLatinLetterParamOption = async (
 
 export const getGuessLatinLetterParamOption = async (
   optionId: number
-): Promise<Guess_latin_letter_param_option | null | ErrorType> => {
+): Promise<Guess_latin_letter_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from("guess_latin_letter_params_options")
@@ -1023,7 +1055,7 @@ export const getGuessLatinLetterParamOption = async (
 export const updateGuessLatinLetterParamOption = async (
   optionId: number,
   updates: Partial<Guess_latin_letter_param_option>
-): Promise<Guess_latin_letter_param_option | ErrorType> => {
+): Promise<Guess_latin_letter_param_option | null> => {
   try {
     const { data, error } = await supabase
       .from("guess_latin_letter_params_options")
@@ -1040,7 +1072,7 @@ export const updateGuessLatinLetterParamOption = async (
 
 export const deleteGuessLatinLetterParamOption = async (
   optionId: number
-): Promise<void | ErrorType> => {
+): Promise<void | null> => {
   try {
     const { data, error } = await supabase
       .from("guess_latin_letter_params_options")
@@ -1057,7 +1089,7 @@ export const deleteGuessLatinLetterParamOption = async (
 };
 
 export const getAllGuessLatinLetterParamOptions = async (): Promise<
-  Guess_latin_letter_param_option[] | ErrorType
+  Guess_latin_letter_param_option[] | null
 > => {
   try {
     const { data, error } = await supabase
@@ -1069,3 +1101,119 @@ export const getAllGuessLatinLetterParamOptions = async (): Promise<
     return handleError(error);
   }
 };
+
+export const createLevelWithSteps = async (level: Level_with_steps): Promise<{ message: string, success: boolean } | null> => {
+  try {
+    // check if level group exists, if not, create it
+    let level_group_id;
+
+    if (level.level_group_id) {
+      level_group_id = level.level_group_id;
+    } else if (level.level_group_name) {
+      const level_group = await getLevelGroupByName(level.level_group_name);
+      const language = await getLanguageByName(level.language);
+
+      if (level_group) {
+        level_group_id === level_group.id;
+      } else {
+        // create level_group if it doesn't exist
+        const new_level_group_data: Level_group = {
+          name: level.level_group_name,
+          author_user: level.user.auth_user_id,
+          language_id: language?.id,
+          // TODO: once app is live, change to true if it is by a user that is not admin approved!
+          is_community: false,
+        };
+        const new_level_group = await createLevelGroup(new_level_group_data);
+        level_group_id = new_level_group?.id;
+      }
+    } else {
+      throw new Error("Level group id or name is required");
+    }
+
+    // create level
+    const new_level_data: Level = {
+      order: level.order,
+      description: level?.description,
+      level_group_id: level_group_id,
+    };
+
+    const new_level = await createLevel(new_level_data);
+
+    // create steps
+    if (new_level) {
+      level.steps.forEach(async (step) => {
+        // create step
+
+        const new_step_data: Level_step = {
+          order: step.order,
+          component: step.component,
+          level_id: new_level.id!,
+        };
+        const new_step = await createLevelStep(new_step_data);
+        if (new_step) {
+          // create params according to the given component, not all components have the same params
+
+          if (step.component === "TextCompletion") {
+            const new_param_data: Text_completion_param = {
+              title: step.params?.title,
+              title_translated: step.params,
+              level_step_id: new_step.id!,
+            };
+            await createTextCompletionParam(new_param_data);
+          }
+          else if (step.component === "TranslateSentence") {
+            const new_param_data: Translate_sentence_param = {
+              level_step_id: new_step.id!,
+              title: step.params?.title,
+            };
+
+            const new_param = await createTranslateSentenceParam(
+              new_param_data
+            );
+
+            if (new_param) {
+              // create options
+              step.params.options.forEach(async (option: Translate_sentence_param_option) => {
+                const new_option_data: Translate_sentence_param_option = {
+                  is_correct: option.is_correct,
+                  text: option.text,
+                  translate_sentence_params_id: new_param.id!,
+                };
+                await createTranslateSentenceParamOption(new_option_data);
+              }
+              );
+            }
+          }
+          else if (step.component === "ImageSelect") {
+            const new_param_data: Image_select_param = {
+              level_step_id: new_step.id!,
+              word: step.params?.word,
+            };
+
+            const new_param = await createImageSelectParam(new_param_data);
+            if (new_param) {
+              // create options
+              step.params.options.forEach(async (option: Image_select_param_option) => {
+                const new_option_data: Image_select_param_option = {
+                  is_correct: option.is_correct,
+                  imageURL: option.imageURL,
+                  image_select_params_id: new_param.id!,
+                };
+                await createImageSelectParamOption(new_option_data);
+              }
+              );
+            }
+          }
+          else if (step.component === "Markdown") {
+            // TO-DO add markdown table and crud functions
+          }
+        }
+      });
+    }
+
+    return { message: "successfully created new level", success: true };
+  } catch (error) {
+    return handleError(error);
+  }
+}

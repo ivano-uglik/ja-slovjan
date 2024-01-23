@@ -77,7 +77,7 @@ function fail(reason = "fail was called in a test.") {
 
 describe('Language CRUD functions', () => {
 
-  let createdLanguageId: number | null = null;
+  let createdLanguageId: any;
 
   afterAll(async () => {
     if (createdLanguageId) {
@@ -92,9 +92,7 @@ describe('Language CRUD functions', () => {
 
     expect(result).toHaveProperty('id');
 
-    if ("id" in result) {
-      createdLanguageId = result?.id || null;
-    }
+    createdLanguageId = result?.id;
   });
 
   it('should get a language by ID', async () => {
@@ -128,7 +126,7 @@ describe('Language CRUD functions', () => {
 });
 
 describe('Level_group CRUD functions', () => {
-  let createdGroupId: number;
+  let createdGroupId: any;
 
   // Test createLevelGroup function
   test('createLevelGroup - creates a new level group', async () => {
@@ -144,9 +142,9 @@ describe('Level_group CRUD functions', () => {
 
     const createdGroup = await createLevelGroup(newGroupData);
 
-    if ("id" in createdGroup) {
-      createdGroupId = createdGroup.id!;
-    }
+
+    createdGroupId = createdGroup?.id;
+
 
     // Ensure the returned data has the expected properties
     expect(createdGroup).toHaveProperty('id');
@@ -196,7 +194,7 @@ describe('Level_group CRUD functions', () => {
 });
 
 describe('Level CRUD functions', () => {
-  let createdLevelId: number;
+  let createdLevelId: any;
 
   afterAll(async () => {
     if (createdLevelId) {
@@ -214,7 +212,7 @@ describe('Level CRUD functions', () => {
     };
 
     const createdLevel = await createLevel(newLevelData);
-    if ("id" in createdLevel) createdLevelId = createdLevel.id!;
+    createdLevelId = createdLevel?.id;
 
     // Ensure the returned data has the expected properties
     expect(createdLevel).toHaveProperty('id');
@@ -262,7 +260,7 @@ describe('Level CRUD functions', () => {
 });
 
 describe('Level_step CRUD functions', () => {
-  let createdLevelStepId: number;
+  let createdLevelStepId: any;
 
   afterAll(async () => {
     if (createdLevelStepId) {
@@ -280,7 +278,7 @@ describe('Level_step CRUD functions', () => {
     };
 
     const createdLevelStep = await createLevelStep(newLevelStepData);
-    if ("id" in createdLevelStep) createdLevelStepId = createdLevelStep.id!;
+    createdLevelStepId = createdLevelStep?.id;
 
     // Ensure the returned data has the expected properties
     expect(createdLevelStep).toHaveProperty('id');
@@ -329,7 +327,7 @@ describe('Level_step CRUD functions', () => {
 });
 
 describe('Completed_level CRUD functions', () => {
-  let createdCompletedLevelId: number;
+  let createdCompletedLevelId: any;
 
   afterAll(async () => {
     if (createdCompletedLevelId) {
@@ -351,7 +349,7 @@ describe('Completed_level CRUD functions', () => {
 
     const createdCompletedLevel = await createCompletedLevel(newCompletedLevelData);
 
-    if ("id" in createdCompletedLevel) createdCompletedLevelId = createdCompletedLevel.id!;
+    createdCompletedLevelId = createdCompletedLevel?.id;
 
     // Ensure the returned data has the expected properties
     expect(createdCompletedLevel).toHaveProperty('id');
@@ -394,7 +392,7 @@ describe('Completed_level CRUD functions', () => {
 });
 
 describe('Text_completion_param CRUD functions', () => {
-  let createdTextCompletionParamId: number;
+  let createdTextCompletionParamId: any;
 
   afterAll(async () => {
     if (createdTextCompletionParamId) {
@@ -416,7 +414,7 @@ describe('Text_completion_param CRUD functions', () => {
 
     const createdTextCompletionParam = await createTextCompletionParam(newTextCompletionParamData);
 
-    if ("id" in createdTextCompletionParam) createdTextCompletionParamId = createdTextCompletionParam.id!;
+    createdTextCompletionParamId = createdTextCompletionParam?.id;
 
     // Ensure the returned data has the expected properties
     expect(createdTextCompletionParam).toHaveProperty('id');
@@ -463,7 +461,7 @@ describe('Text_completion_param CRUD functions', () => {
 });
 
 describe('Translate_sentence_param_option CRUD functions', () => {
-  let createdTranslateSentenceParamOptionId: number;
+  let createdTranslateSentenceParamOptionId: any;
 
   afterAll(async () => {
     if (createdTranslateSentenceParamOptionId) {
@@ -485,9 +483,9 @@ describe('Translate_sentence_param_option CRUD functions', () => {
 
     const createdTranslateSentenceParamOption = await createTranslateSentenceParamOption(newTranslateSentenceParamOptionData);
 
-    if ("id" in createdTranslateSentenceParamOption) {
-      createdTranslateSentenceParamOptionId = createdTranslateSentenceParamOption.id!;
-    }
+
+    createdTranslateSentenceParamOptionId = createdTranslateSentenceParamOption?.id;
+
 
     // Ensure the returned data has the expected properties
     expect(createdTranslateSentenceParamOption).toHaveProperty('id');
@@ -536,7 +534,7 @@ describe('Translate_sentence_param_option CRUD functions', () => {
 });
 
 describe('Image_select_param CRUD functions', () => {
-  let createdImageSelectParamId: number;
+  let createdImageSelectParamId: any;
 
   // Test createImageSelectParam function
   test('createImageSelectParam - creates a new image select parameter', async () => {
@@ -548,9 +546,7 @@ describe('Image_select_param CRUD functions', () => {
 
     const createdParam = await createImageSelectParam(newParamData);
 
-    if ("id" in createdParam) {
-      createdImageSelectParamId = createdParam.id!;
-    }
+    createdImageSelectParamId = createdParam?.id;
 
     // Ensure the returned data has the expected properties
     expect(createdParam).toHaveProperty('id');
@@ -599,7 +595,7 @@ describe('Image_select_param CRUD functions', () => {
 });
 
 describe('Image_select_param_option CRUD functions', () => {
-  let createdImageSelectParamOptionId: number;
+  let createdImageSelectParamOptionId: any;
 
   // Test createImageSelectParamOption function
   test('createImageSelectParamOption - creates a new image select parameter option', async () => {
@@ -612,9 +608,7 @@ describe('Image_select_param_option CRUD functions', () => {
 
     const createdOption = await createImageSelectParamOption(newOptionData);
 
-    if ("id" in createdOption) {
-      createdImageSelectParamOptionId = createdOption.id!;
-    }
+    createdImageSelectParamOptionId = createdOption?.id;
 
     // Ensure the returned data has the expected properties
     expect(createdOption).toHaveProperty('id');
@@ -664,7 +658,7 @@ describe('Image_select_param_option CRUD functions', () => {
 });
 
 describe('Guess_cyrillic_letter_param CRUD functions', () => {
-  let createdGuessCyrillicLetterParamId: number;
+  let createdGuessCyrillicLetterParamId: any;
 
   // Test createGuessCyrillicLetterParam function
   test('createGuessCyrillicLetterParam - creates a new guess cyrillic letter parameter', async () => {
@@ -676,9 +670,7 @@ describe('Guess_cyrillic_letter_param CRUD functions', () => {
 
     const createdParam = await createGuessCyrillicLetterParam(newParamData);
 
-    if ("id" in createdParam) {
-      createdGuessCyrillicLetterParamId = createdParam.id!;
-    }
+    createdGuessCyrillicLetterParamId = createdParam?.id;
 
     // Ensure the returned data has the expected properties
     expect(createdParam).toHaveProperty('id');
@@ -727,7 +719,7 @@ describe('Guess_cyrillic_letter_param CRUD functions', () => {
 });
 
 describe('Guess_cyrillic_letter_param_option CRUD functions', () => {
-  let createdGuessCyrillicLetterParamOptionId: number;
+  let createdGuessCyrillicLetterParamOptionId: any;
 
   // Test createGuessCyrillicLetterParamOption function
   test('createGuessCyrillicLetterParamOption - creates a new guess cyrillic letter parameter option', async () => {
@@ -740,9 +732,9 @@ describe('Guess_cyrillic_letter_param_option CRUD functions', () => {
 
     const createdOption = await createGuessCyrillicLetterParamOption(newOptionData);
 
-    if ("id" in createdOption) {
-      createdGuessCyrillicLetterParamOptionId = createdOption.id!;
-    }
+
+    createdGuessCyrillicLetterParamOptionId = createdOption?.id;
+
 
     // Ensure the returned data has the expected properties
     expect(createdOption).toHaveProperty('id');
@@ -796,7 +788,7 @@ describe('Guess_cyrillic_letter_param_option CRUD functions', () => {
 });
 
 describe('Guess_latin_letter_param CRUD functions', () => {
-  let createdParamId: number | null = null;
+  let createdParamId: any;
 
   afterAll(async () => {
     if (createdParamId) {
@@ -810,9 +802,9 @@ describe('Guess_latin_letter_param CRUD functions', () => {
 
     expect(result).toHaveProperty('id');
 
-    if ("id" in result) {
-      createdParamId = result?.id || null;
-    }
+
+    createdParamId = result?.id;
+
   });
 
   it('should get a guess_latin_letter_param by ID', async () => {
@@ -851,7 +843,7 @@ describe('Guess_latin_letter_param CRUD functions', () => {
 });
 
 describe("Guess_latin_letter_param_option CRUD functions", () => {
-  let createdOptionId: number;
+  let createdOptionId: any;
 
   // Test createGuessLatinLetterParamOption function
   test("createGuessLatinLetterParamOption - creates a new option", async () => {
@@ -862,7 +854,7 @@ describe("Guess_latin_letter_param_option CRUD functions", () => {
     };
 
     const createdOption = await createGuessLatinLetterParamOption(newOptionData);
-    if ("id" in createdOption) createdOptionId = createdOption.id!;
+    createdOptionId = createdOption?.id;
 
     // Ensure the returned data has the expected properties
     expect(createdOption).toHaveProperty("id");
