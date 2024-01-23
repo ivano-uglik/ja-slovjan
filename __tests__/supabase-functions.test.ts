@@ -1,6 +1,10 @@
 // TO-DO where to continue off tomorrow: go to chatgpt and continue adding unit tests for the supabaseFunctions and then run jest and try to get it running
 
 import {
+  createTranslateSentenceParam,
+  createLevelWithSteps,
+  getLevelGroupByName,
+  getLanguageByName,
   createGuessLatinLetterParamOption,
   getGuessLatinLetterParamOption,
   updateGuessLatinLetterParamOption,
@@ -69,7 +73,7 @@ import {
   // ... (other functions)
 } from "../supabase/actions";
 
-import { Level_group, Level, Completed_level, Guess_cyrillic_letter_param, Guess_cyrillic_letter_param_option, Image_select_param, Guess_latin_letter_param, Image_select_param_option, Guess_latin_letter_param_option, Language, Level_step, Text_completion_param, Translate_sentence_param, Translate_sentence_param_option, } from "../supabase/types";
+import { Level_group, Level, Completed_level, Guess_cyrillic_letter_param, Guess_cyrillic_letter_param_option, Image_select_param, Guess_latin_letter_param, Image_select_param_option, Guess_latin_letter_param_option, Language, Level_step, Text_completion_param, Translate_sentence_param, Translate_sentence_param_option, Level_with_steps, } from "../supabase/types";
 
 function fail(reason = "fail was called in a test.") {
   throw new Error(reason);
@@ -295,7 +299,7 @@ describe('Level_step CRUD functions', () => {
 
   // Test updateLevelStep function
   test('updateLevelStep - updates an existing level step', async () => {
-    const updatedLevelStepData: Level_step = {
+    const updatedLevelStepData = {
       order: 2,
       component: 'Updated Test Component',
       // Add other properties for updating the level step
@@ -431,7 +435,7 @@ describe('Text_completion_param CRUD functions', () => {
 
   // Test updateTextCompletionParam function
   test('updateTextCompletionParam - updates an existing text completion parameter', async () => {
-    const updatedTextCompletionParamData: Text_completion_param = {
+    const updatedTextCompletionParamData = {
       title: 'Updated Title',
       title_translated: 'Updated Translated Title',
     };
@@ -504,7 +508,7 @@ describe('Translate_sentence_param_option CRUD functions', () => {
 
   // Test updateTranslateSentenceParamOption function
   test('updateTranslateSentenceParamOption - updates an existing translate sentence parameter option', async () => {
-    const updatedTranslateSentenceParamOptionData: Translate_sentence_param_option = {
+    const updatedTranslateSentenceParamOptionData = {
       is_correct: true,
       text: 'Updated Option',
     };
@@ -563,7 +567,7 @@ describe('Image_select_param CRUD functions', () => {
 
   // Test updateImageSelectParam function
   test('updateImageSelectParam - updates an existing image select parameter', async () => {
-    const updatedParamData: Image_select_param = {
+    const updatedParamData = {
       word: 'Updated Test Word',
       // Add other properties for updating the image select parameter
     };
@@ -625,7 +629,7 @@ describe('Image_select_param_option CRUD functions', () => {
 
   // Test updateImageSelectParamOption function
   test('updateImageSelectParamOption - updates an existing image select parameter option', async () => {
-    const updatedOptionData: Image_select_param_option = {
+    const updatedOptionData = {
       imageURL: 'Updated Test Image URL',
       is_correct: false,
       // Add other properties for updating the image select parameter option
@@ -687,7 +691,7 @@ describe('Guess_cyrillic_letter_param CRUD functions', () => {
 
   // Test updateGuessCyrillicLetterParam function
   test('updateGuessCyrillicLetterParam - updates an existing guess cyrillic letter parameter', async () => {
-    const updatedParamData: Guess_cyrillic_letter_param = {
+    const updatedParamData = {
       cyrillic_letter: 'У',
       // Add other properties for updating the guess cyrillic letter parameter
     };
@@ -751,7 +755,7 @@ describe('Guess_cyrillic_letter_param_option CRUD functions', () => {
 
   // Test updateGuessCyrillicLetterParamOption function
   test('updateGuessCyrillicLetterParamOption - updates an existing guess cyrillic letter parameter option', async () => {
-    const updatedOptionData: Guess_cyrillic_letter_param_option = {
+    const updatedOptionData = {
       text: 'У',
       is_correct: false,
       // Add other properties for updating the guess cyrillic letter parameter option
@@ -903,4 +907,60 @@ describe("Guess_latin_letter_param_option CRUD functions", () => {
     const allOptions = await getAllGuessLatinLetterParamOptions();
     expect(Array.isArray(allOptions)).toBe(true);
   });
+});
+
+describe('createLevelWithSteps', () => {
+  beforeEach(() => {
+    // Clear all mock calls before each test
+    jest.clearAllMocks();
+  });
+
+  it('should create a new level with steps', async () => {
+
+    const levelWithSteps: Level_with_steps = {
+      user: { auth_user_id: '773a97d9-6939-4672-92f7-459a53580e33', total_xp: 100, streak: 5 },
+      level_group_name: "Test Group",
+      order: 1,
+      steps: [
+        {
+          order: 1,
+          component: 'TextCompletion',
+          params: { title: 'Fill in the blanks', title_translated: 'Translate this' },
+        },
+        {
+          order: 2,
+          component: 'TranslateSentence',
+          params: {
+            title: 'Translate the sentence',
+            options: [
+              { text: 'Option 1', is_correct: true },
+              { text: 'Option 2', is_correct: false },
+            ],
+          },
+        },
+        {
+          order: 3,
+          component: "ImageSelect",
+          params: {
+            word: "Test",
+            options: [
+              { imageURL: "https://source.unsplash.com/random", is_correct: false },
+              { imageURL: "https://source.unsplash.com/random", is_correct: true },
+              { imageURL: "https://source.unsplash.com/random", is_correct: false },
+              { imageURL: "https://source.unsplash.com/random", is_correct: false },
+            ]
+          }
+        }
+      ],
+      language: 'English',
+      title: 'Test Level',
+      description: 'Test Level Description',
+    };
+
+    const result = await createLevelWithSteps(levelWithSteps);
+
+    expect(result).toEqual({ message: 'successfully created new level', success: true });
+  });
+
+  // Add more test cases for different scenarios (error handling, missing data, etc.)
 });
