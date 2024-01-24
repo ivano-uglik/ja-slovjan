@@ -1,8 +1,13 @@
-export default function SpecialLetters() {
+export default function SpecialLetters({
+  className,
+  isCaps,
+}: {
+  className?: string;
+  isCaps: boolean;
+}) {
   //   const isCaps: boolean = e.getModifierState("CapsLock");
-  const isCaps = false;
   return (
-    <div className="flex justify-center gap-8 py-4">
+    <div className={`${className} flex justify-center gap-8`}>
       <button className="btn btn-primary btn-outline text-2xl">
         {isCaps ? "Ě" : "ě"}
       </button>

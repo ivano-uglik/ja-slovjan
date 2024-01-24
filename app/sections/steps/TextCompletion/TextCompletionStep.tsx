@@ -4,8 +4,8 @@ import { useContext, useState } from "react";
 import Completed from "../../CompletedLevel";
 import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
 import ProgressBar from "../../ProgressBar";
-import UnderlineToInput from "../../UnderlineInput";
 import SpecialLetters from "../../SpecialLetters";
+import { dela } from "@/app/@lib/Fonts";
 export default function TextCompletionStep({
   title,
   titleTranslated,
@@ -14,17 +14,73 @@ export default function TextCompletionStep({
   titleTranslated: string;
 }) {
   const [correct, isCorrect]: any = useContext(correctContext);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValues, setInputValues] = useState<string[]>([]);
+  const [capsLock, isCapsLock] = useState<boolean>(false);
+  function filter() {
+    const wordsArray = title.split(" ");
+    let smallestIndex = Infinity;
+
+    return wordsArray.map((word, index) => {
+      if (word.startsWith("_") && word.endsWith("_")) {
+        smallestIndex = Math.min(smallestIndex, index);
+
+        return (
+          <input
+            key={index}
+            type="text"
+            className="input input-bordered w-32"
+            value={inputValues[index] || ""}
+            autoFocus={index === smallestIndex}
+            onChange={(e) => {
+              const newValues = [...inputValues];
+              newValues[index] = e.target.value;
+              setInputValues(newValues);
+            }}
+            onKeyDown={(e) => {
+              e.key === "Enter" && compareValues() === true && isCorrect(true);
+              isCapsLock(e.getModifierState("CapsLock"));
+            }}
+          />
+        );
+      } else {
+        return (
+          <span key={index} className="font-bold text-2xl">
+            {word}{" "}
+          </span>
+        );
+      }
+    });
+  }
+
+  function compareValues(): boolean {
+    const originalWords = title.split(" ");
+    const isMatched = originalWords.every(
+      (word, index) =>
+        !word.startsWith("_") ||
+        (inputValues[index] &&
+          inputValues[index] === word.substring(1, word.length - 1))
+    );
+    return isMatched;
+  }
+
   return (
-    <div>
-      <ProgressBar size={"w-[45%]"} />
-      <div className="flex justify-center">
-        <UnderlineToInput
-          inputString="Mudri ljudi _znajut_ , že ne _znajut_ . Drugi ljudi ne _znajut_ , že ne _znajut_ ."
-          nativeLanguage="Mudri ljudi znaju da ne znaju. Drugi ljudi ne znaju da ne znaju."
-        />
+    <div className="">
+      <ProgressBar size={"w-[45%]"} className="my-8" />
+      <div className="text-center mx-auto">
+        {filter()}
+        <h2 className="pt-8">{titleTranslated}</h2>
+        <SpecialLetters className="pt-8" isCaps={capsLock} />
+        <button
+          className={`${dela.className} btn btn-primary btn-lg w-full max-w-xs mt-16`}
+          onClick={() => {
+            if (compareValues() === true) {
+              isCorrect(true);
+            }
+          }}
+        >
+          Nastavi
+        </button>
       </div>
-      <SpecialLetters />
       {correct && <Completed />}
     </div>
   );

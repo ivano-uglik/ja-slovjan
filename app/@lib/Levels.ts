@@ -21,7 +21,7 @@ export const Groups = [
             step: 1,
             component: "TextCompletion",
             params: {
-              title: "Slovjan",
+              title: "_Slovjan_",
               titleTranslated: "Slaven",
             },
           },
@@ -35,7 +35,7 @@ export const Groups = [
             step: 1,
             component: "TextCompletion",
             params: {
-              title: "Slovjan",
+              title: "_Slovjan_",
               titleTranslated: "Slaven",
             },
           },
@@ -49,7 +49,7 @@ export const Groups = [
             step: 1,
             component: "TextCompletion",
             params: {
-              title: "Slovjan",
+              title: "_Slovjan_",
               titleTranslated: "Slaven",
             },
           },
@@ -69,7 +69,7 @@ export const Groups = [
             step: 1,
             component: "TextCompletion",
             params: {
-              title: "Slovjan",
+              title: "_Slovjan_",
               titleTranslated: "Slaven",
             },
           },
@@ -83,7 +83,7 @@ export const Groups = [
             step: 1,
             component: "TextCompletion",
             params: {
-              title: "Slovjan",
+              title: "_Slovjan_",
               titleTranslated: "Slaven",
             },
           },
@@ -97,7 +97,7 @@ export const Groups = [
             step: 1,
             component: "Markdown",
             params: {
-              markdown: `# Full-Screen Markdown Sample\n\n ## Introduction\n \n This is a sample Markdown text intended to demonstrate the rendering capabilities of a Markdown component. It contains various Markdown elements such as headings, lists, links, images, and more.\n \n ## Features\n \n - Headings: There are multiple levels of headings to demonstrate hierarchy.\n - Subheadings: Nested headings to show structure.\n \n - Lists: Both unordered and ordered lists are used.\n - Unordered List:\n - Item 1\n - Item 2\n - Ordered List:\n 1. First item\n 2. Second item\n \n - Links: Hyperlinks to external sites and anchors within the document.\n - OpenAI\n - Jump to Introduction\n \n - Images: Displaying images within the Markdown content.\nSample Image\n \n - Blockquotes: Quotations and citations.\n > "To be or not to be, that is the question." - Shakespeare\n \n ## Conclusion\n \n This Markdown sample provides a comprehensive overview of various Markdown elements. It can be used to test the rendering and styling of a Markdown component in different environments and applications.\n \n`
+              markdown: `# Full-Screen Markdown Sample\n\n ## Introduction\n \n This is a sample Markdown text intended to demonstrate the rendering capabilities of a Markdown component. It contains various Markdown elements such as headings, lists, links, images, and more.\n \n ## Features\n \n - Headings: There are multiple levels of headings to demonstrate hierarchy.\n - Subheadings: Nested headings to show structure.\n \n - Lists: Both unordered and ordered lists are used.\n - Unordered List:\n - Item 1\n - Item 2\n - Ordered List:\n 1. First item\n 2. Second item\n \n - Links: Hyperlinks to external sites and anchors within the document.\n - OpenAI\n - Jump to Introduction\n \n - Images: Displaying images within the Markdown content.\nSample Image\n \n - Blockquotes: Quotations and citations.\n > "To be or not to be, that is the question." - Shakespeare\n \n ## Conclusion\n \n This Markdown sample provides a comprehensive overview of various Markdown elements. It can be used to test the rendering and styling of a Markdown component in different environments and applications.\n \n`,
             },
           },
         ],
@@ -116,15 +116,17 @@ export const Groups = [
             step: 1,
             component: "TextCompletion",
             params: {
-              title: "Priklad",
-              titleTranslated: "Primjer",
+              title:
+                "Mudri ljudi _znajut_ , že ne _znajut_ . Drugi ljudi ne _znajut_ , že ne _znajut_ .",
+              titleTranslated:
+                "Mudri ljudi znaju da ne znaju. Drugi ljudi ne znaju da ne znaju.",
             },
           },
           {
             step: 2,
             component: "TextCompletion",
             params: {
-              title: "Rok",
+              title: "_Rok_",
               titleTranslated: "Godina",
             },
           },
@@ -132,7 +134,7 @@ export const Groups = [
             step: 3,
             component: "TextCompletion",
             params: {
-              title: "Slovo",
+              title: "_Slovo_",
               titleTranslated: "Riječ",
             },
           },
@@ -140,7 +142,7 @@ export const Groups = [
             step: 4,
             component: "TextCompletion",
             params: {
-              title: "Ktory",
+              title: "_Ktory_",
               titleTranslated: "Koji",
             },
           },
