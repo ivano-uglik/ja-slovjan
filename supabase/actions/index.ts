@@ -17,7 +17,7 @@ export const createLanguage = async (languageData: Language): Promise<Language |
       .from('languages')
       .insert(languageData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
 
@@ -32,7 +32,7 @@ export const getLanguage = async (languageId: number): Promise<Language | null> 
       .from('languages')
       .select('*')
       .eq('id', languageId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -46,7 +46,7 @@ export const getLanguageByName = async (name: string): Promise<Language | null> 
       .from('languages')
       .select('*')
       .eq('name', name)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -61,7 +61,7 @@ export const updateLanguage = async (languageId: number, updates: Partial<Langua
       .update(updates)
       .eq('id', languageId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -76,7 +76,7 @@ export const deleteLanguage = async (languageId: number): Promise<Language | nul
       .delete()
       .eq('id', languageId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -104,7 +104,7 @@ export const createLevelGroup = async (groupData: Level_group): Promise<Level_gr
       .from('level_groups')
       .insert(groupData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -118,7 +118,7 @@ export const getLevelGroup = async (groupId: number): Promise<Level_group | null
       .from('level_groups')
       .select('*')
       .eq('id', groupId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -134,7 +134,7 @@ export const getLevelGroupByName = async (
       .from("level_groups")
       .select("*")
       .eq("name", groupName)
-      .single();
+      .maybeSingle();
 
     if (error) throw error;
     return data!;
@@ -151,7 +151,7 @@ export const updateLevelGroup = async (groupId: number, updates: Partial<Level_g
       .update(updates)
       .eq('id', groupId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -166,7 +166,7 @@ export const deleteLevelGroup = async (groupId: number): Promise<Level_group | n
       .delete()
       .eq('id', groupId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -194,7 +194,7 @@ export const createLevel = async (levelData: Level): Promise<Level | null> => {
       .from('levels')
       .insert(levelData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -208,7 +208,7 @@ export const getLevel = async (levelId: number): Promise<Level | null> => {
       .from('levels')
       .select('*')
       .eq('id', levelId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -223,7 +223,7 @@ export const updateLevel = async (levelId: number, updates: Partial<Level>): Pro
       .update(updates)
       .eq('id', levelId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -238,7 +238,7 @@ export const deleteLevel = async (levelId: number): Promise<void | null> => {
       .delete()
       .eq('id', levelId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
 
     return data!;
@@ -267,7 +267,7 @@ export const createLevelStep = async (stepData: Level_step): Promise<Level_step 
       .from('level_steps')
       .insert(stepData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -281,7 +281,7 @@ export const getLevelStep = async (stepId: number): Promise<Level_step | null> =
       .from('level_steps')
       .select('*')
       .eq('id', stepId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -296,7 +296,7 @@ export const updateLevelStep = async (stepId: number, updates: Partial<Level_ste
       .update(updates)
       .eq('id', stepId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -311,7 +311,7 @@ export const deleteLevelStep = async (stepId: number): Promise<void | null> => {
       .delete()
       .eq('id', stepId)
       .select()
-      .single()
+      .maybeSingle();
     if (error) throw error;
 
     return data!;
@@ -340,7 +340,7 @@ export const createCompletedLevel = async (completedData: Completed_level): Prom
       .from('completed_levels')
       .insert(completedData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -354,7 +354,7 @@ export const getCompletedLevel = async (completedId: number): Promise<Completed_
       .from('completed_levels')
       .select('*')
       .eq('id', completedId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -369,7 +369,7 @@ export const updateCompletedLevel = async (completedId: number, updates: Partial
       .update(updates)
       .eq('id', completedId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -384,7 +384,7 @@ export const deleteCompletedLevel = async (completedId: number): Promise<void | 
       .delete()
       .eq('id', completedId)
       .select()
-      .single()
+      .maybeSingle();
     if (error) throw error;
 
     return data!;
@@ -413,7 +413,7 @@ export const createTextCompletionParam = async (paramData: Text_completion_param
       .from('text_completion_params')
       .insert(paramData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -427,7 +427,7 @@ export const getTextCompletionParam = async (paramId: number): Promise<Text_comp
       .from('text_completion_params')
       .select('*')
       .eq('id', paramId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -442,7 +442,7 @@ export const updateTextCompletionParam = async (paramId: number, updates: Partia
       .update(updates)
       .eq('id', paramId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -457,7 +457,7 @@ export const deleteTextCompletionParam = async (paramId: number): Promise<void |
       .delete()
       .eq('id', paramId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
 
     return data!;
@@ -487,7 +487,7 @@ export const createGuessLatinLetterParam = async (paramData: Guess_latin_letter_
       .from('guess_latin_letter_params')
       .insert(paramData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -501,7 +501,7 @@ export const getGuessLatinLetterParam = async (paramId: number): Promise<Guess_l
       .from('guess_latin_letter_params')
       .select('*')
       .eq('id', paramId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -516,7 +516,7 @@ export const updateGuessLatinLetterParam = async (paramId: number, updates: Part
       .update(updates)
       .eq('id', paramId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -531,7 +531,7 @@ export const deleteGuessLatinLetterParam = async (paramId: number): Promise<void
       .delete()
       .eq('id', paramId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
 
     return data!;
@@ -560,7 +560,7 @@ export const createImageSelectParam = async (paramData: Image_select_param): Pro
       .from('image_select_params')
       .insert(paramData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -574,7 +574,7 @@ export const getImageSelectParam = async (paramId: number): Promise<Image_select
       .from('image_select_params')
       .select('*')
       .eq('id', paramId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -589,7 +589,7 @@ export const updateImageSelectParam = async (paramId: number, updates: Partial<I
       .update(updates)
       .eq('id', paramId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -604,7 +604,7 @@ export const deleteImageSelectParam = async (paramId: number): Promise<void | nu
       .delete()
       .eq('id', paramId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
 
     return data!;
@@ -633,7 +633,7 @@ export const createImageSelectParamOption = async (optionData: Image_select_para
       .from('image_select_params_options')
       .insert(optionData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -647,7 +647,7 @@ export const getImageSelectParamOption = async (optionId: number): Promise<Image
       .from('image_select_params_options')
       .select('*')
       .eq('id', optionId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -662,7 +662,7 @@ export const updateImageSelectParamOption = async (optionId: number, updates: Pa
       .update(updates)
       .eq('id', optionId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -677,7 +677,7 @@ export const deleteImageSelectParamOption = async (optionId: number): Promise<vo
       .delete()
       .eq('id', optionId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
 
     return data!;
@@ -707,7 +707,7 @@ export const createTranslateSentenceParam = async (paramData: Translate_sentence
       .from('translate_sentence_params')
       .insert(paramData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -721,7 +721,7 @@ export const getTranslateSentenceParam = async (paramId: number): Promise<Transl
       .from('translate_sentence_params')
       .select('*')
       .eq('id', paramId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -736,7 +736,7 @@ export const updateTranslateSentenceParam = async (paramId: number, updates: Par
       .update(updates)
       .eq('id', paramId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -751,7 +751,7 @@ export const deleteTranslateSentenceParam = async (paramId: number): Promise<voi
       .delete()
       .eq('id', paramId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
 
     return data!;
@@ -780,7 +780,7 @@ export const createGuessCyrillicLetterParam = async (paramData: Guess_cyrillic_l
       .from('guess_cyrillic_letter_params')
       .insert(paramData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -794,7 +794,7 @@ export const getGuessCyrillicLetterParam = async (paramId: number): Promise<Gues
       .from('guess_cyrillic_letter_params')
       .select('*')
       .eq('id', paramId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -809,7 +809,7 @@ export const updateGuessCyrillicLetterParam = async (paramId: number, updates: P
       .update(updates)
       .eq('id', paramId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -824,7 +824,7 @@ export const deleteGuessCyrillicLetterParam = async (paramId: number): Promise<v
       .delete()
       .eq('id', paramId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
 
     return data!;
@@ -854,7 +854,7 @@ export const createTranslateSentenceParamOption = async (
       .from("translate_sentence_params_options")
       .upsert([optionData])
       .select()
-      .single();
+      .maybeSingle();
 
     if (error) throw error;
 
@@ -873,7 +873,7 @@ export const getTranslateSentenceParamOption = async (
       .from("translate_sentence_params_options")
       .select("*")
       .eq("id", optionId)
-      .single();
+      .maybeSingle();
 
     if (error) throw error;
 
@@ -893,7 +893,7 @@ export const updateTranslateSentenceParamOption = async (
       .from("translate_sentence_params_options")
       .upsert([{ id: optionId, ...updates }])
       .select()
-      .single();
+      .maybeSingle();
 
     if (error) throw error;
 
@@ -913,7 +913,7 @@ export const deleteTranslateSentenceParamOption = async (
       .delete()
       .eq("id", optionId)
       .select()
-      .single();
+      .maybeSingle();
 
     if (error) throw error;
 
@@ -948,7 +948,7 @@ export const createGuessCyrillicLetterParamOption = async (
       .from('guess_cyrillic_letter_params_options')
       .insert(optionData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -964,7 +964,7 @@ export const getGuessCyrillicLetterParamOption = async (
       .from('guess_cyrillic_letter_params_options')
       .select('*')
       .eq('id', optionId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -982,7 +982,7 @@ export const updateGuessCyrillicLetterParamOption = async (
       .update(updates)
       .eq('id', optionId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -999,7 +999,7 @@ export const deleteGuessCyrillicLetterParamOption = async (
       .delete()
       .eq('id', optionId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
 
     return data!;
@@ -1028,7 +1028,7 @@ export const createGuessLatinLetterParamOption = async (
       .from("guess_latin_letter_params_options")
       .insert(optionData)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -1044,7 +1044,7 @@ export const getGuessLatinLetterParamOption = async (
       .from("guess_latin_letter_params_options")
       .select("*")
       .eq("id", optionId)
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data || null;
   } catch (error) {
@@ -1062,7 +1062,7 @@ export const updateGuessLatinLetterParamOption = async (
       .update(updates)
       .eq("id", optionId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
     return data!;
   } catch (error) {
@@ -1079,7 +1079,7 @@ export const deleteGuessLatinLetterParamOption = async (
       .delete()
       .eq("id", optionId)
       .select()
-      .single();
+      .maybeSingle();
     if (error) throw error;
 
     return data!;
@@ -1113,9 +1113,12 @@ export const createLevelWithSteps = async (level: Level_with_steps): Promise<{ m
       const level_group = await getLevelGroupByName(level.level_group_name);
       const language = await getLanguageByName(level.language);
 
+      if (!language) throw new Error("Language not found");
+
       if (level_group) {
         level_group_id === level_group.id;
-      } else {
+      }
+      else {
         // create level_group if it doesn't exist
         const new_level_group_data: Level_group = {
           name: level.level_group_name,
@@ -1126,6 +1129,8 @@ export const createLevelWithSteps = async (level: Level_with_steps): Promise<{ m
         };
         const new_level_group = await createLevelGroup(new_level_group_data);
         level_group_id = new_level_group?.id;
+
+        if (!new_level_group) throw new Error("Level group not created");
       }
     } else {
       throw new Error("Level group id or name is required");

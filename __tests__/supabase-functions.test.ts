@@ -407,7 +407,7 @@ describe('Text_completion_param CRUD functions', () => {
   // Test createTextCompletionParam function
   test('createTextCompletionParam - creates a new text completion parameter', async () => {
     // Assuming you have a valid level step ID
-    const levelStepId = 6; // Replace with a valid level step ID
+    const levelStepId = 1; // Replace with a valid level step ID
 
     const newTextCompletionParamData: Text_completion_param = {
       level_step_id: levelStepId,
@@ -544,7 +544,7 @@ describe('Image_select_param CRUD functions', () => {
   test('createImageSelectParam - creates a new image select parameter', async () => {
     const newParamData: Image_select_param = {
       word: 'Test Word',
-      level_step_id: 6, // Adjust based on your data structure
+      level_step_id: 1, // Adjust based on your data structure
       // Add other properties based on your data structure
     };
 
@@ -668,7 +668,7 @@ describe('Guess_cyrillic_letter_param CRUD functions', () => {
   test('createGuessCyrillicLetterParam - creates a new guess cyrillic letter parameter', async () => {
     const newParamData: Guess_cyrillic_letter_param = {
       cyrillic_letter: 'Т',
-      level_step_id: 6,
+      level_step_id: 1,
       // Add other properties based on your data structure
     };
 
@@ -801,7 +801,7 @@ describe('Guess_latin_letter_param CRUD functions', () => {
   });
 
   it('should create a new guess_latin_letter_param', async () => {
-    const mockParam: Guess_latin_letter_param = { latin_letter: 'A', level_step_id: 6 };
+    const mockParam: Guess_latin_letter_param = { latin_letter: 'A', level_step_id: 1 };
     const result = await createGuessLatinLetterParam(mockParam);
 
     expect(result).toHaveProperty('id');
@@ -952,7 +952,7 @@ describe('createLevelWithSteps', () => {
           }
         }
       ],
-      language: 'English',
+      language: 'Interslavic',
       title: 'Test Level',
       description: 'Test Level Description',
     };
