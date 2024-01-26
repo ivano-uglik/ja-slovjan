@@ -19,6 +19,7 @@ const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
   const [levelGroup, setLevelGroup] = useState<string>("");
   const [title, setTitle] = useState<string>("My title");
   const [description, setDescription] = useState<string>("");
+  const [progressFormula, setProgressFormula] = useState<number>(0);
 
   const createLevel = async () => {
     const level = {
@@ -49,6 +50,8 @@ const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
     stepTemplates,
     setStepTemplates,
     createLevel,
+    progressFormula,
+    setProgressFormula,
   };
 
   useEffect(() => {
@@ -84,6 +87,8 @@ interface LevelBuilderInterface {
   stepTemplates: string[];
   setStepTemplates: (value: SetStateAction<string[]>) => void;
   createLevel: () => void;
+  progressFormula: number;
+  setProgressFormula: (value: SetStateAction<number>) => void;
 }
 
 export const useLevelBuilder = (): LevelBuilderInterface =>

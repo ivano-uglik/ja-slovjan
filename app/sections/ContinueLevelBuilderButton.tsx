@@ -10,12 +10,17 @@ export default function ContinueButton({
   isDisabled?: boolean;
   onNext?: () => void;
 }) {
-  const { stepTemplates, stepsCompleted, setStepsCompleted, createLevel } =
-    useLevelBuilder();
+  const {
+    stepTemplates,
+    stepsCompleted,
+    setStepsCompleted,
+    createLevel,
+    setProgressFormula,
+  } = useLevelBuilder();
 
   const handleNext = async () => {
     if (onNext) onNext();
-
+    setProgressFormula((stepsCompleted / stepTemplates.length) * 100);
     if (stepsCompleted === stepTemplates.length) {
       await createLevel();
     } else {
