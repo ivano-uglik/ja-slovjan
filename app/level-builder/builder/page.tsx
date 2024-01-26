@@ -20,6 +20,7 @@ import Image from "next/image";
 import Matcher from "@/app/@lib/Matcher";
 import { useLevelBuilder } from "@/context/LevelBuilderContext";
 import { useEffect } from "react";
+import Navbar from "@/app/sections/levels/LevelNavbar";
 
 export default function Builder() {
   const context = useLevelBuilder();
@@ -39,15 +40,15 @@ export default function Builder() {
     <div>
       <div className="mx-auto px-4 lg:px-0">
         <div className="text-center">
-          <h1 className={`${dela.className} pt-16 pb-4 text-3xl`}>
-            {context.stepsCompleted === 0
-              ? "Welcome to the LevelBuilder!"
-              : context.title}
-          </h1>
+          {context.stepsCompleted === 0 ? (
+            <h1 className={`${dela.className} pt-16 pb-4 text-3xl`}>
+              Welcome to the LevelBuilder!
+            </h1>
+          ) : (
+            <Navbar explainer={`${context.title}`} />
+          )}
           <h2 className="mx-auto">
-            {context.stepsCompleted === 0
-              ? "Let's start."
-              : context.description}
+            {context.stepsCompleted === 0 && "Let's start."}
           </h2>
           {/* adding breadcrumbs functionality, per daisyUI docs*/}
           {context.stepsCompleted !== 0 && (

@@ -126,24 +126,64 @@ export const Groups = [
             step: 2,
             component: "TextCompletion",
             params: {
-              title: "_Rok_",
-              titleTranslated: "Godina",
+              title: "Slovenci _praznujejo_ nacionalne praznike.",
+              titleTranslated: "Slovenci slave nacionalne praznike.",
             },
           },
           {
             step: 3,
-            component: "TextCompletion",
+            component: "ImageSelect",
             params: {
-              title: "_Slovo_",
-              titleTranslated: "Riječ",
+              word: "Konserva",
+              options: [
+                {
+                  imageURL:
+                    "https://d248k8q1c80cf8.cloudfront.net/WK_Seito_0017_tif_584372fb43.jpg",
+                  isCorrect: false,
+                },
+                {
+                  imageURL:
+                    "https://www.vivita.hr/wp-content/uploads/2017/03/coca-cola-330ml.jpg",
+                  isCorrect: true,
+                },
+                {
+                  imageURL:
+                    "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/451b4531-1090-4044-ad0f-fa9e2b6cd902/streakfly-road-racing-shoes-wWhMKs.png",
+                  isCorrect: false,
+                },
+              ],
             },
           },
           {
             step: 4,
             component: "TextCompletion",
             params: {
-              title: "_Ktory_",
-              titleTranslated: "Koji",
+              title: "Poljaki _igrajo_ tradicionalne ljudske igre.",
+              titleTranslated: "Poljaci igraju tradicionalne narodne igre.",
+            },
+          },
+          {
+            step: 5,
+            component: "TextCompletion",
+            params: {
+              title: "Hrvati _uživajo_ v morskim dobrotama.",
+              titleTranslated: "Hrvati uživaju u morskim specijalitetima.",
+            },
+          },
+          {
+            step: 6,
+            component: "TextCompletion",
+            params: {
+              title: "Bosanci _potujejo_ po prelepem gorovju.",
+              titleTranslated: "Bosanci putuju po prekrasnim planinama.",
+            },
+          },
+          {
+            step: 7,
+            component: "TextCompletion",
+            params: {
+              title: "Srbi _slavijo_ tradicionalne poroke.",
+              titleTranslated: "Srbi slave tradicionalne svadbe.",
             },
           },
         ],
