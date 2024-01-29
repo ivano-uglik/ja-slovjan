@@ -41,6 +41,7 @@ interface Level {
 
 interface Level_with_steps {
   user: User;
+  id?: number;
   level_group_id?: number;
   level_group_name?: string;
   order: number;
