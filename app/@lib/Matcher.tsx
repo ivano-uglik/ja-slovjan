@@ -1,10 +1,12 @@
 import React, { ReactNode, lazy, Suspense } from "react";
 import Loading from "../sections/Loading";
+import { useLevelState } from "@/context/LevelStateContext";
+import ProgressBar from "../sections/ProgressBar";
 interface MatcherProps {
   component: string;
   params?: Record<string, any>;
   isInput: boolean;
-  order?: number;
+  order?: any;
 }
 
 const Matcher: React.FC<MatcherProps> = ({
@@ -13,6 +15,10 @@ const Matcher: React.FC<MatcherProps> = ({
   isInput,
   order,
 }) => {
+  const context = useLevelState();
+  {
+    !isInput && context.setSteps(order.length);
+  }
   const Component = lazy(
     () =>
       import(
@@ -24,6 +30,12 @@ const Matcher: React.FC<MatcherProps> = ({
 
   return (
     <Suspense fallback={<Loading />}>
+      {!isInput && (
+        <ProgressBar
+          size={context.progressFormula.toString()}
+          className="my-8"
+        />
+      )}
       <Component {...params} {...(isInput && { order })} />
     </Suspense>
   );

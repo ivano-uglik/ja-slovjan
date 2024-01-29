@@ -11,7 +11,7 @@ export default function HomePage({}: {}) {
             {group.levels.map((level, levelIndex) => (
               <Link
                 key={levelIndex}
-                href={`dashboard/learn/${group.id}/${levelIndex + 1}`}
+                href={`learn/${group.id}/${levelIndex + 1}`}
               >
                 <div
                   className={`btn btn-square btn-lg ${
