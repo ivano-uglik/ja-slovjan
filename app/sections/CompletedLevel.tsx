@@ -11,10 +11,6 @@ export default function Completed({ className }: { className?: string }) {
   const [correct, isCorrect]: any = useContext(correctContext);
   const { progressFormula, setProgressFormula, steps, setSteps } =
     useLevelState();
-  console.log("step: ", step);
-  console.log("steps: ", steps);
-  console.log("progress formula: ", progressFormula);
-  console.log("kurac: ", Math.ceil((step + 1 / steps) * 100));
   return (
     <div
       className={`w-full h-[28vh] z-20 fixed bottom-0 bg-[#F4F4F4] flex-col lg:flex-row flex items-center justify-center ${className}`}

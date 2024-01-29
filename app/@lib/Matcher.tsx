@@ -16,8 +16,9 @@ const Matcher: React.FC<MatcherProps> = ({
   order,
 }) => {
   const context = useLevelState();
-  // setSteps(order.length);
-  // console.log("steps: ", steps);
+  {
+    !isInput && context.setSteps(order.length);
+  }
   const Component = lazy(
     () =>
       import(
