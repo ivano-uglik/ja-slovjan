@@ -3,7 +3,6 @@
 import { useContext, useState } from "react";
 import Completed from "../../CompletedLevel";
 import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
-import ProgressBar from "../../ProgressBar";
 import SpecialLetters from "../../SpecialLetters";
 import { dela } from "@/app/@lib/Fonts";
 export default function TextCompletionStep({
@@ -65,7 +64,6 @@ export default function TextCompletionStep({
 
   return (
     <div className="">
-      <ProgressBar size={"w-[45%]"} className="my-8" />
       <div className="text-center mx-auto">
         {filter()}
         <h2 className="pt-8">{titleTranslated}</h2>

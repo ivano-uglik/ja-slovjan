@@ -5,9 +5,16 @@ import Image from "next/image";
 import { useContext } from "react";
 import { Context } from "../learn/[level]/[levelPart]/page";
 import { correctContext } from "../learn/[level]/[levelPart]/page";
+import { useLevelState } from "@/context/LevelStateContext";
 export default function Completed({ className }: { className?: string }) {
   const [step, setStep]: any = useContext(Context);
   const [correct, isCorrect]: any = useContext(correctContext);
+  const { progressFormula, setProgressFormula, steps, setSteps } =
+    useLevelState();
+  console.log("step: ", step);
+  console.log("steps: ", steps);
+  console.log("progress formula: ", progressFormula);
+  console.log("kurac: ", Math.ceil((step + 1 / steps) * 100));
   return (
     <div
       className={`w-full h-[28vh] z-20 fixed bottom-0 bg-[#F4F4F4] flex-col lg:flex-row flex items-center justify-center ${className}`}
@@ -29,7 +36,11 @@ export default function Completed({ className }: { className?: string }) {
           </button>
           <button
             className="px-12 py-4 text-xl font-semibold border rounded-lg bg-success text-white"
-            onClick={() => (setStep(step + 1), isCorrect(false))}
+            onClick={() => (
+              setStep(step + 1),
+              isCorrect(false),
+              setProgressFormula(Math.ceil(((step + 1) / steps) * 100))
+            )}
           >
             Slědujuči
           </button>

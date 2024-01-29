@@ -3,6 +3,9 @@ import Matcher from "@/app/@lib/Matcher";
 import { createContext, useState } from "react";
 import { Groups } from "@/app/@lib/Levels";
 import Navbar from "@/app/sections/levels/LevelNavbar";
+import LevelStateContextProvider, {
+  useLevelState,
+} from "@/context/LevelStateContext";
 
 export const Context: any = createContext(0);
 export const correctContext: any = createContext(false);
@@ -36,27 +39,24 @@ export default function Page({
   return (
     <div>
       <Navbar explainer="Choose the correct image." />
-      <div className="hidden text-center text-3xl font-bold text-primary">
-        {selectedGroup.group}
-      </div>
-      <div className="hidden text-center text-3xl font-bold text-primary pt-2">
-        Uravenj {decodeURIComponent(params.levelPart)}
-      </div>
-      <Context.Provider value={[step, setStep]}>
-        <correctContext.Provider value={[correct, isCorrect]}>
-          <Matcher
-            component={
-              selectedGroup.levels[Number(params.levelPart) - 1].steps[step]
-                .component
-            }
-            params={
-              selectedGroup.levels[Number(params.levelPart) - 1].steps[step]
-                .params
-            }
-            isInput={false}
-          />
-        </correctContext.Provider>
-      </Context.Provider>
+      <LevelStateContextProvider>
+        <Context.Provider value={[step, setStep]}>
+          <correctContext.Provider value={[correct, isCorrect]}>
+            <Matcher
+              component={
+                selectedGroup.levels[Number(params.levelPart) - 1].steps[step]
+                  .component
+              }
+              params={
+                selectedGroup.levels[Number(params.levelPart) - 1].steps[step]
+                  .params
+              }
+              isInput={false}
+              order={selectedGroup.levels[Number(params.levelPart) - 1].steps}
+            />
+          </correctContext.Provider>
+        </Context.Provider>
+      </LevelStateContextProvider>
     </div>
   );
 }
