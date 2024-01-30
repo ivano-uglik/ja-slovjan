@@ -34,6 +34,15 @@ const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
       level_group_id,
     };
 
+    console.log({
+      level,
+      steps,
+      language,
+      levelGroup,
+      title,
+      description,
+    });
+
     // TO-DO: save to supabase
   };
 
@@ -98,3 +107,5 @@ export const useLevelBuilder = (): LevelBuilderInterface =>
   useContext(LevelBuilderContext);
 
 export default LevelBuilderProvider;
+
+
