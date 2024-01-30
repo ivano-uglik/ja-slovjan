@@ -918,44 +918,68 @@ describe('createLevelWithSteps', () => {
   it('should create a new level with steps', async () => {
 
     const levelWithSteps: Level_with_steps = {
-      user: { auth_user_id: '773a97d9-6939-4672-92f7-459a53580e33', total_xp: 100, streak: 5 },
-      level_group_name: "Test Group",
-      order: 1,
-      steps: [
+      "user_id": "773a97d9-6939-4672-92f7-459a53580e33",
+      "level_group_name": "Pozdravi",
+      "description": "nešto nešto",
+      "language": "Interslavic",
+      "steps": [
         {
-          order: 1,
-          component: 'TextCompletion',
-          params: { title: 'Fill in the blanks', title_translated: 'Translate this' },
+          "order": 1,
+          "component": "TranslateSentence",
+          "params": {
+            "title": "test",
+            "options": [
+              {
+                "text": "wrong 1",
+                "isCorrect": false
+              },
+              {
+                "text": "wrong 2",
+                "isCorrect": false
+              },
+              {
+                "text": "wrong 3",
+                "isCorrect": false
+              },
+              {
+                "text": "correct",
+                "isCorrect": true
+              }
+            ]
+          }
         },
         {
-          order: 2,
-          component: 'TranslateSentence',
-          params: {
-            title: 'Translate the sentence',
-            options: [
-              { text: 'Option 1', is_correct: true },
-              { text: 'Option 2', is_correct: false },
-            ],
-          },
+          "order": 2,
+          "component": "TextCompletion",
+          "params": {
+            "title": "Test",
+            "titleTranslated": "Test"
+          }
         },
         {
-          order: 3,
-          component: "ImageSelect",
-          params: {
-            word: "Test",
-            options: [
-              { imageURL: "https://source.unsplash.com/random", is_correct: false },
-              { imageURL: "https://source.unsplash.com/random", is_correct: true },
-              { imageURL: "https://source.unsplash.com/random", is_correct: false },
-              { imageURL: "https://source.unsplash.com/random", is_correct: false },
+          "order": 3,
+          "component": "ImageSelect",
+          "params": {
+            "word": "Test",
+            "options": [
+              {
+                "imageURL": "https://source.unsplash.com/random",
+                "isCorrect": false
+              },
+              {
+                "imageURL": "https://source.unsplash.com/random",
+                "isCorrect": false
+              },
+              {
+                "imageURL": "https://source.unsplash.com/random",
+                "isCorrect": true
+              }
             ]
           }
         }
       ],
-      language: 'Interslavic',
-      title: 'Test Level',
-      description: 'Test Level Description',
-    };
+      "order": 1
+    }
 
     const result = await createLevelWithSteps(levelWithSteps);
 

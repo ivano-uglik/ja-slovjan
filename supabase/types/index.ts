@@ -40,27 +40,24 @@ interface Level {
 }
 
 interface Level_with_steps {
-  user: User;
+  user_id: string;
+  user?: User;
   id?: number;
   level_group_id?: number;
   level_group_name?: string;
   order: number;
-  steps: Array<{
-    order: number;
-    component: string;
-    params: any;
-  }>;
+  steps: Level_step[];
   language: string;
-  title: string;
   description: string;
 }
 
 interface Level_step {
   id?: number;   /* primary key */
   created_at?: string;
-  level_id: number;   /* foreign key to levels.id */
+  level_id?: number;   /* foreign key to levels.id */
   order: number;
   component: string;
+  params?: any;
   level?: Level;
 }
 

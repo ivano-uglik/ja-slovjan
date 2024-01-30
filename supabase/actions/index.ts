@@ -1102,8 +1102,35 @@ export const getAllGuessLatinLetterParamOptions = async (): Promise<
   }
 };
 
-export const createLevelWithSteps = async (level: Level_with_steps): Promise<{ message: string, success: boolean } | null> => {
+function renameIsCorrectInLevel(level: Level_with_steps): Level_with_steps {
+  const result: Level_with_steps = { ...level };
+
+  function renameIsCorrect(obj: any): any {
+    if (Array.isArray(obj)) {
+      return obj.map(renameIsCorrect);
+    } else if (typeof obj === 'object' && obj !== null) {
+      const result: any = {};
+      for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          const newKey = key === 'isCorrect' ? 'is_correct' : key;
+          result[newKey] = renameIsCorrect(obj[key]);
+        }
+      }
+      return result;
+    } else {
+      return obj;
+    }
+  }
+
+  result.steps = renameIsCorrect(result.steps);
+  return result;
+}
+
+
+export const createLevelWithSteps = async (levelUnformatted: Level_with_steps): Promise<{ message: string, success: boolean } | null> => {
   try {
+    const level = renameIsCorrectInLevel(levelUnformatted);
+
     // check if level group exists, if not, create it
     let level_group_id;
 
@@ -1122,7 +1149,7 @@ export const createLevelWithSteps = async (level: Level_with_steps): Promise<{ m
         // create level_group if it doesn't exist
         const new_level_group_data: Level_group = {
           name: level.level_group_name,
-          author_user: level.user.auth_user_id,
+          author_user: level.user_id,
           language_id: language?.id,
           // TODO: once app is live, change to true if it is by a user that is not admin approved!
           is_community: false,
