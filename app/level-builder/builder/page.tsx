@@ -131,28 +131,6 @@ export default function Builder() {
                 onChange={(e) => context.setOrder(parseInt(e.target.value))}
               />
             </div>
-            <div className="mb-4">
-              <label className="form-control w-full max-w-sm focus:outline-none">
-                <div className="label">
-                  <span
-                    // locked effect if level group not selected
-                    className={`label-text ${
-                      (context.levelGroup && context.levelGroup.length >= 2) ===
-                        "" && "opacity-25"
-                    }`}>
-                    Title:
-                  </span>
-                </div>
-                <input
-                  type="text"
-                  placeholder={context.title}
-                  onChange={(e) => context.setTitle(e.target.value)}
-                  className="input input-bordered w-full max-w-sm focus:outline-none"
-                  // locked effect if level group not selected
-                  disabled={context.levelGroup === "" && true}
-                />
-              </label>
-            </div>
 
             <div className="mb-4">
               <label className="form-control w-full max-w-sm focus:outline-none">

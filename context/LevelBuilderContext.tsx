@@ -8,42 +8,46 @@ import {
   SetStateAction,
 } from "react";
 import supabase from "@/supabase/supabase-client";
-import { Level } from "@/supabase/types";
+import { Level, Level_with_steps } from "@/supabase/types";
+import { createLevelWithSteps } from "@/supabase/actions";
+import { useSession } from "./SessionContext";
+import { useRouter } from "next/navigation";
 
 const LevelBuilderContext = createContext<any>(null);
 
 const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
   const [stepsCompleted, setStepsCompleted] = useState<number>(0);
-  const [steps, setSteps] = useState<Object[]>([]);
+  const [steps, setSteps] = useState<Step[]>([]);
   const [stepTemplates, setStepTemplates] = useState<string[]>([]);
   const [language, setLanguage] = useState<string>("");
   const [levelGroup, setLevelGroup] = useState<string>("");
   const [title, setTitle] = useState<string>("My title");
   const [description, setDescription] = useState<string>("");
   const [order, setOrder] = useState<number>(0);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [isFailure, setIsFailure] = useState<boolean>(false);
+  const { session } = useSession();
+
+  const router = useRouter();
 
   const createLevel = async () => {
-    // check if level group exists if not create it
-
-    let level_group_id = 1;
-
-    // figure all of this shit out, aaaaaaaaaaaaaa
-
-    const level: Level = {
+    const level: Level_with_steps = {
+      user_id: session?.user.id,
+      level_group_name: levelGroup,
+      description,
+      language,
+      steps,
       order,
-      level_group_id,
     };
 
-    console.log({
-      level,
-      steps,
-      language,
-      levelGroup,
-      title,
-      description,
-    });
+    const response = await createLevelWithSteps(level);
+    if (process.env.NEXT_PUBLIC_DEV) console.log(response, level);
 
-    // TO-DO: save to supabase
+    if (response?.success) {
+      router.push("/level-builder/builder/success");
+    } else {
+      router.push("/level-builder/builder/failure");
+    }
   };
 
   const value = {
@@ -107,5 +111,3 @@ export const useLevelBuilder = (): LevelBuilderInterface =>
   useContext(LevelBuilderContext);
 
 export default LevelBuilderProvider;
-
-

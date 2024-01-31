@@ -9,9 +9,9 @@ export default function TranslateSentence({
   options,
 }: {
   title: string;
-  options: { text: string; isCorrect: boolean }[];
+  options: { text: string; is_correct: boolean }[];
 }) {
-  const [correct, isCorrect]: any = useContext(correctContext);
+  const [correct, is_correct]: any = useContext(correctContext);
   return (
     <div className="text-primary">
       <div className="text-center text-3xl py-8 font-bold text-primary">
@@ -24,12 +24,13 @@ export default function TranslateSentence({
               <li
                 key={index}
                 className={`p-2 rounded-3xl border font-semibold cursor-pointer ${
-                  correct && options[index].isCorrect && "bg-success text-white"
+                  correct &&
+                  options[index].is_correct &&
+                  "bg-success text-white"
                 }`}
                 onClick={() => {
-                  options[index].isCorrect && isCorrect(true);
-                }}
-              >
+                  options[index].is_correct && is_correct(true);
+                }}>
                 {option.text}
               </li>
             );

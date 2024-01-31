@@ -1,5 +1,5 @@
 import { Language, ErrorType, Completed_level, Guess_cyrillic_letter_param, Guess_cyrillic_letter_param_option, Guess_latin_letter_param, Guess_latin_letter_param_option, Image_select_param, Image_select_param_option, Level_group, Level_step, Text_completion_param, Translate_sentence_param, Translate_sentence_param_option, User, Level, Level_with_steps } from "../types";
-import supabase from "../supabase.config";
+import supabase from "@/supabase/supabase-client";
 
 const handleError = (error: any): null => {
   console.error('Supabase error:', error);
@@ -1104,6 +1104,9 @@ export const getAllGuessLatinLetterParamOptions = async (): Promise<
 
 export const createLevelWithSteps = async (level: Level_with_steps): Promise<{ message: string, success: boolean } | null> => {
   try {
+
+    if (process.env.NEXT_PUBLIC_DEV) console.log("LEVEL", level)
+
     // check if level group exists, if not, create it
     let level_group_id;
 
@@ -1113,7 +1116,7 @@ export const createLevelWithSteps = async (level: Level_with_steps): Promise<{ m
       const level_group = await getLevelGroupByName(level.level_group_name);
       const language = await getLanguageByName(level.language);
 
-      if (!language) throw new Error("Language not found");
+      if (!language) throw new Error(`Couldn't find language ${level.language}"`);
 
       if (level_group) {
         level_group_id === level_group.id;
@@ -1122,7 +1125,7 @@ export const createLevelWithSteps = async (level: Level_with_steps): Promise<{ m
         // create level_group if it doesn't exist
         const new_level_group_data: Level_group = {
           name: level.level_group_name,
-          author_user: level.user.auth_user_id,
+          author_user: level.user_id,
           language_id: language?.id,
           // TODO: once app is live, change to true if it is by a user that is not admin approved!
           is_community: false,
@@ -1219,6 +1222,7 @@ export const createLevelWithSteps = async (level: Level_with_steps): Promise<{ m
 
     return { message: "successfully created new level", success: true };
   } catch (error) {
+    console.log("Error", error)
     return handleError(error);
   }
 }
