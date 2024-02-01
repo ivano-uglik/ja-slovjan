@@ -1,7 +1,6 @@
 "use client";
 
 import { useContext, useState } from "react";
-import Completed from "../../CompletedLevel";
 import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
 import SpecialLetters from "../../SpecialLetters";
 import { dela } from "@/app/@lib/Fonts";
@@ -127,7 +126,6 @@ export default function TextCompletionStep({
           Nastavi
         </button>
       </div>
-      {correct && <Completed />}
     </div>
   );
 }

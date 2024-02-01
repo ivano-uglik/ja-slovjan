@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Completed from "../../CompletedLevel";
 
 export default function GuessLatinLetterStep({
   latinLetter,
@@ -41,7 +40,6 @@ export default function GuessLatinLetterStep({
           })}
         </div>
       </div>
-      {correct && <Completed />}
     </div>
   );
 }

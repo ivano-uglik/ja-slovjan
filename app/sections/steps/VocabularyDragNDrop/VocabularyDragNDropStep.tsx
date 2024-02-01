@@ -3,7 +3,6 @@ import { useState } from "react";
 import { DndProvider, useDrop, useDrag } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
-import Completed from "@/app/sections/CompletedLevel";
 
 interface Params {
   imageURL: string;
@@ -61,7 +60,6 @@ const VocabularyDragNDrop = ({ imageURL, options }: Params) => {
           />
         </div>
       </div>
-      {isCorrect && <Completed />}
     </DndProvider>
   );
 };

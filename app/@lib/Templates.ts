@@ -15,9 +15,10 @@ export const Templates = [
   {
     template: "Markdown",
     title: "Markdown Blog Post",
-    description: "A normal blog post page where you can explain a concept first before the user starts doing tasks.",
+    description:
+      "A normal blog post page where you can explain a concept first before the user starts doing tasks.",
     props: {
-      markdown: ``
+      markdown: ``,
     },
   },
   {
@@ -26,7 +27,7 @@ export const Templates = [
     description: "A string translated, with several options.",
     props: {
       title: "",
-      options: [{ string: "", isCorrect: false }],
+      options: [{ text: "", isCorrect: false }],
     },
   },
   {
@@ -44,15 +45,7 @@ export const Templates = [
     description: "A string, with several image options.",
     props: {
       title: "",
-      options: [{ string: "", isCorrect: false }],
-    },
-  },
-  {
-    template: "MarkdownText",
-    title: "Text",
-    description: "Text-based template, written in Markdown",
-    props: {
-      text: "",
+      options: [{ imageURL: "", isCorrect: false }],
     },
   },
   {

@@ -1,7 +1,6 @@
 "use client";
 
 import { useContext, useState } from "react";
-import Completed from "../../CompletedLevel";
 import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
 
 export default function ImageSelectStep({
@@ -50,7 +49,6 @@ export default function ImageSelectStep({
           })}
         </div>
       </div>
-      {correct && <Completed />}
     </div>
   );
 }

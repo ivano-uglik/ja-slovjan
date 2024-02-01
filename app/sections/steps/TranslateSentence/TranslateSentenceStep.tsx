@@ -1,7 +1,6 @@
 "use client";
 
 import { useContext, useState } from "react";
-import Completed from "../../CompletedLevel";
 import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
 
 export default function TranslateSentence({
@@ -36,7 +35,6 @@ export default function TranslateSentence({
           })}
         </ul>
       </div>
-      {correct && <Completed />}
     </div>
   );
 }

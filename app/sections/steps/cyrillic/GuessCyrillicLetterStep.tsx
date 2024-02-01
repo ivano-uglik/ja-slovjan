@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Completed from "../../CompletedLevel";
 
 export default function GuessCyrillicLetterStep({
   cyrillicLetter,
@@ -44,7 +43,6 @@ export default function GuessCyrillicLetterStep({
           })}
         </div>
       </div>
-      {correct && <Completed />}
     </div>
   );
 }

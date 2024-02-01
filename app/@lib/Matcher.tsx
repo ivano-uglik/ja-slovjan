@@ -1,7 +1,11 @@
-import React, { ReactNode, lazy, Suspense } from "react";
-import Loading from "../sections/Loading";
+"use client";
+
+import React, { ReactNode, lazy, Suspense, useContext } from "react";
 import { useLevelState } from "@/context/LevelStateContext";
 import ProgressBar from "../sections/ProgressBar";
+import CompletedLevelSkeleton from "../sections/Skeletons/CompletedLevelSkeleton";
+import { correctContext } from "../learn/[level]/[levelPart]/page";
+import Completed from "../sections/CompletedLevel";
 interface MatcherProps {
   component: string;
   params?: Record<string, any>;
@@ -19,6 +23,9 @@ const Matcher: React.FC<MatcherProps> = ({
   {
     !isInput && context.setSteps(order.length);
   }
+
+  const [correct, isCorrect]: any = useContext(correctContext);
+
   const Component = lazy(
     () =>
       import(
@@ -29,7 +36,7 @@ const Matcher: React.FC<MatcherProps> = ({
   );
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<CompletedLevelSkeleton />}>
       {!isInput && (
         <ProgressBar
           size={context.progressFormula.toString()}
@@ -37,6 +44,7 @@ const Matcher: React.FC<MatcherProps> = ({
         />
       )}
       <Component {...params} {...(isInput && { order })} />
+      {correct && <Completed />}
     </Suspense>
   );
 };
