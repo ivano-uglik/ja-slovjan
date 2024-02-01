@@ -24,8 +24,7 @@ const ClosedBeta = () => {
         </p>
         <button
           onClick={() => router.back()}
-          className="mt-3 w-full btn md:btn-wide btn-primary text-lg"
-        >
+          className="mt-3 w-full btn md:btn-wide btn-primary text-lg">
           Return →
         </button>
       </div>

@@ -1,3 +1,5 @@
-export default function Failure() {
-  return <div>Failed</div>;
+import Failure from "@/app/sections/Failure";
+
+export default function FailurePage() {
+  return <Failure />;
 }
