@@ -44,7 +44,7 @@ export default function Sidebar({ children }: { children: ReactNode }) {
     {
       icon: <Image src={Cyrillic} className="w-full h-full" alt="cyrillic" />,
       label: "Kirilica",
-      path: "/dashboard/learn/cyrillic",
+      path: "/learn/cyrillic",
     },
     {
       icon: <FaUserCircle className="w-full h-full" />,

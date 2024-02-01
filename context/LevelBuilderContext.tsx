@@ -29,6 +29,7 @@ const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
   const { session } = useSession();
 
   const router = useRouter();
+  const [progressFormula, setProgressFormula] = useState<number>(0);
 
   const createLevel = async () => {
     const level: Level_with_steps = {
@@ -68,6 +69,8 @@ const LevelBuilderProvider = ({ children }: { children: ReactNode }) => {
     createLevel,
     order,
     setOrder,
+    progressFormula,
+    setProgressFormula,
   };
 
   useEffect(() => {
@@ -105,6 +108,8 @@ interface LevelBuilderInterface {
   createLevel: () => void;
   order: number;
   setOrder: (value: SetStateAction<number>) => void;
+  progressFormula: number;
+  setProgressFormula: (value: SetStateAction<number>) => void;
 }
 
 export const useLevelBuilder = (): LevelBuilderInterface =>

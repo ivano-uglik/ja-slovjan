@@ -2,8 +2,9 @@
 
 import { useContext, useState } from "react";
 import Completed from "../../CompletedLevel";
-import { correctContext } from "@/app/dashboard/learn/[level]/[levelPart]/page";
-
+import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
+import SpecialLetters from "../../SpecialLetters";
+import { dela } from "@/app/@lib/Fonts";
 export default function TextCompletionStep({
   title,
   titleTranslated,
@@ -12,43 +13,119 @@ export default function TextCompletionStep({
   titleTranslated: string;
 }) {
   const [correct, isCorrect]: any = useContext(correctContext);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValues, setInputValues] = useState<string[]>(
+    title.split(" ").map(() => "")
+  );
+  const [capsLock, isCapsLock] = useState<boolean>(false);
+  const [lastSelectedInput, setLastSelectedInput] = useState<any>();
+  function filter() {
+    const wordsArray = title.split(" ");
+    let smallestIndex = Infinity;
+    return wordsArray.map((word, index) => {
+      if (word.startsWith("_") && word.endsWith("_")) {
+        smallestIndex = Math.min(smallestIndex, index);
+        return (
+          <input
+            key={index}
+            type="text"
+            className="input input-bordered w-32"
+            value={inputValues[index]}
+            autoFocus={index === smallestIndex}
+            onChange={(e) => {
+              const newValues = [...inputValues];
+              newValues[index] = e.target.value;
+              setInputValues(newValues);
+            }}
+            onKeyDown={(e) => {
+              e.key === "Enter" && compareValues() === true && isCorrect(true);
+              isCapsLock(e.getModifierState("CapsLock"));
+            }}
+            onFocus={(e) => {
+              setLastSelectedInput(index);
+            }}
+          />
+        );
+      } else {
+        return (
+          <span key={index} className="font-bold text-2xl">
+            {word}{" "}
+          </span>
+        );
+      }
+    });
+  }
+
+  function compareValues(): boolean {
+    const originalWords = title.split(" ");
+    const isMatched = originalWords.every(
+      (word, index) =>
+        !word.startsWith("_") ||
+        (inputValues[index] &&
+          inputValues[index] === word.substring(1, word.length - 1))
+    );
+    return isMatched;
+  }
+
+  function updateInputValuesWithSpecialLetter(specialLetter: string) {
+    setInputValues((prevInputValues) => {
+      return prevInputValues.map((value, index) => {
+        if (index === lastSelectedInput) {
+          return value + specialLetter;
+        }
+        return value;
+      });
+    });
+  }
+
   return (
-    <div>
-      <div
-        className={`text-center text-3xl py-8 font-bold ${
-          correct ? "text-success" : "text-primary"
-        }`}
-      >
-        {title}
-      </div>
-      <div>
-        <form
-          className="flex flex-col items-center justify-center"
-          onSubmit={(e) => {
-            e.preventDefault();
-            inputValue == titleTranslated && isCorrect(true);
+    <div className="">
+      <div className="text-center mx-auto">
+        {filter()}
+        <h2 className="pt-8">{titleTranslated}</h2>
+        <div className="flex justify-center gap-8 pt-8">
+          <button
+            className="btn btn-primary btn-outline text-2xl"
+            onClick={() =>
+              updateInputValuesWithSpecialLetter(capsLock ? "Ě" : "ě")
+            }
+          >
+            {capsLock ? "Ě" : "ě"}
+          </button>
+          <button
+            className="btn btn-primary btn-outline text-2xl"
+            onClick={() =>
+              updateInputValuesWithSpecialLetter(capsLock ? "Č" : "č")
+            }
+          >
+            {capsLock ? "Č" : "č"}
+          </button>
+          <button
+            className="btn btn-primary btn-outline text-2xl"
+            onClick={() =>
+              updateInputValuesWithSpecialLetter(capsLock ? "Š" : "š")
+            }
+          >
+            {capsLock ? "Š" : "š"}
+          </button>
+          <button
+            className="btn btn-primary btn-outline text-2xl"
+            onClick={() =>
+              updateInputValuesWithSpecialLetter(capsLock ? "Ž" : "ž")
+            }
+          >
+            {capsLock ? "Ž" : "ž"}
+          </button>
+        </div>
+        <button
+          className={`${dela.className} btn btn-primary btn-lg w-full max-w-xs mt-16`}
+          onClick={() => {
+            if (compareValues() === true) {
+              isCorrect(true);
+            }
           }}
         >
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => {
-              setInputValue(e.target.value);
-            }}
-            className={`w-[50vw] text-center text-3xl py-8 font-bold focus:outline-none  ${
-              correct ? "text-success" : "text-primary"
-            }`}
-            autoFocus
-          />
-          <input
-            type="submit"
-            value="Submit"
-            className={`btn btn-lg btn-wide mt-8 ${
-              correct ? "btn-accent" : "btn-primary"
-            }`}
-          />
-        </form>
+          Nastavi
+        </button>
       </div>
       {correct && <Completed />}
     </div>

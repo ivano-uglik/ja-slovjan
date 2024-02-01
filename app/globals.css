@@ -81,3 +81,12 @@
 .padding-large-x {
   @apply px-16;
 }
+
+.bg-gradient {
+  background: rgb(0, 56, 147);
+  background: linear-gradient(
+    300deg,
+    rgba(0, 56, 147, 1) 0%,
+    rgba(111, 54, 93, 1) 65%
+  );
+}
