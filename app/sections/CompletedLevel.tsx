@@ -4,13 +4,17 @@ import Rocket from "@/public/svg/rocket-svgrepo.svg";
 import Image from "next/image";
 import { useContext } from "react";
 import { Context } from "../learn/[level]/[levelPart]/page";
-import { correctContext } from "../learn/[level]/[levelPart]/page";
 import { useLevelState } from "@/context/LevelStateContext";
 export default function Completed({ className }: { className?: string }) {
   const [step, setStep]: any = useContext(Context);
-  const [correct, isCorrect]: any = useContext(correctContext);
-  const { progressFormula, setProgressFormula, steps, setSteps } =
-    useLevelState();
+  const {
+    progressFormula,
+    setProgressFormula,
+    steps,
+    setSteps,
+    correct,
+    isCorrect,
+  } = useLevelState();
   return (
     <div
       className={`w-full h-[28vh] z-20 fixed bottom-0 bg-[#F4F4F4] flex-col lg:flex-row flex items-center justify-center ${className}`}

@@ -4,7 +4,6 @@ import React, { ReactNode, lazy, Suspense, useContext } from "react";
 import { useLevelState } from "@/context/LevelStateContext";
 import ProgressBar from "../sections/ProgressBar";
 import CompletedLevelSkeleton from "../sections/Skeletons/CompletedLevelSkeleton";
-import { correctContext } from "../learn/[level]/[levelPart]/page";
 import Completed from "../sections/CompletedLevel";
 interface MatcherProps {
   component: string;
@@ -19,12 +18,10 @@ const Matcher: React.FC<MatcherProps> = ({
   isInput,
   order,
 }) => {
-  const context = useLevelState();
+  const levelContext = useLevelState();
   {
-    !isInput && context.setSteps(order.length);
+    !isInput && levelContext.setSteps(order.length);
   }
-
-  const [correct, isCorrect]: any = useContext(correctContext);
 
   const Component = lazy(
     () =>
@@ -39,12 +36,12 @@ const Matcher: React.FC<MatcherProps> = ({
     <Suspense fallback={<CompletedLevelSkeleton />}>
       {!isInput && (
         <ProgressBar
-          size={context.progressFormula.toString()}
+          size={levelContext.progressFormula.toString()}
           className="my-8"
         />
       )}
       <Component {...params} {...(isInput && { order })} />
-      {correct && <Completed />}
+      {levelContext.correct && <Completed />}
     </Suspense>
   );
 };

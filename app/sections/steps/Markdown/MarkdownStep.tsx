@@ -1,12 +1,11 @@
 "use client";
 import Markdown from "react-markdown";
 import { decodeMarkdownFromJSON, encodeMarkdownForJSON } from "@/utils";
-import { useContext } from "react";
-import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
 import { dela } from "@/app/@lib/Fonts";
+import { useLevelState } from "@/context/LevelStateContext";
 
 const MarkdownStep = ({ markdown }: { markdown: string }) => {
-  const [correct, isCorrect]: any = useContext(correctContext);
+  const { correct, isCorrect } = useLevelState();
   return (
     <div className="flex w-full flex-col items-center">
       <Markdown className="prose max-w-[] mb-12 px-4 lg:px-0">

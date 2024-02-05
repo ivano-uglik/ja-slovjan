@@ -1,7 +1,6 @@
 "use client";
 
-import { useContext, useState } from "react";
-import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
+import { useLevelState } from "@/context/LevelStateContext";
 
 export default function ImageSelectStep({
   word,
@@ -10,7 +9,7 @@ export default function ImageSelectStep({
   word: string;
   options: { imageURL: string; isCorrect: boolean }[];
 }) {
-  const [correct, isCorrect]: any = useContext(correctContext);
+  const { correct, isCorrect } = useLevelState();
   function handleClick(index: number) {
     options[index].isCorrect ? isCorrect(true) : null;
   }

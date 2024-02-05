@@ -13,12 +13,19 @@ const LevelStateContext = createContext<any>(null);
 const LevelStateContextProvider = ({ children }: { children: ReactNode }) => {
   const [progressFormula, setProgressFormula] = useState<number>(0);
   const [steps, setSteps] = useState<number>();
+  const [correct, isCorrect] = useState<boolean>(false);
+  async function clearInputs() {
+    isCorrect(false);
+  }
 
   const value = {
     progressFormula,
     setProgressFormula,
     steps,
     setSteps,
+    correct,
+    isCorrect,
+    clearInputs,
   };
 
   useEffect(() => {
@@ -37,6 +44,9 @@ interface LevelStateInterface {
   setProgressFormula: (value: SetStateAction<number>) => void;
   steps: number;
   setSteps: (value: SetStateAction<number>) => void;
+  correct: boolean;
+  isCorrect: (value: SetStateAction<boolean>) => void;
+  clearInputs: any;
 }
 
 export const useLevelState = (): LevelStateInterface =>

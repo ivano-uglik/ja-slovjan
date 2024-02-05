@@ -1,7 +1,6 @@
 "use client";
 
-import { useContext, useState } from "react";
-import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
+import { useLevelState } from "@/context/LevelStateContext";
 
 export default function TranslateSentence({
   title,
@@ -10,7 +9,7 @@ export default function TranslateSentence({
   title: string;
   options: { text: string; isCorrect: boolean }[];
 }) {
-  const [correct, isCorrect]: any = useContext(correctContext);
+  const { correct, isCorrect } = useLevelState();
   return (
     <div className="text-primary">
       <div className="text-center text-3xl py-8 font-bold text-primary">

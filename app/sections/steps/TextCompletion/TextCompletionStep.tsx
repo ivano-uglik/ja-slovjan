@@ -1,9 +1,9 @@
 "use client";
 
 import { useContext, useState } from "react";
-import { correctContext } from "@/app/learn/[level]/[levelPart]/page";
-import SpecialLetters from "../../SpecialLetters";
+import Completed from "../../CompletedLevel";
 import { dela } from "@/app/@lib/Fonts";
+import { useLevelState } from "@/context/LevelStateContext";
 export default function TextCompletionStep({
   title,
   titleTranslated,
@@ -11,7 +11,7 @@ export default function TextCompletionStep({
   title: string;
   titleTranslated: string;
 }) {
-  const [correct, isCorrect]: any = useContext(correctContext);
+  const { correct, isCorrect } = useLevelState();
   const [inputValues, setInputValues] = useState<string[]>(
     title.split(" ").map(() => "")
   );
@@ -126,6 +126,7 @@ export default function TextCompletionStep({
           Nastavi
         </button>
       </div>
+      {correct && <Completed />}
     </div>
   );
 }
