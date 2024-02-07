@@ -1,6 +1,7 @@
 "use client";
 
 import { useLevelState } from "@/context/LevelStateContext";
+import { useState } from "react";
 
 export default function ImageSelectStep({
   word,
@@ -10,18 +11,14 @@ export default function ImageSelectStep({
   options: { imageURL: string; isCorrect: boolean }[];
 }) {
   const { correct, isCorrect } = useLevelState();
+  const [wrong, isWrong] = useState(false);
   function handleClick(index: number) {
-    options[index].isCorrect ? isCorrect(true) : null;
+    !wrong && options[index].isCorrect ? isCorrect(true) : isWrong(true);
   }
   return (
     <div className="text-primary">
       <div className="content-wrap mx-auto ">
-        <div>
-          <h2 className="text-center text-3xl font-bold">
-            Izbiraj popravny obraz
-          </h2>
-        </div>
-        <div className="font-bold text-5xl py-8">
+        <div className="font-bold text-4xl pb-8 text-center">
           <h1>{word}</h1>
         </div>
         <div className="flex justify-around items-center flex-wrap">
@@ -30,17 +27,17 @@ export default function ImageSelectStep({
               <div
                 key={index}
                 className={` rounded-xl ${
-                  correct && options[index].isCorrect
+                  !wrong && correct && options[index].isCorrect
                     ? "bg-success"
-                    : "hover:bg-slate-100 hover:opacity-80"
-                }`}
+                    : !wrong && "hover:bg-slate-100 hover:opacity-80"
+                } ${wrong && "bg-error"}`}
                 onClick={() => handleClick(index)}
               >
                 <img
                   src={option.imageURL}
                   alt=""
                   className={`w-64 h-64 object-cover object-center rounded-xl border cursor-pointer ${
-                    correct && options[index].isCorrect && "opacity-50"
+                    correct || (wrong && "opacity-75")
                   }`}
                 />
               </div>
