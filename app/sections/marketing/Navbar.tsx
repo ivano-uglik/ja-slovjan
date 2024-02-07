@@ -8,22 +8,22 @@ export default function Navbar() {
       <Image src={logo} alt="Ja, Slovjan" className="w-24" />
       <ul className={`${dela.className} hidden xl:flex justify-around w-2/3 `}>
         <li>
-          <Link href="#the-idea">The Idea</Link>
+          <Link href="#the-idea">the idea</Link>
         </li>
         <li>
-          <Link href="#features">Features</Link>
+          <Link href="#features">features</Link>
         </li>
         <li>
-          <Link href="#how-it-works">Contribute!</Link>
+          <Link href="#how-it-works">contribute</Link>
         </li>
         <li>
-          <Link href="#faq">FAQ</Link>
+          <Link href="#faq">faq</Link>
         </li>
         <li>
-          <Link href="#blog">Blog</Link>
+          <Link href="#blog">blog</Link>
         </li>
         <li>
-          <Link href="#contact-us">Contact</Link>
+          <Link href="#contact-us">contact us</Link>
         </li>
       </ul>
       <div

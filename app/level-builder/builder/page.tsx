@@ -19,7 +19,7 @@ import image from "@/public/level-builder-placeholder.svg";
 import Image from "next/image";
 import Matcher from "@/app/@lib/Matcher";
 import { useLevelBuilder } from "@/context/LevelBuilderContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/app/sections/levels/LevelNavbar";
 import ProgressBar from "@/app/sections/ProgressBar";
 
@@ -63,11 +63,13 @@ export default function Builder() {
             className="lg:w-96 mx-auto py-8"
             onSubmit={(e) => {
               e.preventDefault();
-            }}>
+            }}
+          >
             <div className="mb-4">
               <select
                 className="select w-full max-w-sm focus:outline-none"
-                onChange={(e) => context.setLanguage(e.target.value)}>
+                onChange={(e) => context.setLanguage(e.target.value)}
+              >
                 <option disabled selected>
                   Pick your language
                 </option>
@@ -82,7 +84,8 @@ export default function Builder() {
                   isCreateNewGroupToggled && "hidden"
                 }`}
                 onChange={(e) => context.setLevelGroup(e.target.value)}
-                disabled={context.language === "" && true}>
+                disabled={context.language === "" && true}
+              >
                 <option disabled selected>
                   Pick your level group
                 </option>
@@ -104,7 +107,8 @@ export default function Builder() {
                 }
                 className={`text-sm btn btn-outline w-full ${
                   !context.language && "btn-disabled"
-                }`}>
+                }`}
+              >
                 {isCreateNewGroupToggled
                   ? "Select a level group"
                   : "Create a new level group"}
@@ -125,7 +129,8 @@ export default function Builder() {
                     className={`label-text ${
                       (context.levelGroup && context.levelGroup.length >= 2) ===
                         "" && "opacity-25"
-                    }`}>
+                    }`}
+                  >
                     Description:
                   </span>
                 </div>
@@ -144,7 +149,8 @@ export default function Builder() {
                   // locked effect if level group not selected
                   className={`text-center ${
                     context.levelGroup === "" && "opacity-25"
-                  }`}>
+                  }`}
+                >
                   Add the first step using a template:
                 </span>
                 <button
@@ -153,7 +159,8 @@ export default function Builder() {
                     document.getElementById("my_modal_3").showModal()
                   }
                   // locked effect if level group not selected
-                  disabled={context.levelGroup === "" && true}>
+                  disabled={context.levelGroup === "" && true}
+                >
                   {/* // locked effect if level group not selected */}
                   {context.language === ""
                     ? "Please select a title to continue."
@@ -167,13 +174,15 @@ export default function Builder() {
                 {context.stepTemplates.map((step: any, index: number) => (
                   <div
                     key={index}
-                    className="border rounded-xl flex items-center p-4">
+                    className="border rounded-xl flex items-center p-4"
+                  >
                     <button
                       className="btn btn-square bg-gray-100 ml-1"
                       onClick={() => {
                         // call function to remove step this button is with
                         removeStep(index);
-                      }}>
+                      }}
+                    >
                       -
                     </button>
                     <div className="pl-4 text-xl">{step}</div>
@@ -184,13 +193,15 @@ export default function Builder() {
                   onClick={() =>
                     // show modal to add step, per daisyUI docs
                     document.getElementById("my_modal_3").showModal()
-                  }>
+                  }
+                >
                   +
                 </button>
                 <button
                   className={`${dela.className} btn btn-lg btn-primary mt-2`}
                   disabled={context.stepTemplates.length < 3 && true}
-                  onClick={() => context.setStepsCompleted(1)}>
+                  onClick={() => context.setStepsCompleted(1)}
+                >
                   {context.stepTemplates.length < 3
                     ? "Please select 3 or more steps to continue..."
                     : "Continue"}
@@ -223,7 +234,8 @@ export default function Builder() {
               return (
                 <div
                   key={index}
-                  className="w-96 p-8 border rounded-lg relative">
+                  className="w-96 p-8 border rounded-lg relative"
+                >
                   <Image src={image} alt="" />
                   <h1 className="text-center py-2 font-bold">
                     {template.title}
@@ -240,7 +252,8 @@ export default function Builder() {
                         ]);
                         // close modal, as per daisyUI docs
                         document.getElementById("my_modal_3").close();
-                      }}>
+                      }}
+                    >
                       Choose
                     </div>
                   </div>
